@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6580856813603429440}
   - component: {fileID: 6580856813603429441}
-  - component: {fileID: 6580856813603429447}
   - component: {fileID: 6580856813603429446}
+  - component: {fileID: 6580856813603429447}
+  - component: {fileID: 3213939275688633226}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6580856813603429447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6580856813603429442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12986de3dc1f502419ed0354b7e99009, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontalVelocity: 0
-  verticalVelocity: 0
-  moveSpeed: 100
 --- !u!50 &6580856813603429446
 Rigidbody2D:
   serializedVersion: 4
@@ -121,6 +107,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6580856813603429447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580856813603429442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12986de3dc1f502419ed0354b7e99009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalVelocity: 0
+  verticalVelocity: 0
+  moveSpeed: 100
+--- !u!114 &3213939275688633226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580856813603429442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959a0296fa05be647872e6cf3cf2502e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Bullet: {fileID: 208894901331596878, guid: 16f335694c0f46a439107cdabdca7025, type: 3}
+  m_Speed: 30
+  m_Delay: 0.05
+  m_CurrentDelay: 0
 --- !u!1 &6580856814378418351
 GameObject:
   m_ObjectHideFlags: 0
