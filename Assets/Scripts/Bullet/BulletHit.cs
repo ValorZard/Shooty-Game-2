@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class BulletHit : MonoBehaviour
 {
+    // Public variables
+        // The amount of damage done if hit by the bullet
+        public float m_Damage = 10f;
+
     // Private variables
         // Reference to the bullet's collider
         private CircleCollider2D m_Collider;
@@ -19,25 +23,37 @@ public class BulletHit : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // Collect all the colliders around the bullet
-        Collider[] colliders = Physics.OverlapSphere(transform.position, m_Collider.radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, m_Collider.radius);
 
         // Go through all the colliders
         for(int i = 0; i < colliders.Length; i++)
         {
-            // NOTE: give the player a collider
-            // If the owner is a player, go on to the next collider
-            if(false)
+            // If the collider belongs to this bullet, skip it
+            if(colliders[i].gameObject == gameObject)
                 continue;
 
+            // If the collider belongs to the player, skip it
+            if(colliders[i].CompareTag("Player"))
+                continue;
+            
             // If the owner is an enemy, deal damage to the enemy
+            if(colliders[i].CompareTag("Enemy"))
+            {
+                // Grab the enemy's rigidbody
+                Rigidbody2D targetRigidBody = colliders[i].GetComponent<Rigidbody2D>();
 
-            // Otherwise, it hits a wall or something, so destroy the bullet
+                // Grab the enemy's health script
+                EnemyHealth enemyHealth = targetRigidBody.GetComponent<EnemyHealth>();
+
+                // Deal damage to the enemy
+                enemyHealth.TakeDamage(m_Damage);
+            }
+
+            // It hits an enemy/wall/something, so destroy the bullet
             Destroy(gameObject);
-
-            // is it possible that bullets will be immediately destroyed by detecting the player? check after giving the player a collider
         }
     }
 
