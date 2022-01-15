@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8488213299630357970
+--- !u!1 &783359171946062836
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8488213299630357934}
-  - component: {fileID: 8488213299630357933}
-  - component: {fileID: 8488213299630357932}
-  - component: {fileID: 8488213299630357971}
-  - component: {fileID: 4876945688876710822}
+  - component: {fileID: 783359171946062831}
+  - component: {fileID: 783359171946062824}
+  - component: {fileID: 783359171946062825}
+  - component: {fileID: 783359171946062826}
+  - component: {fileID: 783359171946062827}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Enemy
+  m_Name: Powerup_Attack
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8488213299630357934
+--- !u!4 &783359171946062831
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488213299630357970}
+  m_GameObject: {fileID: 783359171946062836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8488213299630357933
+--- !u!212 &783359171946062824
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488213299630357970}
+  m_GameObject: {fileID: 783359171946062836}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 748ae8b33df036b46a86e0387f1602cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8272ea7c59da847458432e7c88bf7766, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,14 +85,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8488213299630357932
+--- !u!50 &783359171946062825
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488213299630357970}
+  m_GameObject: {fileID: 783359171946062836}
   m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -106,17 +106,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &8488213299630357971
+--- !u!60 &783359171946062826
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488213299630357970}
+  m_GameObject: {fileID: 783359171946062836}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -131,51 +131,61 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.14, y: -0.099999994}
-      - {x: -0.14, y: -0.26}
-      - {x: -0.11, y: -0.29999998}
-      - {x: -0.07, y: -0.29999998}
-      - {x: -0.01, y: -0.26999998}
-      - {x: 0, y: -0.22}
-      - {x: 0, y: -0.099999994}
-    - - {x: 0, y: -0.099999994}
-      - {x: 0, y: -0.22}
-      - {x: 0.01, y: -0.26999998}
-      - {x: 0.049999997, y: -0.29999998}
-      - {x: 0.099999994, y: -0.29999998}
-      - {x: 0.14, y: -0.29}
-      - {x: 0.14, y: -0.099999994}
-    - - {x: -0.07, y: 0.28}
-      - {x: -0.14, y: 0.17}
-      - {x: -0.14, y: -0.08}
-      - {x: -0.12, y: -0.099999994}
-      - {x: 0.14, y: -0.099999994}
-      - {x: 0.14, y: 0.12}
-      - {x: 0.06, y: 0.28}
-    - - {x: -0.29999998, y: 0.07}
-      - {x: -0.29, y: 0.02}
-      - {x: -0.14999999, y: 0.02}
-      - {x: -0.11, y: 0.08}
-      - {x: -0.11, y: 0.14}
-      - {x: -0.29999998, y: 0.14}
-    - - {x: 0.11, y: 0.099999994}
-      - {x: 0.14, y: 0.02}
-      - {x: 0.25, y: 0.02}
-      - {x: 0.29999998, y: 0.03}
-      - {x: 0.29999998, y: 0.099999994}
-      - {x: 0.29, y: 0.14}
-      - {x: 0.13, y: 0.14}
+    - - {x: -0.19999999, y: -0.099999994}
+      - {x: -0.26, y: -0.13}
+      - {x: -0.26, y: -0.25}
+      - {x: -0.19999999, y: -0.29999998}
+      - {x: -0.099999994, y: -0.29999998}
+      - {x: -0.06, y: -0.24}
+      - {x: -0.06, y: -0.13}
+      - {x: -0.089999996, y: -0.099999994}
+    - - {x: -0.04, y: 0.14}
+      - {x: -0.099999994, y: 0.14}
+      - {x: -0.11, y: 0.12}
+      - {x: -0.11, y: 0}
+      - {x: 0.07, y: -0.17}
+      - {x: 0.25, y: -0.26999998}
+      - {x: 0.26999998, y: -0.26999998}
+      - {x: 0.29999998, y: -0.24}
+      - {x: 0.29999998, y: -0.19999999}
+    - - {x: -0.17, y: 0.02}
+      - {x: -0.19, y: -0.06}
+      - {x: -0.19, y: -0.089999996}
+      - {x: -0.17, y: -0.099999994}
+      - {x: -0.12, y: -0.11}
+      - {x: -0.089999996, y: -0.099999994}
+      - {x: -0.08, y: -0.01}
+      - {x: -0.12, y: 0.06}
+      - {x: -0.14, y: 0.06}
+    - - {x: 0.04, y: 0.21}
+      - {x: -0.049999997, y: 0.17}
+      - {x: -0.049999997, y: 0.12}
+      - {x: 0, y: 0.089999996}
+      - {x: 0.049999997, y: 0.089999996}
       - {x: 0.11, y: 0.13}
---- !u!114 &4876945688876710822
+      - {x: 0.11, y: 0.16}
+      - {x: 0.089999996, y: 0.21}
+    - - {x: 0.14999999, y: 0.29999998}
+      - {x: 0.099999994, y: 0.22999999}
+      - {x: 0.099999994, y: 0.17999999}
+      - {x: 0.11, y: 0.14999999}
+      - {x: 0.17, y: 0.099999994}
+      - {x: 0.24, y: 0.099999994}
+      - {x: 0.29999998, y: 0.14999999}
+      - {x: 0.29999998, y: 0.28}
+      - {x: 0.24, y: 0.29999998}
+--- !u!114 &783359171946062827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8488213299630357970}
+  m_GameObject: {fileID: 783359171946062836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bb435a808e9e74ab97ead384f5f2c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 914ccd0d9143c0e44b75d089b9ce2f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 100
+  m_AttackMultiplier: 2
+  m_MaxTime: 10
+  m_CurrentTime: 0

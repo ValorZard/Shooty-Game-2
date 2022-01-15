@@ -13,12 +13,14 @@ public class PlayerShooting : MonoBehaviour
         public float m_Speed = 30f;
         // The delay before the player can shoot another bullet
         public float m_Delay = 0.05f;
+        // The power of the player's attacks
+        public float m_Damage = 10f;
     
     // Private variables
         // The input axis that is used for shooting bullets
-        private string m_FireButton;
+        [HideInInspector] public string m_FireButton;
         // The current delay between shooting bullets
-        public float m_CurrentDelay;
+        [HideInInspector] public float m_CurrentDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +62,12 @@ public class PlayerShooting : MonoBehaviour
     {
         // Create an instance of the bullet and store a reference to its rigidbody
         Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+
+        // Get the bullet script
+        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
+        bulletScript.setDamage(m_Damage);
 
         // Get the mouse's position relative to the screen
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

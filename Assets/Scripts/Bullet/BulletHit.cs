@@ -20,6 +20,7 @@ public class BulletHit : MonoBehaviour
         m_Collider = GetComponent<CircleCollider2D>();
 
         // here until other objects with collision are added, that way the game isn't bogged down by the amount of bullet prefabs flying around
+        // EDIT: collision with other objects has been added; however, the player can just walk out of bounds and shoot an infinite number of bullets into the distance. remove this destroy command once the player is trapped
         Destroy(gameObject, 2f);
     }
 
@@ -38,6 +39,10 @@ public class BulletHit : MonoBehaviour
             // If the collider belongs to the player, skip it
             if(colliders[i].CompareTag("Player"))
                 continue;
+
+            // If the collider belongs to a powerup, skip it
+            if(colliders[i].CompareTag("Powerup"))
+                continue;
             
             // If the owner is an enemy, deal damage to the enemy
             if(colliders[i].CompareTag("Enemy"))
@@ -46,7 +51,7 @@ public class BulletHit : MonoBehaviour
                 Rigidbody2D targetRigidBody = colliders[i].GetComponent<Rigidbody2D>();
 
                 // Grab the enemy's health script
-                EnemyHealth enemyHealth = targetRigidBody.GetComponent<EnemyHealth>();
+                HealthScript enemyHealth = targetRigidBody.GetComponent<HealthScript>();
 
                 // Deal damage to the enemy
                 enemyHealth.TakeDamage(m_Damage);
@@ -57,9 +62,8 @@ public class BulletHit : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setDamage(float amount)
     {
-        
+        m_Damage = amount;
     }
 }
