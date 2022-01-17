@@ -4,17 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupMultishot : MonoBehaviour
+public class PowerupMultishot : PowerupBase
 {
     // Public variables
-        // How long the powerup will be active for
-        public float m_MaxTime = 10f;
         // The angle the additional bullets will be shot at
         public float m_Angle = 15f;
+        // How long the powerup will be active for
+        public float m_MaxTime = 10f;
     
     // Private variables
-        // Reference to the powerup's collider
-        private BoxCollider2D m_Collider;
         // Reference to the powerup's sprite renderer
         private SpriteRenderer m_Renderer;
         // Reference to the player's multishooting script
@@ -82,5 +80,16 @@ public class PowerupMultishot : MonoBehaviour
             else
                 m_CurrentTime += Time.deltaTime;
         }
+    }
+
+    // Gives the player a multishot for a limited time when they touch it
+    protected override void PlayerTrigger(Rigidbody2D targetRigidbody)
+    {
+        // Grab the player's multishot script
+        PlayerShootingMulti multishot = targetRigidbody.GetComponent<PlayerShootingMulti>();
+
+        // Enable the player's multishot script...
+        // ... and assign the powerup's value and duration
+        multishot.Activate(m_Angle, m_MaxTime);
     }
 }

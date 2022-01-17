@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 783359171946062836, guid: db3b063f669849b459c17ae0ceb36f69, type: 3}
       propertyPath: m_Name
-      value: Powerup_Attack
+      value: Powerup_Damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db3b063f669849b459c17ae0ceb36f69, type: 3}
@@ -444,6 +444,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1689743047695707003, guid: dceff38e4a733f146bde26b5fcce5e9c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475980774559969719, guid: dceff38e4a733f146bde26b5fcce5e9c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6580856813603429440, guid: dceff38e4a733f146bde26b5fcce5e9c, type: 3}
       propertyPath: m_RootOrder
       value: 0

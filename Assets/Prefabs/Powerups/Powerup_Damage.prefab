@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 783359171946062826}
   - component: {fileID: 783359171946062827}
   m_Layer: 0
-  m_Name: Powerup_Attack
+  m_Name: Powerup_Damage
   m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,4 +188,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackMultiplier: 2
   m_MaxTime: 10
-  m_CurrentTime: 0

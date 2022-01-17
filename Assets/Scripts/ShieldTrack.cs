@@ -8,12 +8,6 @@ public class ShieldTrack : MonoBehaviour
         // Prefab of the player
         public Rigidbody2D m_Player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

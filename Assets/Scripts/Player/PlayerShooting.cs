@@ -57,18 +57,9 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    // Instantiate the bullet
-    private void Fire()
+    // Calculates the velocity between the cursor and the player
+    public Vector2 CalculateVelocity()
     {
-        // Create an instance of the bullet and store a reference to its rigidbody
-        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
-
-        // Get the bullet script
-        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
-
-        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
-        bulletScript.setDamage(m_Damage);
-
         // Get the mouse's position relative to the screen
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -81,10 +72,59 @@ public class PlayerShooting : MonoBehaviour
         // Calculate the bullet's vertical movement
         float vertical = mousePos.y - pos.y;
 
-        // Combine the horizontal and vertical movement
-        Vector2 velocity = new Vector2(horizontal, vertical);
+        return new Vector2(horizontal, vertical);
+    }
+
+    private Vector2 CalculateVelocity(float angle)
+    {
+        // Calculate the bullet's horizontal movement
+        float horizontal = Mathf.Cos(angle * Mathf.Deg2Rad);
+
+        // Calculate the bullet's vertical movement
+        float vertical = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+        if(CalculateVelocity().x < 0)
+        {
+            horizontal *= -1;
+            vertical *= -1;
+        }
+
+        return new Vector2(horizontal, vertical);
+    }
+
+    // Assigns variables to a bullet
+    private void AssignBullet(Vector2 velocity)
+    {
+        // Create an instance of the bullet and store a reference to its rigidbody
+        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+
+        // Grab the bullet script
+        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
+        bulletScript.setDamage(m_Damage);
+
+        // Set the friendly tag
+        bulletScript.m_Friend = "Player";
+
+        // Set the enemy tag
+        bulletScript.m_Enemy = "Enemy";
 
         // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
         bulletInstance.velocity = velocity.normalized * m_Speed;
+    }
+
+    // Instantiate the bullet
+    private void Fire()
+    {
+        // Assign variables to the bullet
+        AssignBullet(CalculateVelocity());
+    }
+
+    // Instantiate the bullet
+    public void Fire(float angle)
+    {
+        // Assign variables to the bullet
+        AssignBullet(CalculateVelocity(angle));
     }
 }

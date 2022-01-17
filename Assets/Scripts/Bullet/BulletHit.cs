@@ -9,6 +9,10 @@ public class BulletHit : MonoBehaviour
     // Public variables
         // The amount of damage done if hit by the bullet
         public float m_Damage = 10f;
+        // The tag not to harm
+        public string m_Friend = "";
+        // The tag to harm
+        public string m_Enemy = "";
 
     // Private variables
         // Reference to the bullet's collider
@@ -32,20 +36,20 @@ public class BulletHit : MonoBehaviour
         // Go through all the colliders
         for(int i = 0; i < colliders.Length; i++)
         {
-            // If the collider belongs to this bullet, skip it
-            if(colliders[i].gameObject == gameObject)
+            // If the collider belongs to a bullet, skip it
+            if(colliders[i].CompareTag("Bullet"))
                 continue;
-
-            // If the collider belongs to the player, skip it
-            if(colliders[i].CompareTag("Player"))
-                continue;
-
+            
             // If the collider belongs to a powerup, skip it
             if(colliders[i].CompareTag("Powerup"))
                 continue;
+
+            // If the collider belongs to the shooter, skip it
+            if(colliders[i].CompareTag(m_Friend))
+                continue;
             
-            // If the owner is an enemy, deal damage to the enemy
-            if(colliders[i].CompareTag("Enemy"))
+            // If the owner is an "enemy", deal damage to the enemy
+            if(colliders[i].CompareTag(m_Enemy))
             {
                 // Grab the enemy's rigidbody
                 Rigidbody2D targetRigidBody = colliders[i].GetComponent<Rigidbody2D>();

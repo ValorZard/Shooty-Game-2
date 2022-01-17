@@ -1,3 +1,5 @@
+// Programmer: Manhattan Calabro
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +8,34 @@ public class PlayerShootingMulti : MonoBehaviour
 {
     // Public variables
         // The angle the additional bullets will be shot at
-        public float m_Angle = 15f;
+        public float m_Angle;
+        // How long the powerup will be active for
+        public float m_MaxTime;
     
     // Private variables
         // Reference to the player's shooting script
         private PlayerShooting m_PlayerAttack;
+        // How long the powerup has currently been active for
+        [SerializeField] private float m_CurrentTime;
+        // Is the powerup currently active?
+        private bool m_Active;
 
     // Start is called before the first frame update
     void Start()
     {
         m_PlayerAttack = gameObject.GetComponent<PlayerShooting>();
+        m_CurrentTime = 0f;
+        m_Active = false;
+    }
+
+    public void Activate(float angle, float maxtime)
+    {
+        // Set the powerup's angle and duration
+        m_Angle = angle;
+        m_MaxTime = maxtime;
+
+        // Start tracking the current duration
+        m_Active = true;
     }
 
     // Update is called once per frame
@@ -35,76 +55,16 @@ public class PlayerShootingMulti : MonoBehaviour
     // Instantiate the additional bullets
     private void Fire()
     {
-        // Get the mouse's position relative to the screen
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Get the player's position
-        Vector2 pos = transform.position;
-
-        // Calculate the bullet's horizontal movement
-        float horizontal = mousePos.x - pos.x;
-
-        // Calculate the bullet's vertical movement
-        float vertical = mousePos.y - pos.y;
+        // Calculates the velocity between the cursor and the player
+        Vector2 velocity = m_PlayerAttack.CalculateVelocity();
 
         // Find the current angle
-        float angle = Mathf.Atan(vertical / horizontal) * Mathf.Rad2Deg;
-
-
-
-        // First new horizontal
-        float firstHorizontal = Mathf.Cos((angle + m_Angle) * Mathf.Deg2Rad);
-
-        // First new vertical
-        float firstVertical = Mathf.Sin((angle + m_Angle) * Mathf.Deg2Rad);
-        
-        // Second new horizontal
-        float secondHorizontal = Mathf.Cos((angle - m_Angle) * Mathf.Deg2Rad);
-
-        // Second new vertical
-        float secondVertical = Mathf.Sin((angle - m_Angle) * Mathf.Deg2Rad);
-
-        // Please don't ask me why or this is required; it has to do with the unit circle, and I'm not diving down that rabbit hole again (I've spent two hours trying to figure this out)
-        if(horizontal < 0)
-        {
-            firstHorizontal *= -1;
-            firstVertical *= -1;
-            secondHorizontal *= -1;
-            secondVertical *= -1;
-        }
-
-
-
-        // First velocity to move in
-        Vector2 firstVelocity = new Vector2(firstHorizontal, firstVertical);
-
-        // Create the first bullet
-        Rigidbody2D firstBulletInstance = Instantiate(m_PlayerAttack.m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
-
-        // Get the first bullet's script
-        BulletHit firstBulletScript = firstBulletInstance.GetComponent<BulletHit>();
-
-        // Set the attack power of the first bullet
-        firstBulletScript.setDamage(m_PlayerAttack.m_Damage);
+        float angle = Mathf.Atan(velocity.y / velocity.x) * Mathf.Rad2Deg;
 
         // Fire the first bullet
-        firstBulletInstance.velocity = firstVelocity.normalized * m_PlayerAttack.m_Speed;
-
-
-
-        // second velocity to move in
-        Vector2 secondVelocity = new Vector2(secondHorizontal, secondVertical);
-
-        // Create the second bullet
-        Rigidbody2D secondBulletInstance = Instantiate(m_PlayerAttack.m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
-
-        // Get the second bullet's script
-        BulletHit secondBulletScript = secondBulletInstance.GetComponent<BulletHit>();
-
-        // Set the attack power of the second bullet
-        secondBulletScript.setDamage(m_PlayerAttack.m_Damage);
+        m_PlayerAttack.Fire(angle + m_Angle);
 
         // Fire the second bullet
-        secondBulletInstance.velocity = secondVelocity.normalized * m_PlayerAttack.m_Speed;
+        m_PlayerAttack.Fire(angle - m_Angle);
     }
 }
