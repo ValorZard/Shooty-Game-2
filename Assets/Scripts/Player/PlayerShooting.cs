@@ -43,6 +43,7 @@ public class PlayerShooting : MonoBehaviour
         {
             // ... shoot the bullet
             Fire();
+            
 
             // Delay the next shot
             m_CurrentDelay = m_Delay;
@@ -119,6 +120,7 @@ public class PlayerShooting : MonoBehaviour
     // Instantiate the bullet
     private void Fire()
     {
+        Debug.Log("Player " + playerNumber + " is shooting!!");
         // Assign variables to the bullet
         AssignBullet(CalculateVelocity());
     }

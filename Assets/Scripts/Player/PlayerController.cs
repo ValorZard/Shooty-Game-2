@@ -26,5 +26,6 @@ public class PlayerController : MonoBehaviour
         horizontalVelocity = Input.GetAxisRaw("Horizontal" + playerNumber);
         verticalVelocity = Input.GetAxisRaw("Vertical" + playerNumber);
         body.velocity = moveSpeed * (new Vector2(horizontalVelocity, verticalVelocity)).normalized;
+
     }
 }
