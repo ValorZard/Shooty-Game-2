@@ -15,6 +15,8 @@ public class PlayerShooting : MonoBehaviour
         public float m_Delay = 0.05f;
         // The power of the player's attacks
         public float m_Damage = 10f;
+    // Player number
+    public int playerNumber = 1;
     
     // Private variables
         // The input axis that is used for shooting bullets
@@ -26,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
         // Assign the input to shoot
-        m_FireButton = "Fire1";
+        m_FireButton = "Fire" + playerNumber;
 
         // The currently delay is reset
         m_CurrentDelay = 0f;
