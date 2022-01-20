@@ -1,4 +1,8 @@
-// Programmer: Srayan Jana
+/*
+    Programmers: Srayan Jana, Cuervo94
+        Srayan: Worked on movement
+        Cuervo: Added player number differentiation
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +30,5 @@ public class PlayerController : MonoBehaviour
         horizontalVelocity = Input.GetAxisRaw("Horizontal" + playerNumber);
         verticalVelocity = Input.GetAxisRaw("Vertical" + playerNumber);
         body.velocity = moveSpeed * (new Vector2(horizontalVelocity, verticalVelocity)).normalized;
-
     }
 }

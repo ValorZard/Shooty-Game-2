@@ -1,4 +1,8 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmers: Manhattan Calabro, Cuervo94
+        Manhattan: Worked on shooting
+        Cuervo: Added player number differentiation
+*/
 
 using System.Collections;
 using System.Collections.Generic;
