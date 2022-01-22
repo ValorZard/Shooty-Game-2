@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D body;
 
     //Player number
-    public int playerNumber = 1;
+    public int playerNumber;
 
     public float moveSpeed = 1.0f;
     
