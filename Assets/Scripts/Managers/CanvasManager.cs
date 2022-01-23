@@ -11,71 +11,100 @@ public class CanvasManager : MonoBehaviour
         public GameObject[] m_Players;
     
     // Private variables
-        // Reference to the child player one UI
-        private GameObject m_PlayerOneUI;
-        // Reference to the child player two UI
-        private GameObject m_PlayerTwoUI;
-        // Has the player one UI been connected yet?
-        private bool m_PlayerOneUIConnected;
-        // Has the player two UI been connected yet?
-        private bool m_PlayerTwoUIConnected;
+        // List of references of the child player UIs
+        [SerializeField] private GameObject[] m_PlayerUI;
+        // Has the player been connected yet?
+        [SerializeField] private bool[] m_Connected;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerOneUI = transform.GetChild(0).gameObject;
-        m_PlayerTwoUI = transform.GetChild(1).gameObject;
-        
-        // Make sure that the UIs will be connected later
-        m_PlayerOneUIConnected = false;
-        m_PlayerTwoUIConnected = false;
+        // Initializes the lists
+        m_PlayerUI = new GameObject[transform.childCount];
+        m_Connected = new bool[transform.childCount];
+
+        // Goes through the children...
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            m_PlayerUI[i] = transform.GetChild(i).gameObject;
+            m_Connected[i] = false;
+        }
     }
 
-
-    // Connects the player UIs to their respective players
+    // Update is called once per frame
     void Update()
     {
-        // If the player one UI hasn't been conected yet, run
-        if(!m_PlayerOneUIConnected)
+        // Connects the player UIs to their respective players
+        ConnectUI();
+    }
+
+    // Connects the UI with the player
+    private void ConnectUI()
+    {
+        // Goes through the list of connectedness...
+        for(int i = 0; i < m_Connected.Length; i++)
         {
-            // Grab the player one UI's health bar script
-            UIHealthBar uiHealthScript = m_PlayerOneUI.GetComponentInChildren<UIHealthBar>();
-
-            // Grab the player one's health script
-            HealthScript playerHealthScript = m_Players[0].GetComponent<HealthScript>();
-
-            // Assign the script to the player one health script
-            uiHealthScript.m_HealthScript = playerHealthScript;
-
-            // Make sure this only runs once
-            m_PlayerOneUIConnected = true;
-        }
-
-        // If the player two UI hasn't been connected yet, AND if the player two UI is active, run
-        if(!m_PlayerTwoUIConnected &&
-            m_PlayerTwoUI.activeSelf)
-        {
-            // Continue if there is a second player in the list
-            if(m_Players.Length > 1)
+            // If the player UI hasn't been connected yet, AND the player UI is active...
+            if(!m_Connected[i] &&
+                m_PlayerUI[i].activeSelf)
             {
-                // Grab the player two UI's health bar script
-                UIHealthBar uiHealthScript = m_PlayerTwoUI.GetComponentInChildren<UIHealthBar>();
+                // If the index exceeds the total number of players...
+                if(i > m_Players.Length)
+                {
+                    // ... deactivate the current UI
+                    m_PlayerUI[i].SetActive(false);
+                }
+                // Otherwise, connect the UI
+                else
+                {
+                    // Connects the healths
+                    ConnectUIHealth(i);
 
-                // Grab the player two's health script
-                HealthScript playerHealthScript = m_Players[1].GetComponent<HealthScript>();
+                    // Connects the shield
+                    ConnectUIShield(i);
 
-                // Assign the script to the player two health script
-                uiHealthScript.m_HealthScript = playerHealthScript;
+                    // Connects the ammos
+                    ConnectUIAmmo(i);
 
-                // Make sure this only runs once
-                m_PlayerTwoUIConnected = true;
-            }
-
-            // Otherwise, deactivate the player two UI
-            else
-            {
-                m_PlayerTwoUI.SetActive(false);
+                    // Make sure this only runs once
+                    m_Connected[i] = true;
+                }
             }
         }
+    }
+
+    // Connects the UI health with the player health
+    private void ConnectUIHealth(int index)
+    {
+        // Grab the player UI's health bar script
+        UIHealthBar uiHealthScript = m_PlayerUI[index].GetComponentInChildren<UIHealthBar>();
+
+        // Grab the player's health script
+        HealthScript playerHealthScript = m_Players[index].GetComponent<HealthScript>();
+
+        // Assign the script to the player health script
+        uiHealthScript.m_HealthScript = playerHealthScript;
+    }
+
+    // Connects the UI shield with the player shield
+    private void ConnectUIShield(int index)
+    {
+        // Grab the player's UI's shield bar script
+        UIShieldBar uiShieldScript = m_PlayerUI[index].GetComponentInChildren<UIShieldBar>();
+
+        // Grab the player's shield child
+        GameObject shield = m_Players[index].transform.Find("Shield").gameObject;
+
+        // Grab the shield's health script
+        HealthScript shieldHealthScript = shield.GetComponent<HealthScript>();
+
+        // Assign the script to the shield health script
+        uiShieldScript.m_HealthScript = shieldHealthScript;
+    }
+
+    // Connects the UI ammo with the player ammo
+    private void ConnectUIAmmo(int index)
+    {
+        // add code here for when the players actually have ammo
     }
 }

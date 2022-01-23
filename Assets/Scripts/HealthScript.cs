@@ -12,7 +12,7 @@ public class HealthScript : MonoBehaviour
     
     // Private variables
         // How much health the character currently has
-        private float m_CurrentHealth;
+        [SerializeField] private float m_CurrentHealth;
         // Has the character been reduced beyond zero health yet?
         private bool m_Dead;
 

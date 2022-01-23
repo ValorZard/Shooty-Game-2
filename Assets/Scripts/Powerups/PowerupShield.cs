@@ -7,10 +7,8 @@ using UnityEngine;
 public class PowerupShield : PowerupBase
 {
     // Public variables
-        // Prefab of the shield
-        public Rigidbody2D m_Shield;
         // The amount of shield the player will gain if touched (acts as extra health or an overheal)
-        public float m_ShieldAmount = 25f;
+        public float m_ShieldAmount = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +19,16 @@ public class PowerupShield : PowerupBase
     // Gives the player a shield when they touch it
     protected override void PlayerTrigger(Rigidbody2D targetRigidbody)
     {
-        // Spawn a shield that follows the player around
-        Rigidbody2D shieldInstance = Instantiate(m_Shield, transform.position, transform.rotation) as Rigidbody2D;
+        // Grab the player's shield child
+        GameObject shield = targetRigidbody.transform.Find("Shield").gameObject;
 
-        // Grab the shield's health script
-        HealthScript health = shieldInstance.GetComponent<HealthScript>();
+        // Activate the shield
+        shield.SetActive(true);
 
-        // Assign the shield's max health
-        health.m_StartingHealth = m_ShieldAmount;
+        // Get the shield's health script
+        HealthScript health = shield.GetComponent<HealthScript>();
 
-        // Grab the shield's tracking script
-        ShieldTrack trackingScript = shieldInstance.GetComponent<ShieldTrack>();
-
-        // Assign the player to track
-        trackingScript.m_Player = targetRigidbody;
+        // Heal the shield to max (in case the shield was previously depleted)
+        health.Heal(m_ShieldAmount);
     }
 }
