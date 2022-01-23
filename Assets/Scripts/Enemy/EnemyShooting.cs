@@ -15,16 +15,23 @@ public class EnemyShooting : MonoBehaviour
         public float m_Delay = 0.5f;
         // The power of the enemy's attacks
         public float m_Damage = 10f;
-    
+
+    //For getting enemy sight
+    public EnemyMovement enemy;
+
+
     // Private variables
-        // The current delay between shooting bullets
-        private float m_CurrentDelay;
+    // The current delay between shooting bullets
+    private float m_CurrentDelay;
 
     // Start is called before the first frame update
     void Start()
     {
         // The current delay is reset
         m_CurrentDelay = 0f;
+
+        enemy = GetComponent<EnemyMovement>();
+
     }
 
     // Update is called once per frame
@@ -54,7 +61,11 @@ public class EnemyShooting : MonoBehaviour
     // Instantiate the bullet
     private void Fire()
     {
-        Vector2 velocity = new Vector2(1f, 0f);
+        //UPDATED (Pedro Longo)
+        //get position of player in sight
+        Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
+        //shoot at player's position
+        Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
 
         // Create an instance of the bullet and store a reference to its rigidbody
         Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
