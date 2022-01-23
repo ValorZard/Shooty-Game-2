@@ -19,8 +19,8 @@ public class PlayerShooting : MonoBehaviour
         public float m_Delay = 0.05f;
         // The power of the player's attacks
         public float m_Damage = 10f;
-    // Player number
-    public int playerNumber = 1;
+        // Player number
+        public int playerNumber = 1;
     
     // Private variables
         // The input axis that is used for shooting bullets
@@ -34,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
         // Assign the input to shoot
         m_FireButton = "Fire" + playerNumber;
 
-        // The currently delay is reset
+        // The current delay is reset
         m_CurrentDelay = 0f;
     }
 
@@ -43,7 +43,7 @@ public class PlayerShooting : MonoBehaviour
     {
         // If the fire button is pressed, AND the current delay is zero...
         if(Input.GetButton(m_FireButton)
-            && m_CurrentDelay == 0)
+            && m_CurrentDelay == 0f)
         {
             // ... shoot the bullet
             Fire();
@@ -57,11 +57,48 @@ public class PlayerShooting : MonoBehaviour
         m_CurrentDelay -= Time.deltaTime;
 
         // If current delay is less than zero...
-        if(m_CurrentDelay < 0)
+        if(m_CurrentDelay < 0f)
         {
             // ... set it to zero (prevents a ludicrous amount generating)
-            m_CurrentDelay = 0;
+            m_CurrentDelay = 0f;
         }
+    }
+
+    // Instantiate the bullet
+    private void Fire()
+    {
+        Debug.Log("Player " + playerNumber + " is shooting!!");
+        // Assign variables to the bullet
+        AssignBullet(CalculateVelocity());
+    }
+
+    // Instantiate the bullet
+    public void Fire(float angle)
+    {
+        // Assign variables to the bullet
+        AssignBullet(CalculateVelocity(angle));
+    }
+
+    // Assigns variables to a bullet
+    private void AssignBullet(Vector2 velocity)
+    {
+        // Create an instance of the bullet and store a reference to its rigidbody
+        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+
+        // Grab the bullet script
+        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
+        bulletScript.setDamage(m_Damage);
+
+        // Set the friendly tag
+        bulletScript.m_Friend = "Player";
+
+        // Set the enemy tag
+        bulletScript.m_Enemy = "Enemy";
+
+        // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
+        bulletInstance.velocity = velocity.normalized * m_Speed;
     }
 
     // Calculates the velocity between the cursor and the player
@@ -97,42 +134,5 @@ public class PlayerShooting : MonoBehaviour
         }
 
         return new Vector2(horizontal, vertical);
-    }
-
-    // Assigns variables to a bullet
-    private void AssignBullet(Vector2 velocity)
-    {
-        // Create an instance of the bullet and store a reference to its rigidbody
-        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
-
-        // Grab the bullet script
-        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
-
-        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
-        bulletScript.setDamage(m_Damage);
-
-        // Set the friendly tag
-        bulletScript.m_Friend = "Player";
-
-        // Set the enemy tag
-        bulletScript.m_Enemy = "Enemy";
-
-        // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
-        bulletInstance.velocity = velocity.normalized * m_Speed;
-    }
-
-    // Instantiate the bullet
-    private void Fire()
-    {
-        Debug.Log("Player " + playerNumber + " is shooting!!");
-        // Assign variables to the bullet
-        AssignBullet(CalculateVelocity());
-    }
-
-    // Instantiate the bullet
-    public void Fire(float angle)
-    {
-        // Assign variables to the bullet
-        AssignBullet(CalculateVelocity(angle));
     }
 }
