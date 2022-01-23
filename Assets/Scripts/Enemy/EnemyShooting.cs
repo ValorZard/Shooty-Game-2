@@ -17,7 +17,7 @@ public class EnemyShooting : MonoBehaviour
         public float m_Damage = 10f;
 
     //For getting enemy sight
-    public EnemyMovement enemy;
+    public EnemyController enemy;
 
 
     // Private variables
@@ -30,7 +30,7 @@ public class EnemyShooting : MonoBehaviour
         // The current delay is reset
         m_CurrentDelay = 0f;
 
-        enemy = GetComponent<EnemyMovement>();
+        enemy = GetComponent<EnemyController>();
 
     }
 

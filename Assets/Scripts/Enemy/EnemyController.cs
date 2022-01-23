@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     //public variables
     public float speed = 2.0f;
@@ -25,6 +25,9 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
+
+    /*
+    // the following two functions are for the targeting and tracking of players
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,4 +52,5 @@ public class EnemyMovement : MonoBehaviour
             target = null;
         }
     }
+    */
 }
