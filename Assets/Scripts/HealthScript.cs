@@ -54,4 +54,10 @@ public class HealthScript : MonoBehaviour
 
         // note, have the ui say "game over" when the player is deactivated (obviously don't code that in here, since this is a general script for multiple entities)
     }
+
+    // Returns the player's current health
+    public float GetCurrentHealth()
+    {
+        return m_CurrentHealth;
+    }
 }

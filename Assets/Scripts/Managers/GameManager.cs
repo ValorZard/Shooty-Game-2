@@ -17,14 +17,19 @@ public class GameManager : MonoBehaviour
         public GameObject playerPrefab;
         // A collection of player managers
         public PlayerManager[] players;
+        // REference to the CanvasManager script
+        public CanvasManager m_CanvasManager;
 
     private void Start()
     {
         SpawnPlayers();
 
-        SetCameraTargets();
+        // Gives references of the players to the canvas manager
+        // (has to be above the camera code for some reason??)
+        AssignPlayersToCanvas();
 
         // Snap the camera's position and zoom to something appropriate for the preset players
+        SetCameraTargets();
         m_CameraController.SetStartPositionAndSize();
     }
 
@@ -56,5 +61,20 @@ public class GameManager : MonoBehaviour
 
         // These are the targets the camera should follow
         m_CameraController.m_Targets = targets;
+    }
+
+    private void AssignPlayersToCanvas()
+    {
+        // Initialize the list of players to give to the canvas manager
+        GameObject[] targets = new GameObject[players.Length];
+
+        // Goes through the list of players...
+        for(int i = 0; i < targets.Length; i++)
+        {
+            // ... and adds the player to the canvas manager's list
+            targets[i] = players[i].instance;
+        }
+
+        m_CanvasManager.m_Players = targets;
     }
 }
