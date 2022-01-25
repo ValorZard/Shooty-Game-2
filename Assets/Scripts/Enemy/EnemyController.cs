@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Srayan Jana, Cuervo94
+ *  - Srayan: Refactored code
+ */
+
 public class EnemyController : MonoBehaviour
 {
     //public variables

@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Srayan Jana, Cuervo94
+ *  - Srayan: refactored code to its own class
+ */
+
+
 public class PlayerDetector : MonoBehaviour
 {
 
