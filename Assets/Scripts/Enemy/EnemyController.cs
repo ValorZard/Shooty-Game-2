@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Srayan Jana, Cuervo94
+ * Srayan Jana, Pedro Longo
  *  - Srayan: Refactored code
  */
 

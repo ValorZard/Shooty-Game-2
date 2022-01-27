@@ -1,6 +1,6 @@
 /*
-    Programmers: Cuervo94, Manhattan Calabro
-        Cuervo: Spawning players
+    Programmers: Pedro Longo, Manhattan Calabro
+        Pedro: Spawning players
         Manhattan: Added camera control
 */
 

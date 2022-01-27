@@ -1,4 +1,5 @@
 // Programmer: Manhattan Calabro
+// Pedro Longo: Added target and direction to shooting
 
 using System.Collections;
 using System.Collections.Generic;
@@ -65,6 +66,7 @@ public class EnemyShooting : MonoBehaviour
         //get position of player in sight
         Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
         //shoot at player's position
+        Debug.Log("Shooting at: " + enemy.target);
         Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
 
         // Create an instance of the bullet and store a reference to its rigidbody

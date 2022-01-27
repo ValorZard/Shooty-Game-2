@@ -47,6 +47,10 @@ public class BulletHit : MonoBehaviour
             // If the collider belongs to the shooter, skip it
             if(colliders[i].CompareTag(m_Friend))
                 continue;
+
+            // If the collider belongs to enemy view detection, skip it
+            if (colliders[i].CompareTag("EnemyView"))
+                continue;
             
             // If the owner is an "enemy", deal damage to the enemy
             if(colliders[i].CompareTag(m_Enemy))
