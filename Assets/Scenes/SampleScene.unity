@@ -292,11 +292,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &719274868 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5062610095290927918, guid: f52a6dae079253742bdbdf44203db4ff, type: 3}
-  m_PrefabInstance: {fileID: 5062610096942626625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &848721009 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5062610096161571632, guid: f52a6dae079253742bdbdf44203db4ff, type: 3}
@@ -486,8 +481,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 719274868}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2022372042
 MonoBehaviour:
@@ -503,6 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerTwo: {fileID: 0}
   m_ControllerName: 
+  m_InputAxis: 
 --- !u!114 &2123201646 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5062610095290927919, guid: f52a6dae079253742bdbdf44203db4ff, type: 3}

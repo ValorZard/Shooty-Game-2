@@ -15,24 +15,36 @@ public class JoystickManager : MonoBehaviour
     // Private variables
         // The name of the first controller plugged in
         [SerializeField] private string m_ControllerName = "";
+        // The input axis type that should be used
+        [SerializeField] private string m_InputAxis = "";
 
-    // Checks if the first controller is an XBOX controller
-    private void UpdateController()
+    // Grabs the name of the first controller
+    private void FindFirstController()
     {
         // If there's a controller plugged in...
         if(Input.GetJoystickNames().Length > 0)
         {
-            // ... AND if the first controller is an XBOX controller...
-            if(Input.GetJoystickNames()[0].ToUpper().Contains("XBOX"))
-            {
-                // .... the controller is an XBOX controller
-                m_ControllerName = "XBOX";
-            }
+            // Grab the first name
+            m_ControllerName = Input.GetJoystickNames()[0];
+        }
+    }
+
+    // Checks if the first controller is an XBOX controller
+    private void UpdateController()
+    {
+        // Find the first controller
+        FindFirstController();
+
+        // If the first controller is an XBOX controller...
+        if(m_ControllerName.ToUpper().Contains("XBOX"))
+        {
+            // ... the controller is an XBOX controller
+            m_InputAxis = "XBOX";
         }
         
         // Otherwise, return nothing
         else
-            m_ControllerName = "";
+            m_InputAxis = "";
     }
 
     // Start is called before the first frame update
@@ -52,13 +64,13 @@ public class JoystickManager : MonoBehaviour
         PlayerController movementScript = m_PlayerTwo.GetComponent<PlayerController>();
 
         // Switch the movement script to the XBOX control scheme
-        movementScript.m_HorizontalAxis = "Horizontal1" + m_ControllerName;
-        movementScript.m_VerticalAxis = "Vertical1" + m_ControllerName;
+        movementScript.m_HorizontalAxis = "Horizontal2" + m_InputAxis;
+        movementScript.m_VerticalAxis = "Vertical2" + m_InputAxis;
 
         // Grab the second player's shooting script
         PlayerShooting shootScript = m_PlayerTwo.GetComponent<PlayerShooting>();
 
         // Switch the shooting script to the XBOX control scheme
-        shootScript.m_FireButton = "Fire1" + m_ControllerName;
+        shootScript.m_FireButton = "Fire2" + m_InputAxis;
     }
 }

@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     {
         SpawnPlayers();
 
+        // Gives the second player reference to the joystick manager to update the control scheme based on controllers
+        AssignPlayerToJoystick();
+
         // Gives references of the players to the canvas manager
         // (has to be above the camera code for some reason??)
         AssignPlayersToCanvas();
@@ -33,9 +36,6 @@ public class GameManager : MonoBehaviour
         // Snap the camera's position and zoom to something appropriate for the preset players
         SetCameraTargets();
         m_CameraController.SetStartPositionAndSize();
-
-        // Gives the second player reference to the joystick manager to update the control scheme based on controllers
-        AssignPlayerToJoystick();
     }
 
     private void SpawnPlayers()
