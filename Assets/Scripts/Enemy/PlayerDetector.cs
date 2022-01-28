@@ -10,19 +10,19 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-
     private EnemyController enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         enemy = this.transform.parent.gameObject.GetComponent<EnemyController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

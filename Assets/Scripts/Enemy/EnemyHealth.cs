@@ -1,36 +1,33 @@
-// Programmer: Manhattan Calabro
+// Programmer: Pedro Longo
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HealthScript : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     // Public variables
-        // The amount of health the character starts with
-        public float m_StartingHealth = 100f;
+    // The amount of health the character starts with
+    public float m_StartingHealth = 100f;
+    public Slider m_Slider;
+    public Image m_FillImage;
+    public Color m_FullHealthColor = Color.red;
+    public Color m_ZeroHealthColor;
 
     // Private variables
     // How much health the character currently has
     [SerializeField] private float m_CurrentHealth;
-        // Has the character been reduced beyond zero health yet?
-        private bool m_Dead;
+    // Has the character been reduced beyond zero health yet?
+    private bool m_Dead;
 
     // Start is called before the first frame update
     void Start()
     {
         m_CurrentHealth = m_StartingHealth;
         m_Dead = false;
-    }
 
-    // Increase the character's health
-    public void Heal(float amount)
-    {
-        m_CurrentHealth += amount;
-
-        // If the current health is greater than the starting health, set the current health to the starting health
-        if(m_CurrentHealth > m_StartingHealth)
-            m_CurrentHealth = m_StartingHealth;
+        SetHealthUI();
     }
 
     // Decrease the character's health
@@ -38,9 +35,21 @@ public class HealthScript : MonoBehaviour
     {
         m_CurrentHealth -= amount;
 
+        //Update health bar
+        SetHealthUI();
+
         // If the current health is at or below zero and it has not yet been registered, call OnDeath
-        if(m_CurrentHealth <= 0f && !m_Dead)
+        if (m_CurrentHealth <= 0f && !m_Dead)
             OnDeath();
+    }
+
+    private void SetHealthUI()
+    {
+        //Set the slider's value
+        m_Slider.value = m_CurrentHealth;
+
+        //Fill bar with color and change depending on current health
+        m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
     }
 
     // Disable the character when it dies
@@ -51,8 +60,6 @@ public class HealthScript : MonoBehaviour
 
         // Turn the character off
         gameObject.SetActive(false);
-
-        // note, have the ui say "game over" when the player is deactivated (obviously don't code that in here, since this is a general script for multiple entities)
     }
 
     // Returns the player's current health

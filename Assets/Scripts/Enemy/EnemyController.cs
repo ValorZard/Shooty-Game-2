@@ -12,23 +12,34 @@ public class EnemyController : MonoBehaviour
     //public variables
     public float speed = 2.0f;
     public bool playerInSight;
+    public float shootingRange = 4.0f;
     public GameObject player;
     public Transform target;
+
+    private CircleCollider2D collider;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        collider = GetComponentInChildren<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInSight)
+        // Get distance from player
+        float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
+
+        if (playerInSight == true && distanceFromPlayer > shootingRange)
         {
             //Enemy will pursue player on sight
             transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
         }
-
+        else if(distanceFromPlayer < shootingRange)
+        {
+            //Enemy will backup if the player is too close
+            transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+        }
     }
 
     /*

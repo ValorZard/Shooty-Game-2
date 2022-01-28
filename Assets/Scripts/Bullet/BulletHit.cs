@@ -1,7 +1,7 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
         Manhattan: Coded bullet collision
-        Pedro: Added collision conditions for "EnemyView"-type objects
+        Pedro: Added collision conditions for "EnemyView"-type objects, added damage to enemy health script
 */
 
 using System.Collections;
@@ -59,14 +59,28 @@ public class BulletHit : MonoBehaviour
             // If the owner is an "enemy", deal damage to the enemy
             if(colliders[i].CompareTag(m_Enemy))
             {
-                // Grab the enemy's rigidbody
+                //UPDATE (Pedro Longo): if the target is the enemy, it will grab the enemy health script, otherwise it will grab the regular health script
+
+                // Grab the target's rigidbody
                 Rigidbody2D targetRigidBody = colliders[i].GetComponent<Rigidbody2D>();
 
                 // Grab the enemy's health script
-                HealthScript enemyHealth = targetRigidBody.GetComponent<HealthScript>();
+                if(colliders[i].tag == "Enemy")
+                {
+                    EnemyHealth enemyHealth = targetRigidBody.GetComponent<EnemyHealth>();
 
-                // Deal damage to the enemy
-                enemyHealth.TakeDamage(m_Damage);
+                    // Deal damage to the enemy
+                    enemyHealth.TakeDamage(m_Damage);
+                }
+                else { 
+
+                    // Grab player's health script
+                    HealthScript playerHealth = targetRigidBody.GetComponent<HealthScript>();
+
+                    //Deal damage to player
+                    playerHealth.TakeDamage(m_Damage);
+                }
+
             }
 
             // It hits an enemy/wall/something, so destroy the bullet

@@ -39,7 +39,7 @@ public class EnemyShooting : MonoBehaviour
     void Update()
     {
         // If the current delay is zero...
-        if(m_CurrentDelay == 0f)
+        if (m_CurrentDelay == 0f)
         {
             // ... shoot the bullet
             Fire();
@@ -65,9 +65,8 @@ public class EnemyShooting : MonoBehaviour
         //UPDATED (Pedro Longo)
         //get position of player in sight
         Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
-        //shoot at player's position
-        Debug.Log("Shooting at: " + enemy.target);
         Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
+
 
         // Create an instance of the bullet and store a reference to its rigidbody
         Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
