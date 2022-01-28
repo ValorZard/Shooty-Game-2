@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -66,6 +68,9 @@ public class CanvasManager : MonoBehaviour
                     // Connects the ammos
                     ConnectUIAmmo(i);
 
+                    // Connects the powerups
+                    ConnectUIPowerup(i);
+
                     // Make sure this only runs once
                     m_Connected[i] = true;
                 }
@@ -106,5 +111,15 @@ public class CanvasManager : MonoBehaviour
     private void ConnectUIAmmo(int index)
     {
         // add code here for when the players actually have ammo
+    }
+
+    // Connects the UI powerups with the player powerups
+    private void ConnectUIPowerup(int index)
+    {
+        // Grab the player's UI's powerup bar script
+        UIPowerupBar uiPowerupScript = m_PlayerUI[index].GetComponentInChildren<UIPowerupBar>();
+
+        // Assign the player to the UI
+        uiPowerupScript.m_Player = m_Players[index];
     }
 }
