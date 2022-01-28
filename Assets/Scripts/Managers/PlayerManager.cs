@@ -1,4 +1,6 @@
-// Programmer: Pedro Longo
+/*
+    Programmer: Pedro Longo
+*/
 
 using System;
 using System.Collections;

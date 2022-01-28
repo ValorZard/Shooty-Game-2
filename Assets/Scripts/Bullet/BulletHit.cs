@@ -1,4 +1,8 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmers: Manhattan Calabro, Pedro Longo
+        Manhattan: Coded bullet collision
+        Pedro: Added collision conditions for "EnemyView"-type objects
+*/
 
 using System.Collections;
 using System.Collections.Generic;

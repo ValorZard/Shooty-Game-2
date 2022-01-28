@@ -1,7 +1,7 @@
 /*
     Programmers: Pedro Longo, Manhattan Calabro
         Pedro: Spawning players
-        Manhattan: Added camera control
+        Manhattan: Added camera control, added UI control, added XBOX controller compatibility
 */
 
 using System.Collections;
@@ -11,14 +11,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Public variables
-        // Reference to the CameraController script
-        public CameraController m_CameraController;
         // Reference to the player prefab
         public GameObject playerPrefab;
         // A collection of player managers
         public PlayerManager[] players;
-        // REference to the CanvasManager script
+        // Reference to the CameraController script
+        public CameraController m_CameraController;
+        // Reference to the CanvasManager script
         public CanvasManager m_CanvasManager;
+        // Reference to the JoystickManager script
+        public JoystickManager m_JoystickManager;
 
     private void Start()
     {
@@ -31,6 +33,9 @@ public class GameManager : MonoBehaviour
         // Snap the camera's position and zoom to something appropriate for the preset players
         SetCameraTargets();
         m_CameraController.SetStartPositionAndSize();
+
+        // Gives the second player reference to the joystick manager to update the control scheme based on controllers
+        AssignPlayerToJoystick();
     }
 
     private void SpawnPlayers()
@@ -76,5 +81,15 @@ public class GameManager : MonoBehaviour
         }
 
         m_CanvasManager.m_Players = targets;
+    }
+
+    private void AssignPlayerToJoystick()
+    {
+        // If there is a second player...
+        if(players.Length > 1)
+        {
+            // Give the joystick manager the second player
+            m_JoystickManager.m_PlayerTwo = players[1].instance;
+        }
     }
 }
