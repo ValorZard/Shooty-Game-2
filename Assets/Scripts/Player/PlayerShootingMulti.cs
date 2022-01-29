@@ -11,14 +11,14 @@ public class PlayerShootingMulti : MonoBehaviour
         public float m_Angle;
         // How long the powerup will be active for
         public float m_MaxTime;
-        // Is the powerup currently active?
-        public bool m_Active;
-        // How long the powerup has currently been active for
-        public float m_CurrentTime;
     
     // Private variables
         // Reference to the player's shooting script
         private PlayerShooting m_PlayerAttack;
+        // How long the powerup has currently been active for
+        [SerializeField] private float m_CurrentTime;
+        // Is the powerup currently active?
+        private bool m_Active;
 
     // Start is called before the first frame update
     void Start()

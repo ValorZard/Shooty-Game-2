@@ -1,6 +1,4 @@
-/*
-    Programmer: Manhattan Calabro
-*/
+// Programmer: Manhattan Calabro
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +6,12 @@ using UnityEngine;
 
 public class PowerupMultishot : PowerupBase
 {
+    // Public variables
+        // The angle the additional bullets will be shot at
+        public float m_Angle = 15f;
+        // How long the powerup will be active for
+        public float m_MaxTime = 10f;
+    
     // Private variables
         // Reference to the powerup's sprite renderer
         private SpriteRenderer m_Renderer;
@@ -25,12 +29,6 @@ public class PowerupMultishot : PowerupBase
         m_Renderer = GetComponent<SpriteRenderer>();
         m_CurrentTime = 0f;
         m_Active = false;
-
-        // The angle the additional bullets will be shot at
-        m_Value = 15f;
-
-        // How long the powerup will be active for
-        m_MaxTime = 10f;
     }
 
     // Gives the player a multishot for a limited time when they touch it
@@ -55,7 +53,7 @@ public class PowerupMultishot : PowerupBase
                 playerAttack.enabled = true;
 
                 // Assign the angle to shoot at
-                playerAttack.m_Angle = m_Value;
+                playerAttack.m_Angle = m_Angle;
 
                 // Hide the object; the powerup has been used up
                 m_Renderer.enabled = false;
@@ -92,6 +90,6 @@ public class PowerupMultishot : PowerupBase
 
         // Enable the player's multishot script...
         // ... and assign the powerup's value and duration
-        multishot.Activate(m_Value, m_MaxTime);
+        multishot.Activate(m_Angle, m_MaxTime);
     }
 }
