@@ -22,9 +22,13 @@ public class UIPowerupBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateAttackPowerup();
-        UpdateSpeedPowerup();
-        UpdateMultiPowerup();
+        // If the player exists, run
+        if(m_Player != null)
+        {
+            UpdateAttackPowerup();
+            UpdateSpeedPowerup();
+            UpdateMultiPowerup();
+        }
     }
 
     private void UpdateAttackPowerup()

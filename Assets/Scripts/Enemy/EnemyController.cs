@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Srayan Jana, Pedro Longo
+ * Srayan Jana, Pedro Longo, Manhattan Calabro
  *  - Srayan: Refactored code
+ *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions)
  */
 
 public class EnemyController : MonoBehaviour
@@ -27,18 +28,22 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Get distance from player
-        float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
+        // If the target exists, run
+        if(target != null)
+        {
+            // Get distance from player
+            float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
 
-        if (playerInSight == true && distanceFromPlayer > shootingRange)
-        {
-            //Enemy will pursue player on sight
-            transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
-        }
-        else if(distanceFromPlayer < shootingRange)
-        {
-            //Enemy will backup if the player is too close
-            transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+            if (playerInSight == true && distanceFromPlayer > shootingRange)
+            {
+                //Enemy will pursue player on sight
+                transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
+            }
+            else if(distanceFromPlayer < shootingRange)
+            {
+                //Enemy will backup if the player is too close
+                transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+            }
         }
     }
 

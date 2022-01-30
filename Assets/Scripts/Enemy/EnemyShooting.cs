@@ -1,5 +1,9 @@
-// Programmer: Manhattan Calabro
-// Pedro Longo: Added target and direction to shooting
+/*
+    Programmers: Manhattan Calabro, Pedro Longo
+        Manhattan: Created PlayerShooting (what this script is based off of),
+                   added check for whether target exists (that way, there won't be several console exceptions)
+        Pedro: Added target and direction to shooting
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -62,28 +66,32 @@ public class EnemyShooting : MonoBehaviour
     // Instantiate the bullet
     private void Fire()
     {
-        //UPDATED (Pedro Longo)
-        //get position of player in sight
-        Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
-        Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
+        // If the target exists, run
+        if(enemy.target != null)
+        {
+            //UPDATED (Pedro Longo)
+            //get position of player in sight
+            Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
+            Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
 
 
-        // Create an instance of the bullet and store a reference to its rigidbody
-        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+            // Create an instance of the bullet and store a reference to its rigidbody
+            Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
 
-        // Grab the bullet script
-        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+            // Grab the bullet script
+            BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
 
-        // Set the attack power of the bullet
-        bulletScript.setDamage(m_Damage);
+            // Set the attack power of the bullet
+            bulletScript.setDamage(m_Damage);
 
-        // Set the friendly tag
-        bulletScript.m_Friend = "Enemy";
+            // Set the friendly tag
+            bulletScript.m_Friend = "Enemy";
 
-        // Set the enemy tag
-        bulletScript.m_Enemy = "Player";
+            // Set the enemy tag
+            bulletScript.m_Enemy = "Player";
 
-        // Set the bullet's velocity
-        bulletInstance.velocity = velocity.normalized * m_Speed;
+            // Set the bullet's velocity
+            bulletInstance.velocity = velocity.normalized * m_Speed;
+        }
     }
 }

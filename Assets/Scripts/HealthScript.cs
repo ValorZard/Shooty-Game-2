@@ -38,9 +38,15 @@ public class HealthScript : MonoBehaviour
     {
         m_CurrentHealth -= amount;
 
-        // If the current health is at or below zero and it has not yet been registered, call OnDeath
+        // If the current health is at or below zero and it has not yet been registered...
         if(m_CurrentHealth <= 0f && !m_Dead)
+        {
+            // Set the health to exactly 0 (so it doesn't mess with the health UI)
+            m_CurrentHealth = 0f;
+
+            // Call OnDeath
             OnDeath();
+        }
     }
 
     // Disable the character when it dies

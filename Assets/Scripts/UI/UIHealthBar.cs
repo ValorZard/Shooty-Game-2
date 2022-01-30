@@ -33,16 +33,20 @@ public class UIHealthBar : MonoBehaviour
     // Update the health bar meter
     protected void UpdateHealthBarMeter()
     {
-        // Grab the player's starting health
-        float startingHealth = m_HealthScript.m_StartingHealth;
+        // If the health script exists, run
+        if(m_HealthScript != null)
+        {
+            // Grab the player's starting health
+            float startingHealth = m_HealthScript.m_StartingHealth;
 
-        // Grab the player's current health
-        float currentHealth = m_HealthScript.GetCurrentHealth();
+            // Grab the player's current health
+            float currentHealth = m_HealthScript.GetCurrentHealth();
 
-        // The percentage of the player's current health
-        float percentHealth = currentHealth / startingHealth;
+            // The percentage of the player's current health
+            float percentHealth = currentHealth / startingHealth;
 
-        // Scale the health bar meter according to the percentage
-        m_HealthBarMeter.localScale = new Vector3(percentHealth, m_HealthBarMeter.localScale.y, m_HealthBarMeter.localScale.z);
+            // Scale the health bar meter according to the percentage
+            m_HealthBarMeter.localScale = new Vector3(percentHealth, m_HealthBarMeter.localScale.y, m_HealthBarMeter.localScale.z);
+        }
     }
 }
