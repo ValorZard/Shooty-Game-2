@@ -1,9 +1,10 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
 public class StartScript : MonoBehaviour
@@ -12,18 +13,7 @@ public class StartScript : MonoBehaviour
         // The name of the scene to load
         public string m_LevelName;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Moves to the game scene
     public void StartGame()
     {
         SceneManager.LoadScene(m_LevelName);
