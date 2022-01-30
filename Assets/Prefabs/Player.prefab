@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 814357520414023418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 6580856813603429440}
   m_RootOrder: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.09
 --- !u!114 &814357520414023399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 7965124445338907881}
   - component: {fileID: 512304285398428312}
   - component: {fileID: 4835837079651155986}
+  - component: {fileID: 5251796811517477174}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -266,14 +267,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.32, y: 3.05}
+    oldSize: {x: 2.32, y: 3.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3, y: 2.75}
+  m_Size: {x: 2.35, y: 3.125}
   m_EdgeRadius: 0
 --- !u!114 &6580856813603429447
 MonoBehaviour:
@@ -386,3 +387,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3d93cbb4f91fb43aab9c70ba8e186e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5251796811517477174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580856813603429442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 524f13a178cecd848bdfcbbc8d69fc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerFront: {fileID: 21300000, guid: 15814702ae8d5c64c82fbb62bfe685aa, type: 3}
+  m_PlayerBack: {fileID: 21300000, guid: 3372b716eb4eb2b4d96f4357343d09cf, type: 3}
+  m_PlayerSide: {fileID: 21300000, guid: ec7d7a65164c3a844bf1e8a12dff0db6, type: 3}
