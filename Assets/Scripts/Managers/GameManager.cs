@@ -91,5 +91,9 @@ public class GameManager : MonoBehaviour
             // Give the joystick manager the second player
             m_JoystickManager.m_PlayerTwo = players[1].instance;
         }
+
+        // Otherwise, disable the joystick manager
+        else
+            m_JoystickManager.enabled = false;
     }
 }

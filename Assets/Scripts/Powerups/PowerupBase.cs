@@ -9,6 +9,10 @@ public abstract class PowerupBase : MonoBehaviour
     // Private variables
         // Reference to the powerup's collider
         protected Collider2D m_Collider;
+        // The "value" of the powerup (how its used is dependent on the powerup)
+        protected float m_Value;
+        // How long the powerup will be active for
+        protected float m_MaxTime;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

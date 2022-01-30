@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,14 +8,13 @@ using UnityEngine;
 
 public class PowerupHeal : PowerupBase
 {
-    // Public variables
-        // The amount of health the player will regain if touched
-        public float m_Health = 50f;
-
     // Start is called before the first frame update
     void Start()
     {
         m_Collider = GetComponent<CircleCollider2D>();
+
+        // The amount of health the player will regain if touched
+        m_Value = 50f;
     }
 
     // Heals the player when they touch it
@@ -23,6 +24,6 @@ public class PowerupHeal : PowerupBase
         HealthScript playerHealth = targetRigidbody.GetComponent<HealthScript>();
 
         // Heal the player
-        playerHealth.Heal(m_Health);
+        playerHealth.Heal(m_Value);
     }
 }

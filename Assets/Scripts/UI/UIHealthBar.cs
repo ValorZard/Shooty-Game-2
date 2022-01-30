@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;

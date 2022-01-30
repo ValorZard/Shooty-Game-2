@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -19,12 +21,15 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // The length of the lists should be equal to the number of players in-game
+        int listLength = transform.childCount;
+
         // Initializes the lists
-        m_PlayerUI = new GameObject[transform.childCount];
-        m_Connected = new bool[transform.childCount];
+        m_PlayerUI = new GameObject[listLength];
+        m_Connected = new bool[listLength];
 
         // Goes through the children...
-        for(int i = 0; i < transform.childCount; i++)
+        for(int i = 0; i < listLength; i++)
         {
             m_PlayerUI[i] = transform.GetChild(i).gameObject;
             m_Connected[i] = false;
@@ -49,7 +54,7 @@ public class CanvasManager : MonoBehaviour
                 m_PlayerUI[i].activeSelf)
             {
                 // If the index exceeds the total number of players...
-                if(i > m_Players.Length)
+                if(i >= m_Players.Length)
                 {
                     // ... deactivate the current UI
                     m_PlayerUI[i].SetActive(false);
@@ -65,6 +70,9 @@ public class CanvasManager : MonoBehaviour
 
                     // Connects the ammos
                     ConnectUIAmmo(i);
+
+                    // Connects the powerups
+                    ConnectUIPowerup(i);
 
                     // Make sure this only runs once
                     m_Connected[i] = true;
@@ -106,5 +114,15 @@ public class CanvasManager : MonoBehaviour
     private void ConnectUIAmmo(int index)
     {
         // add code here for when the players actually have ammo
+    }
+
+    // Connects the UI powerups with the player powerups
+    private void ConnectUIPowerup(int index)
+    {
+        // Grab the player's UI's powerup bar script
+        UIPowerupBar uiPowerupScript = m_PlayerUI[index].GetComponentInChildren<UIPowerupBar>();
+
+        // Assign the player to the UI
+        uiPowerupScript.m_Player = m_Players[index];
     }
 }

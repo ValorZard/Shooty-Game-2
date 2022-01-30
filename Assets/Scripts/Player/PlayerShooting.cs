@@ -67,7 +67,7 @@ public class PlayerShooting : MonoBehaviour
     // Instantiate the bullet
     private void Fire()
     {
-        Debug.Log("Player " + playerNumber + " is shooting!!");
+//        Debug.Log("Player " + playerNumber + " is shooting!!");
         // Assign variables to the bullet
         AssignBullet(CalculateVelocity());
     }

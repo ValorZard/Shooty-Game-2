@@ -151,9 +151,10 @@ GameObject:
   - component: {fileID: 6580856813603429447}
   - component: {fileID: 3213939275688633226}
   - component: {fileID: -3848616979688613876}
-  - component: {fileID: 6475980774559969719}
   - component: {fileID: 1689743047695707003}
   - component: {fileID: 7965124445338907881}
+  - component: {fileID: 512304285398428312}
+  - component: {fileID: 4835837079651155986}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,7 +217,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15814702ae8d5c64c82fbb62bfe685aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,14 +266,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.32, y: 3.05}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.3, y: 2.75}
   m_EdgeRadius: 0
 --- !u!114 &6580856813603429447
 MonoBehaviour:
@@ -288,6 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalVelocity: 0
   verticalVelocity: 0
+  m_HorizontalAxis: 
+  m_VerticalAxis: 
   playerNumber: 1
   moveSpeed: 10
 --- !u!114 &3213939275688633226
@@ -323,21 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartingHealth: 100
   m_CurrentHealth: 0
---- !u!114 &6475980774559969719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6580856813603429442}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89ebfb3d189f0d145b083ce9eb328ca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Angle: 15
-  m_MaxTime: 0
-  m_CurrentTime: 0
 --- !u!114 &1689743047695707003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33814fef0bf0b7749a2fab179a2fced1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Active: 0
+  m_MaxTime: 0
   m_CurrentTime: 0
+  m_Multiplier: 0
 --- !u!114 &7965124445338907881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,4 +354,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32d7f07e50481b40b4b04b8d64e29ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Active: 0
+  m_MaxTime: 0
   m_CurrentTime: 0
+  m_Multiplier: 0
+--- !u!114 &512304285398428312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580856813603429442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ebfb3d189f0d145b083ce9eb328ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Active: 0
+  m_MaxTime: 0
+  m_CurrentTime: 0
+  m_Multiplier: 0
+--- !u!114 &4835837079651155986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6580856813603429442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3d93cbb4f91fb43aab9c70ba8e186e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
