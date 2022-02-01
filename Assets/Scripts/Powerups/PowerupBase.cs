@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using UnityEngine;
 
 public abstract class PowerupBase : MonoBehaviour
 {
-    // Private variables
+    // Protected variables
         // Reference to the powerup's collider
         protected Collider2D m_Collider;
         // The "value" of the powerup (how its used is dependent on the powerup)

@@ -1,6 +1,6 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
-        Manhattan: Coded bullet collision
+        Manhattan: Coded bullet collision, generalized code to work with multiple objects
         Pedro: Added collision conditions for "EnemyView"-type objects, added damage to enemy health script
 */
 
@@ -26,10 +26,6 @@ public class BulletHit : MonoBehaviour
     void Start()
     {
         m_Collider = GetComponent<CircleCollider2D>();
-
-        // here until other objects with collision are added, that way the game isn't bogged down by the amount of bullet prefabs flying around
-        // EDIT: collision with other objects has been added; however, the player can just walk out of bounds and shoot an infinite number of bullets into the distance. remove this destroy command once the player is trapped
-        Destroy(gameObject, 2f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,6 +55,7 @@ public class BulletHit : MonoBehaviour
             // If the owner is an "enemy", deal damage to the enemy
             if(colliders[i].CompareTag(m_Enemy))
             {
+                /*
                 //UPDATE (Pedro Longo): if the target is the enemy, it will grab the enemy health script, otherwise it will grab the regular health script
 
                 // Grab the target's rigidbody
@@ -80,7 +77,16 @@ public class BulletHit : MonoBehaviour
                     //Deal damage to player
                     playerHealth.TakeDamage(m_Damage);
                 }
+                */
 
+                // Grab the target's rigidbody
+                Rigidbody2D targetRigidbody = colliders[i].GetComponent<Rigidbody2D>();
+
+                // Grab the enemy's health script
+                HealthScript health = targetRigidbody.GetComponent<HealthScript>();
+
+                // Deal damage to the enemy
+                health.TakeDamage(m_Damage);
             }
 
             // It hits an enemy/wall/something, so destroy the bullet

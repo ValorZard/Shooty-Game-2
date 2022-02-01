@@ -1,4 +1,8 @@
-//Programmer: Pedro Longo
+/*
+    Programmers: Pedro Longo, Manhattan Calabro
+        Pedro: Coded shield activation
+        Manhattan: Deleted unused line of code
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -14,8 +18,5 @@ public class EnemyShield : MonoBehaviour
 
         // Activate the shield
         shield.SetActive(true);
-
-        // Get the shield's health script
-        EnemyHealth health = shield.GetComponent<EnemyHealth>();
     }
 }

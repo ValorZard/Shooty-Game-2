@@ -30,6 +30,6 @@ public class PowerupShield : PowerupBase
         HealthScript health = shield.GetComponent<HealthScript>();
 
         // Heal the shield to max (in case the shield was previously depleted)
-        health.Heal(m_Value);
+        health.Heal(health.m_StartingHealth);
     }
 }

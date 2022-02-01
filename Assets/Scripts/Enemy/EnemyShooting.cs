@@ -1,7 +1,8 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
         Manhattan: Created PlayerShooting (what this script is based off of),
-                   added check for whether target exists (that way, there won't be several console exceptions)
+                   added check for whether target exists (that way, there won't be several console exceptions),
+                   added overriding (relevant for EnemyShootingBurst)
         Pedro: Added target and direction to shooting
 */
 
@@ -20,9 +21,14 @@ public class EnemyShooting : MonoBehaviour
         public float m_Delay = 0.5f;
         // The power of the enemy's attacks
         public float m_Damage = 10f;
-
-    //For getting enemy sight
-    public EnemyController enemy;
+        //For getting enemy sight
+        public EnemyController enemy;
+    
+    // Protected variables
+        // Friendly tag
+        protected string m_Friend; 
+        // Enemy tag
+        protected string m_Enemy;
 
 
     // Private variables
@@ -37,6 +43,8 @@ public class EnemyShooting : MonoBehaviour
 
         enemy = GetComponent<EnemyController>();
 
+        m_Friend = "Enemy";
+        m_Enemy = "Player";
     }
 
     // Update is called once per frame
@@ -64,7 +72,7 @@ public class EnemyShooting : MonoBehaviour
     }
 
     // Instantiate the bullet
-    private void Fire()
+    protected virtual void Fire()
     {
         // If the target exists, run
         if(enemy.target != null)
