@@ -15,21 +15,26 @@ public class UIGameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Go through the list of players
-        for(int i = 0; i < m_Players.Length; i++)
+        // Only run if the player list has objects
+        if(m_Players.Length != 0)
         {
-            // If a player is active...
-            if(m_Players[i].activeSelf)
+            // Go through the list of players
+            for(int i = 0; i < m_Players.Length; i++)
             {
-                // ... end the method early
-                return;
+                // If a player is active...
+                if(m_Players[i].activeSelf)
+                {
+                    // End the method early
+                    return;
+                }
             }
+            
+            // Otherwise, all players are dead, activate the game over screen
+            ShowGameOverScreen();
         }
-        
-        // Otherwise, all players are dead, activate the game over screen
-        ShowGameOverScreen();
     }
 
+    // Activates the game over screen
     private void ShowGameOverScreen()
     {
         // Go through all the children of this object
@@ -37,6 +42,17 @@ public class UIGameOver : MonoBehaviour
         {
             // Enable the child
             transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    // Hides the game over screen
+    private void HideGameOverScreen()
+    {
+        // Go through all the children of this object
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            // Disable the child
+            transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

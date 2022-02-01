@@ -39,8 +39,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Connects the player UIs to their respective players
-        ConnectUI();
+        // Only run if the player list has objects
+        if(m_Players.Length != 0)
+        {
+            // Connects the player UIs to their respective players
+            ConnectUI();
+        }
     }
 
     // Connects the UI with the player
@@ -49,34 +53,30 @@ public class UIManager : MonoBehaviour
         // Goes through the list of connectedness...
         for(int i = 0; i < m_Connected.Length; i++)
         {
-            // If the player UI hasn't been connected yet, AND the player UI is active...
-            if(!m_Connected[i] &&
-                m_PlayerUI[i].activeSelf)
+            // If the index exceeds the total number of players...
+            if(i >= m_Players.Length)
             {
-                // If the index exceeds the total number of players...
-                if(i >= m_Players.Length)
-                {
-                    // ... deactivate the current UI
-                    m_PlayerUI[i].SetActive(false);
-                }
-                // Otherwise, connect the UI
-                else
-                {
-                    // Connects the healths
-                    ConnectUIHealth(i);
+                // ... deactivate the current UI
+                m_Players[i].SetActive(false);
+            }
+            
+            // Otherwise, if the player UI hasn't been connected yet, connect the UI
+            else if(!m_Connected[i])
+            {
+                // Connects the healths
+                ConnectUIHealth(i);
 
-                    // Connects the shield
-                    ConnectUIShield(i);
+                // Connects the shield
+                ConnectUIShield(i);
 
-                    // Connects the ammos
-                    ConnectUIAmmo(i);
+                // Connects the ammos
+                ConnectUIAmmo(i);
 
-                    // Connects the powerups
-                    ConnectUIPowerup(i);
+                // Connects the powerups
+                ConnectUIPowerup(i);
 
-                    // Make sure this only runs once
-                    m_Connected[i] = true;
-                }
+                // Make sure this only runs once
+                m_Connected[i] = true;
             }
         }
     }
