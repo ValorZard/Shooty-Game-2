@@ -8,6 +8,7 @@ TagManager:
   - Powerup
   - Bullet
   - EnemyView
+  - HUD
   layers:
   - Default
   - TransparentFX

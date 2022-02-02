@@ -160,11 +160,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2105517569, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2105517569, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8488213299630357932, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_BodyType
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8488213299630357970, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5444411235269069680, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
@@ -260,11 +260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2105517569, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2105517569, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2105517570, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_Enabled
@@ -336,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8488213299630357970, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1141190323, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
@@ -1182,6 +1182,13 @@ MonoBehaviour:
   m_CameraController: {fileID: 2123201646}
   m_CanvasManager: {fileID: 848721009}
   m_JoystickManager: {fileID: 2022372042}
+  levels:
+  - TitleMenu
+  - SampleScene
+  enemyArray: []
+  HUD: {fileID: 0}
+  resetTime: 2
+  timeSlowDown: 0.05
 --- !u!4 &1934502860
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,6 +1371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1996210420494426585, guid: f52a6dae079253742bdbdf44203db4ff, type: 3}
+      propertyPath: m_TagString
+      value: HUD
+      objectReference: {fileID: 0}
     - target: {fileID: 1996210421771266520, guid: f52a6dae079253742bdbdf44203db4ff, type: 3}
       propertyPath: m_Name
       value: CameraRig
@@ -1740,7 +1751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417555779488, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417555779488, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_AngularDrag
@@ -1808,15 +1819,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417555779497, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417742644721, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417742644721, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9093274418808222921, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_IsActive
@@ -1921,7 +1932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 818094038106306774, guid: 0a85044041aa5b449880f2a21d933286, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3825854180134588020, guid: 0a85044041aa5b449880f2a21d933286, type: 3}
       propertyPath: m_Delay
@@ -1945,11 +1956,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9121554198037127941, guid: 0a85044041aa5b449880f2a21d933286, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9121554198037127941, guid: 0a85044041aa5b449880f2a21d933286, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9121554198404310238, guid: 0a85044041aa5b449880f2a21d933286, type: 3}
       propertyPath: shootingRange

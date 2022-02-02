@@ -1,12 +1,14 @@
 /*
     Programmers: Pedro Longo, Manhattan Calabro
-        Pedro: Spawning players
+        Pedro: Spawning players, added win condition and scene manager
         Manhattan: Added camera control, added UI control, added XBOX controller compatibility
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -22,8 +24,29 @@ public class GameManager : MonoBehaviour
         // Reference to the JoystickManager script
         public JoystickManager m_JoystickManager;
 
+        //Reference to enemies
+        public GameObject[] enemyArray;
+        //Reference to the player HUD
+        public GameObject HUD;
+
+       // public GameObject victory;
+
+        Scene currentScene;
+        string sceneName;
+
+    //Time to slow down game after winning
+        //Duration of slow down
+        public float resetTime = 2.0f;
+        //slow down variable
+        public float timeSlowDown = 0.05f;
+
+
     private void Start()
     {
+        //Get current scene and set the name of the title menu
+        currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
+
         SpawnPlayers();
 
         // Gives the second player reference to the joystick manager to update the control scheme based on controllers
@@ -36,6 +59,34 @@ public class GameManager : MonoBehaviour
         // Snap the camera's position and zoom to something appropriate for the preset players
         SetCameraTargets();
         m_CameraController.SetStartPositionAndSize();
+    }
+
+    private void Update()
+    {
+        HUD = GameObject.FindGameObjectWithTag("HUD");
+
+        //Hide HUD in title screen
+        if (sceneName == "TitleScene")
+        {
+            //victory.SetActive(false);
+            HUD.SetActive(false);
+        }
+        //Activate HUD
+        else
+        {
+            HUD.SetActive(true);
+        }
+
+        enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
+
+        //When all enemies are defeated the game is over
+        if(enemyArray.Length == 0)
+        {
+            //victory.SetActive(true);
+            Time.timeScale = 0.5f;
+            GameOver();
+
+        }
     }
 
     private void SpawnPlayers()
@@ -95,5 +146,17 @@ public class GameManager : MonoBehaviour
         // Otherwise, disable the joystick manager
         else
             m_JoystickManager.enabled = false;
+    }
+
+    public void GameOver()
+    {
+        Invoke("Reset", resetTime);
+    }
+
+    private void Reset()
+    {
+        //Reset time to normal and load menu
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("TitleScene");
     }
 }
