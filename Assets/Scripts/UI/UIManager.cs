@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
             if(i >= m_Players.Length)
             {
                 // ... deactivate the current UI
-                m_Players[i].SetActive(false);
+                m_PlayerUI[i].SetActive(false);
             }
             
             // Otherwise, if the player UI hasn't been connected yet, connect the UI

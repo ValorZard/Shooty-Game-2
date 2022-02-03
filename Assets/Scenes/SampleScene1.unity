@@ -1633,9 +1633,6 @@ MonoBehaviour:
   - spawnPoint: {fileID: 451433050}
     playerNumber: 0
     instance: {fileID: 0}
-  - spawnPoint: {fileID: 1711390724}
-    playerNumber: 0
-    instance: {fileID: 0}
   m_CameraController: {fileID: 2123201646}
   m_CanvasManager: {fileID: 848721009}
   m_JoystickManager: {fileID: 2022372042}

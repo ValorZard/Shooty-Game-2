@@ -1,7 +1,7 @@
 /*
     Programmers: Pedro Longo, Manhattan Calabro
         Pedro: Spawning players, added win condition and scene manager
-        Manhattan: Added camera control, added UI control, added XBOX controller compatibility
+        Manhattan: Added camera control, added UI control, added XBOX controller compatibility, added win screen
 */
 
 using System.Collections;
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
         public GameObject[] enemyArray;
         //Reference to the player HUD
         public GameObject HUD;
+        // Reference to the win screen object
+        public GameObject m_WinScreen;
 
        // public GameObject victory;
 
@@ -83,9 +85,26 @@ public class GameManager : MonoBehaviour
         if(enemyArray.Length == 0)
         {
             //victory.SetActive(true);
+            /*
             Time.timeScale = 0.5f;
             GameOver();
+            */
 
+            // Activate the win screen
+            m_WinScreen.SetActive(true);
+
+            // Go through the player list
+            for(int i = 0; i < players.Length; i++)
+            {
+                // Grab the player...
+                GameObject player = players[i].instance;
+
+                // ... and disable their movement scripts
+                player.GetComponent<PlayerController>().enabled = false;
+                player.GetComponent<PlayerShooting>().enabled = false;
+                player.GetComponent<PlayerShootingMulti>().enabled = false;
+                player.GetComponent<PlayerSpriteController>().enabled = false;
+            }
         }
     }
 
