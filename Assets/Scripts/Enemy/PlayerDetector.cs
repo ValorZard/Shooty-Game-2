@@ -1,51 +1,47 @@
+/*
+    Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
+        Srayan: refactored code to its own class
+        Manhattan: Reformatted for readability,
+                   fixed enemy targeting error
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * Srayan Jana, Pedro Longo
- *  - Srayan: refactored code to its own class
- */
-
-
 public class PlayerDetector : MonoBehaviour
 {
-    private EnemyController enemy;
+    private EnemyController m_Enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemy = this.transform.parent.gameObject.GetComponent<EnemyController>();
-
+        m_Enemy = GetComponentInParent<EnemyController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D other)
     {
+        // Whenever a player enters enemy sight...
+        if(other.CompareTag("Player"))
+        {   
+            // ... it will target them
+            m_Enemy.playerInSight = true;
 
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Whenever a player enters enemy sight it will target them
-        if (collision.gameObject.tag == "Player")
-        {
-            enemy.playerInSight = true;
-
-            //set new target
-            enemy.target = collision.gameObject.transform;
+            // Set new target
+            m_Enemy.target = other.transform;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        //If player exits enemy sight it will stop pursuing
-        if (collision.gameObject.tag == "Player")
+        // If player exits enemy sight...
+        if(other.CompareTag("Player"))
         {
-            enemy.playerInSight = false;
+            // ... it will stop pursuing
+            m_Enemy.playerInSight = false;
 
-            //restart target
-            enemy.target = null;
+            // Reset target
+            m_Enemy.target = null;
         }
     }
 }
