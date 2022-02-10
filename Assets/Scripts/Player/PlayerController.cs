@@ -1,13 +1,14 @@
 /*
     Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
         Srayan: Worked on movement
-        Pedro: Added player number differentiation
+        Pedro: Added player number differentiation, added NavMesh rotation code
         Manhattan: Reformatted to allow controller compatibility
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,10 +25,18 @@ public class PlayerController : MonoBehaviour
         public int playerNumber;
         // The player's movement speed
         public float moveSpeed = 1.0f;
+
+    NavMeshAgent agent;
     
     // Start is called before the first frame update
     void Start()
     {
+        // Fix rotation of NavMesh agent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+
         body = GetComponent<Rigidbody2D>();
 
         // Assign the input axes

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
  * Srayan Jana, Pedro Longo, Manhattan Calabro
  *  - Srayan: Refactored code
  *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
                  changed name of variable so it doesn't hide inherited member
+    - Pedro: Added NavMesh rotation code
  */
 
 public class EnemyController : MonoBehaviour
@@ -18,12 +20,22 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     public Transform target;
 
+    NavMeshAgent agent;
+
     private CircleCollider2D m_Collider;
 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         m_Collider = GetComponentInChildren<CircleCollider2D>();
+    }
+
+    private void Start()
+    {
+        //Fic rotation of NavMesh agent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     // Update is called once per frame
