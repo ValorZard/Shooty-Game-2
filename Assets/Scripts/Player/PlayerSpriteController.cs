@@ -26,7 +26,7 @@ public class PlayerSpriteController : MonoBehaviour
     void Start()
     {
         // Grab the player's movement script
-        m_MovementScript = GetComponent<PlayerController>();
+        m_MovementScript = GetComponentInParent<PlayerController>();
 
         // Grab the player's sprite renderer
         m_SpriteRenderer = GetComponent<SpriteRenderer>();

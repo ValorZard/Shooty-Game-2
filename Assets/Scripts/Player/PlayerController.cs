@@ -2,7 +2,7 @@
     Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
         Srayan: Worked on movement
         Pedro: Added player number differentiation, added NavMesh rotation code
-        Manhattan: Reformatted to allow controller compatibility
+        Manhattan: Refactoured to allow controller compatibility
 */
 
 using System.Collections;

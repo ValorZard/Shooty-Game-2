@@ -24,7 +24,7 @@ public class PowerupMultishot : PowerupBase
     protected override void PlayerTrigger(Rigidbody2D targetRigidbody)
     {
         // Grab the player's multishot script
-        PlayerEffectMulti multishot = targetRigidbody.GetComponent<PlayerEffectMulti>();
+        PlayerEffectMulti multishot = targetRigidbody.GetComponentInChildren<PlayerEffectMulti>();
 
         // Enable the player's multishot script...
         // ... and assign the powerup's value and duration

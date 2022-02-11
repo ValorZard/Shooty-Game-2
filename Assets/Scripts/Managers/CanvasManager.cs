@@ -73,7 +73,7 @@ public class CanvasManager : MonoBehaviour
             player.GetComponent<PlayerController>().enabled = false;
             player.GetComponent<PlayerShooting>().enabled = false;
             player.GetComponent<PlayerShootingMulti>().enabled = false;
-            player.GetComponent<PlayerSpriteController>().enabled = false;
+            player.GetComponentInChildren<PlayerSpriteController>().enabled = false;
         }
     }
 }

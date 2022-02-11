@@ -34,7 +34,7 @@ public class UIPowerupBar : MonoBehaviour
     private void UpdateAttackPowerup()
     {
         // Grab the player's attack multiplier script
-        PlayerEffectDamage script = m_Player.GetComponent<PlayerEffectDamage>();
+        PlayerEffectDamage script = m_Player.GetComponentInChildren<PlayerEffectDamage>();
         
         // If the player's script is active, reset the time of the attack multiplier powerup UI
         if(script.m_Active)
@@ -53,7 +53,7 @@ public class UIPowerupBar : MonoBehaviour
     private void UpdateSpeedPowerup()
     {
         // Grab the player's speed multiplier script
-        PlayerEffectSpeed script = m_Player.GetComponent<PlayerEffectSpeed>();
+        PlayerEffectSpeed script = m_Player.GetComponentInChildren<PlayerEffectSpeed>();
 
         // If the player's script is active, reset the time of the speed multiplier powerup UI
         if(script.m_Active)
@@ -72,7 +72,7 @@ public class UIPowerupBar : MonoBehaviour
     private void UpdateMultiPowerup()
     {
         // Grab the player's multishooting script
-        PlayerEffectMulti script = m_Player.GetComponent<PlayerEffectMulti>();
+        PlayerEffectMulti script = m_Player.GetComponentInChildren<PlayerEffectMulti>();
 
         // If the player's script is active, reset the time of the multishooting powerup UI
         if(script.m_Active)

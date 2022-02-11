@@ -24,7 +24,7 @@ public class PowerupDamage : PowerupBase
     protected override void PlayerTrigger(Rigidbody2D targetRigidbody)
     {
         // Grab the player's attack multiplier script
-        PlayerEffectDamage multiplier = targetRigidbody.GetComponent<PlayerEffectDamage>();
+        PlayerEffectDamage multiplier = targetRigidbody.GetComponentInChildren<PlayerEffectDamage>();
 
         // Enable the player's attack multiplier script...
         // ... and assign the powerup's value and duration

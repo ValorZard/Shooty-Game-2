@@ -13,7 +13,7 @@ public class PlayerEffectMulti : PlayerEffectBase
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerScript = gameObject.GetComponent<PlayerShootingMulti>();
+        m_PlayerScript = gameObject.GetComponentInParent<PlayerShootingMulti>();
     }
 
     protected override void ChangePlayer()

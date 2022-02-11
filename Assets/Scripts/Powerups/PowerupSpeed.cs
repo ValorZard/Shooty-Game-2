@@ -24,7 +24,7 @@ public class PowerupSpeed : PowerupBase
     protected override void PlayerTrigger(Rigidbody2D targetRigidbody)
     {
         // Grab the player's speed multiplier script
-        PlayerEffectSpeed multiplier = targetRigidbody.GetComponent<PlayerEffectSpeed>();
+        PlayerEffectSpeed multiplier = targetRigidbody.GetComponentInChildren<PlayerEffectSpeed>();
 
         // Enable the player's speed multiplier script...
         // ... and assign the powerup's value and duration

@@ -14,7 +14,7 @@ public class PlayerEffectSpeed : PlayerEffectBase
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerScript = gameObject.GetComponent<PlayerController>();
+        m_PlayerScript = gameObject.GetComponentInParent<PlayerController>();
     }
 
     protected override void ChangePlayer()

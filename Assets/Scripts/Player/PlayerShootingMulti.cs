@@ -14,7 +14,7 @@ public class PlayerShootingMulti : MonoBehaviour
     void Start()
     {
         m_PlayerScript = gameObject.GetComponent<PlayerShooting>();
-        m_PlayerEffect = gameObject.GetComponent<PlayerEffectMulti>();
+        m_PlayerEffect = gameObject.GetComponentInChildren<PlayerEffectMulti>();
     }
 
     // Update is called once per frame
