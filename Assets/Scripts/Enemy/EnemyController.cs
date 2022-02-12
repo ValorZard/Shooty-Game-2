@@ -79,6 +79,20 @@ public class EnemyController : MonoBehaviour
         Seek(target.transform.position + target.transform.forward * lookAhead);
     }
 
+    private void Flee(Vector3 location)
+    {
+        Vector3 fleeVector = location - this.transform.position;
+        agent.SetDestination(this.transform.position - fleeVector);
+    }
+
+    private void Evade()
+    {
+        Vector3 targetDir = target.transform.position - this.transform.position;
+        float lookAhead = targetDir.magnitude / (agent.speed);
+        Flee(target.transform.position + target.transform.forward * lookAhead);
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -97,7 +111,8 @@ public class EnemyController : MonoBehaviour
             else if(distanceFromPlayer < shootingRange)
             {
                 //Enemy will backup if the player is too close
-                transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+                Evade();
             }
         }
         else
