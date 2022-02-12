@@ -23,9 +23,9 @@ public class PlayerDetector : MonoBehaviour
     {
         // Whenever a player enters enemy sight...
         if(other.CompareTag("Player"))
-        {   
+        {
             // ... it will target them
-            m_Enemy.playerInSight = true;
+            m_Enemy.playerDetectionArea = true;
 
             // Set new target
             m_Enemy.target = other.transform;
@@ -38,7 +38,7 @@ public class PlayerDetector : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // ... it will stop pursuing
-            m_Enemy.playerInSight = false;
+            m_Enemy.playerDetectionArea = false;
 
             // Reset target
             m_Enemy.target = null;

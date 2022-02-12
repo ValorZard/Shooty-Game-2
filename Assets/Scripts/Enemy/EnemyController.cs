@@ -8,21 +8,25 @@ using UnityEngine.AI;
  *  - Srayan: Refactored code
  *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
                  changed name of variable so it doesn't hide inherited member
-    - Pedro: Added NavMesh rotation code
+    - Pedro: Base code, Added NavMesh rotation code, added pursuit and wander actions for enemy
  */
 
 public class EnemyController : MonoBehaviour
 {
     //public variables
     public float speed = 2.0f;
+    public bool playerDetectionArea;
     public bool playerInSight;
     public float shootingRange = 4.0f;
     public GameObject player;
     public Transform target;
+    public float distanceFromPlayer;
 
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     private CircleCollider2D m_Collider;
+
+    private Vector2 wanderTarget = Vector2.zero;
 
     void Awake()
     {
@@ -38,6 +42,43 @@ public class EnemyController : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
+    private void Seek(Vector2 location)
+    {
+        agent.SetDestination(location);
+    }
+
+    private void Wander()
+    {
+        float wanderRadius = 5;
+
+        wanderTarget += new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+
+        wanderTarget.Normalize();
+        wanderTarget *= wanderRadius;
+
+        Vector2 targetWorld = this.gameObject.transform.InverseTransformVector(wanderTarget);
+
+        Seek(targetWorld);
+    }
+
+    private void Pursue()
+    {
+        Vector2 targetDir = target.transform.position - this.transform.position;
+
+        float relativeHeading = Vector2.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
+        float toTarget = Vector2.Angle(this.transform.forward, this.transform.TransformVector(targetDir));
+
+        if ((toTarget > 90 && relativeHeading < 20) || speed < 0.01f)
+        {
+            Seek(target.transform.position);
+            return;
+        }
+
+
+        float lookAhead = targetDir.magnitude / (speed);
+        Seek(target.transform.position + target.transform.forward * lookAhead);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -45,18 +86,23 @@ public class EnemyController : MonoBehaviour
         if(target != null)
         {
             // Get distance from player
-            float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
+            distanceFromPlayer = Vector2.Distance(target.position, transform.position);
 
-            if (playerInSight == true && distanceFromPlayer > shootingRange)
+            if (playerDetectionArea == true && distanceFromPlayer > shootingRange)
             {
                 //Enemy will pursue player on sight
-                transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
+                Pursue();
             }
             else if(distanceFromPlayer < shootingRange)
             {
                 //Enemy will backup if the player is too close
                 transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
             }
+        }
+        else
+        {
+            Wander();
         }
     }
 

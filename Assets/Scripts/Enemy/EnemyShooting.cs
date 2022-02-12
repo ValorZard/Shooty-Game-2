@@ -74,13 +74,20 @@ public class EnemyShooting : MonoBehaviour
     // Instantiate the bullet
     protected virtual void Fire()
     {
+        //Initialize velocity
+        Vector2 velocity = Vector2.zero;
+
         // If the target exists, run
-        if(enemy.target != null)
+        if (enemy.target != null)
         {
             //UPDATED (Pedro Longo)
             //get position of player in sight
-            Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
-            Vector2 velocity = new Vector2(moveDir.x, moveDir.y);
+            if (enemy.playerDetectionArea)
+            {
+                Vector2 moveDir = (enemy.target.transform.position - transform.position).normalized * m_Speed;
+                velocity = new Vector2(moveDir.x, moveDir.y);
+            }
+
 
 
             // Create an instance of the bullet and store a reference to its rigidbody

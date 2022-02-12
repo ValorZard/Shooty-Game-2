@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         // The player's movement speed
         public float moveSpeed = 1.0f;
 
-    NavMeshAgent agent;
+        NavMeshAgent agent;
     
     // Start is called before the first frame update
     void Start()
