@@ -1,6 +1,6 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
-        Manhattan: Worked on shooting
+        Manhattan: Worked on shooting, reworked aim calculation
         Pedro: Added player number differentiation
 */
 
@@ -27,6 +27,8 @@ public class PlayerShooting : MonoBehaviour
         [HideInInspector] public string m_FireButton;
         // The current delay between shooting bullets
         [HideInInspector] public float m_CurrentDelay;
+        // Reference to the player's aiming script
+        private PlayerAim m_PlayerAim;
 
     // Start is called before the first frame update
     void Start()
@@ -36,19 +38,20 @@ public class PlayerShooting : MonoBehaviour
 
         // The current delay is reset
         m_CurrentDelay = 0f;
+
+        // Grab the player's aim script
+        m_PlayerAim = GetComponentInChildren<PlayerAim>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the fire button is pressed, AND the current delay is zero...
-        if(Input.GetButton(m_FireButton)
-            && m_CurrentDelay == 0f)
+        // If the player can shoot...
+        if(CheckShootStatus())
         {
             // ... shoot the bullet
             Fire();
             
-
             // Delay the next shot
             m_CurrentDelay = m_Delay;
         }
@@ -64,12 +67,25 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    // Checks whether or not the player can shoot
+    public bool CheckShootStatus()
+    {
+        // If the fire button is pressed,
+        // AND the current delay is zero,
+        // AND the player is aiming...
+        if(Input.GetButton(m_FireButton)
+            && m_CurrentDelay == 0f
+            && m_PlayerAim.GetAimVector() != Vector2.zero)
+            // ... the player can shoot
+            return true;
+        return false;
+    }
+
     // Instantiate the bullet
     private void Fire()
     {
-//        Debug.Log("Player " + playerNumber + " is shooting!!");
         // Assign variables to the bullet
-        AssignBullet(CalculateVelocity());
+        AssignBullet(m_PlayerAim.GetAimVector());
     }
 
     // Instantiate the bullet
@@ -101,24 +117,6 @@ public class PlayerShooting : MonoBehaviour
         bulletInstance.velocity = velocity.normalized * m_Speed;
     }
 
-    // Calculates the velocity between the cursor and the player
-    public Vector2 CalculateVelocity()
-    {
-        // Get the mouse's position relative to the screen
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Get the player's position
-        Vector2 pos = transform.position;
-
-        // Calculate the bullet's horizontal movement
-        float horizontal = mousePos.x - pos.x;
-
-        // Calculate the bullet's vertical movement
-        float vertical = mousePos.y - pos.y;
-
-        return new Vector2(horizontal, vertical);
-    }
-
     private Vector2 CalculateVelocity(float angle)
     {
         // Calculate the bullet's horizontal movement
@@ -127,7 +125,7 @@ public class PlayerShooting : MonoBehaviour
         // Calculate the bullet's vertical movement
         float vertical = Mathf.Sin(angle * Mathf.Deg2Rad);
 
-        if(CalculateVelocity().x < 0)
+        if(m_PlayerAim.GetAimVector().x < 0)
         {
             horizontal *= -1;
             vertical *= -1;

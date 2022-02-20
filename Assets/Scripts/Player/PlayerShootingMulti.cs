@@ -1,3 +1,7 @@
+/*
+    Programmer: Manhattan Calabro
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,20 +13,22 @@ public class PlayerShootingMulti : MonoBehaviour
         private PlayerShooting m_PlayerScript;
         // Reference to the player's multishot effect script
         private PlayerEffectMulti m_PlayerEffect;
+        // Reference to the player's aiming script
+        private PlayerAim m_PlayerAim;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerScript = gameObject.GetComponent<PlayerShooting>();
-        m_PlayerEffect = gameObject.GetComponentInChildren<PlayerEffectMulti>();
+        m_PlayerScript = GetComponent<PlayerShooting>();
+        m_PlayerEffect = GetComponentInChildren<PlayerEffectMulti>();
+        m_PlayerAim = GetComponentInChildren<PlayerAim>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the fire button is pressed, AND the current delay is zero...
-        if(Input.GetButton(m_PlayerScript.m_FireButton)
-            && m_PlayerScript.m_CurrentDelay == 0)
+        // If the player can shoot...
+        if(m_PlayerScript.CheckShootStatus())
         {
             // ... shoot the bullet
             Fire();
@@ -33,7 +39,7 @@ public class PlayerShootingMulti : MonoBehaviour
     private void Fire()
     {
         // Calculates the velocity between the cursor and the player
-        Vector2 velocity = m_PlayerScript.CalculateVelocity();
+        Vector2 velocity = m_PlayerAim.GetAimVector().normalized;
 
         // Find the current angle
         float angle = Mathf.Atan(velocity.y / velocity.x) * Mathf.Rad2Deg;
