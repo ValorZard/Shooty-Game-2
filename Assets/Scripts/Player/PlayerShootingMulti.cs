@@ -15,6 +15,8 @@ public class PlayerShootingMulti : MonoBehaviour
         private PlayerEffectMulti m_PlayerEffect;
         // Reference to the player's aiming script
         private PlayerAim m_PlayerAim;
+        // The angle offset to shoot the bullets at
+        private float m_Offset;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +47,11 @@ public class PlayerShootingMulti : MonoBehaviour
         float angle = Mathf.Atan(velocity.y / velocity.x) * Mathf.Rad2Deg;
 
         // Fire the first bullet
-        m_PlayerScript.Fire(angle + m_PlayerEffect.m_Multiplier);
+        m_PlayerScript.Fire(angle + m_Offset);
 
         // Fire the second bullet
-        m_PlayerScript.Fire(angle - m_PlayerEffect.m_Multiplier);
+        m_PlayerScript.Fire(angle - m_Offset);
     }
+
+    public void SetOffset(float num) { m_Offset = num; }
 }

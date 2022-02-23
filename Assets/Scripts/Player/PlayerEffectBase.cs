@@ -8,15 +8,17 @@ using UnityEngine;
 
 public abstract class PlayerEffectBase : MonoBehaviour
 {
-    // Public variables
+    // Protected variables
+        // The multiplier of how much a player's stat will change
+        protected float m_Multiplier;
+
+    // Private variables
         // Is the powerup currently active?
-        public bool m_Active = false;
+        private bool m_Active = false;
         // How long the powerup will be active for
-        public float m_MaxTime;
+        private float m_MaxTime;
         // How long the powerup has currently been active for
-        public float m_CurrentTime = 0f;
-        // The multiplier of how much a player's stat will increase
-        public float m_Multiplier;
+        private float m_CurrentTime = 0f;
 
     // The powerup is activated for the first time
     public void Activate(float multiplier, float maxTime)
@@ -56,7 +58,14 @@ public abstract class PlayerEffectBase : MonoBehaviour
         }
     }
 
+    // Applies an effect to the player
     protected abstract void ChangePlayer();
 
+    // Removes the effect from the player
     protected abstract void RevertPlayer();
+
+    public bool GetActive() { return m_Active; }
+    public float GetMaxTime() { return m_MaxTime; }
+    public float GetCurrentTime() { return m_CurrentTime; }
+    public float GetMultiplier() { return m_Multiplier; }
 }

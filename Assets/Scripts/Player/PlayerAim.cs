@@ -2,17 +2,13 @@
     Programmer: Manhattan Calabro
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
-    // Public variables
-        // How far away the reticle should be from the player
-        public float m_Radius = 1;
-
     // Private variables
+        // How far away the reticle should be from the player
+        [SerializeField] private float m_Radius = 1;
         // The player's aim vector
         private Vector2 m_Aim;
         // The horizontal input axis to read from
@@ -31,28 +27,28 @@ public class PlayerAim : MonoBehaviour
         PlayerController controllerScript = GetComponentInParent<PlayerController>();
 
         // Get the player number from the controller script
-        m_PlayerNumber = controllerScript.playerNumber;
+        m_PlayerNumber = controllerScript.GetPlayerNumber();
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Aim = UpdatePlayerAim();
+        UpdatePlayerAim();
     }
 
     // Calculate the player's aim vector
-    private Vector2 UpdatePlayerAim()
+    private void UpdatePlayerAim()
     {
         // If it's the first player, calculate for the first player
         if(m_PlayerNumber == 1)
-            return UpdatePlayerAimOne();
+            UpdatePlayerAimOne();
         
         // Otherwise, calculate for the second player
-        return UpdatePlayerAimTwo();
+        UpdatePlayerAimTwo();
     }
 
     // Calculate the first player's aim vector
-    private Vector2 UpdatePlayerAimOne()
+    private void UpdatePlayerAimOne()
     {
         // Get the mouse's position relative to the screen
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -81,16 +77,19 @@ public class PlayerAim : MonoBehaviour
             minY = Mathf.Max(vertical, norm.y);
 
         // Minimum vector
-        return new Vector2(minX, minY);
+        m_Aim = new Vector2(minX, minY);
     }
 
     // Calculate the second player's aim vector
-    private Vector2 UpdatePlayerAimTwo()
+    private void UpdatePlayerAimTwo()
     {
-        // Get the inputs from the controller
-        float horizontalVelocity = Input.GetAxisRaw(m_HorizontalAxis);
-        float verticalVelocity = Input.GetAxisRaw(m_VerticalAxis);
-        return new Vector2(horizontalVelocity, verticalVelocity) * m_Radius;
+        try
+        {
+            // Get the inputs from the controller
+            float horizontalVelocity = Input.GetAxisRaw(m_HorizontalAxis);
+            float verticalVelocity = Input.GetAxisRaw(m_VerticalAxis);
+            m_Aim = new Vector2(horizontalVelocity, verticalVelocity) * m_Radius;
+        } catch{};
     }
 
     // Gets the aim vector

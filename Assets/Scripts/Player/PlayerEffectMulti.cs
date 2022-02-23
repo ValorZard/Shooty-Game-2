@@ -1,4 +1,6 @@
-// Programmer: Manhattan Calabro
+/*
+    Programmer: Manhattan Calabro
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ public class PlayerEffectMulti : PlayerEffectBase
     protected override void ChangePlayer()
     {
         m_PlayerScript.enabled = true;
+        m_PlayerScript.SetOffset(m_Multiplier);
     }
 
     protected override void RevertPlayer()

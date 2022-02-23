@@ -1,5 +1,7 @@
 /*
-    Programmer: Pedro Longo
+    Programmers: Pedro Longo, Manhattan Calabro
+        Pedro: Built the system
+        Manhattan: Refactoured for better encapsulation
 */
 
 using System;
@@ -25,7 +27,7 @@ public class PlayerManager
         movement = instance.GetComponent<PlayerController>();
         shooting = instance.GetComponent<PlayerShooting>();
 
-        movement.playerNumber = playerNumber;
-        shooting.playerNumber = playerNumber;
+        movement.SetPlayerNumber(playerNumber);
+        shooting.SetPlayerNumber(playerNumber);
     }
 }

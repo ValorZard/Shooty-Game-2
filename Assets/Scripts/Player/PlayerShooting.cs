@@ -1,6 +1,8 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
-        Manhattan: Worked on shooting, reworked aim calculation
+        Manhattan: Worked on shooting,
+                   reworked aim calculation,
+                   refactoured for better encapsulation
         Pedro: Added player number differentiation
 */
 
@@ -11,22 +13,24 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     // Public variables
-        // Prefab of the bullet
-        public Rigidbody2D m_Bullet;
-        // The force given to the bullet
-        public float m_Speed = 30f;
-        // The delay before the player can shoot another bullet
-        public float m_Delay = 0.05f;
-        // The power of the player's attacks
-        public float m_Damage = 10f;
-        // Player number
-        public int playerNumber = 1;
-    
+        
+
+
     // Private variables
+        // Prefab of the bullet
+        [SerializeField] private Rigidbody2D m_Bullet;
+        // The force given to the bullet
+        [SerializeField] private float m_Speed = 30f;
+        // The delay before the player can shoot another bullet
+        [SerializeField] private float m_Delay = 0.05f;
+        // The power of the player's attacks
+        [SerializeField] private float m_Damage = 10f;
+        // Player number
+        private int m_PlayerNumber = 1;
         // The input axis that is used for shooting bullets
-        [HideInInspector] public string m_FireButton;
+        private string m_FireButton;
         // The current delay between shooting bullets
-        [HideInInspector] public float m_CurrentDelay;
+        private float m_CurrentDelay;
         // Reference to the player's aiming script
         private PlayerAim m_PlayerAim;
 
@@ -34,7 +38,7 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
         // Assign the input to shoot
-        m_FireButton = "Fire" + playerNumber;
+        m_FireButton = "Fire" + m_PlayerNumber;
 
         // The current delay is reset
         m_CurrentDelay = 0f;
@@ -133,4 +137,9 @@ public class PlayerShooting : MonoBehaviour
 
         return new Vector2(horizontal, vertical);
     }
+
+    public float GetDamage() { return m_Damage; }
+    public void SetDamage(float num) { m_Damage = num; }
+    public void SetPlayerNumber(int num) { m_PlayerNumber = num; }
+    public void SetFireButton(string str) { m_FireButton = str; }
 }

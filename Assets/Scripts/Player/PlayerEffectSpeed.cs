@@ -11,6 +11,7 @@ public class PlayerEffectSpeed : PlayerEffectBase
     // Private variables
         // Reference to the player's movement script
         private PlayerController m_PlayerScript;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,11 @@ public class PlayerEffectSpeed : PlayerEffectBase
 
     protected override void ChangePlayer()
     {
-        m_PlayerScript.moveSpeed *= m_Multiplier;
+        m_PlayerScript.SetMoveSpeed(m_PlayerScript.GetMoveSpeed() * m_Multiplier);
     }
 
     protected override void RevertPlayer()
     {
-        m_PlayerScript.moveSpeed /= m_Multiplier;
+        m_PlayerScript.SetMoveSpeed(m_PlayerScript.GetMoveSpeed() / m_Multiplier);
     }
 }

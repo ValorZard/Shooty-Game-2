@@ -8,10 +8,6 @@ using UnityEngine;
 
 public class JoystickManager : MonoBehaviour
 {
-    // Public variables
-        // Reference to the second player
-        public GameObject m_PlayerTwo;
-    
     // Private variables
         // The name of the first controller plugged in
         [SerializeField] private string m_ControllerName = "";
@@ -47,34 +43,37 @@ public class JoystickManager : MonoBehaviour
             m_InputAxis = "";
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Gets the controller before the game starts
-        UpdateController();
-    }
-
     // Update is called once per frame
     void Update()
     {
+        // If the player isn't player two...
+        if(GetComponentInParent<PlayerController>().GetPlayerNumber() != 2)
+        {
+            // ... disable this script
+            enabled = false;
+
+            // End the method early
+            return;
+        }
+
         // Checks the first controller
         UpdateController();
 
         // Grab the second player's movement script
-        PlayerController movementScript = m_PlayerTwo.GetComponent<PlayerController>();
+        PlayerController movementScript = GetComponentInParent<PlayerController>();
 
         // Switch the movement script to the XBOX control scheme
-        movementScript.m_HorizontalAxis = "Horizontal2" + m_InputAxis;
-        movementScript.m_VerticalAxis = "Vertical2" + m_InputAxis;
+        movementScript.SetHorizontalAxis("Horizontal2" + m_InputAxis);
+        movementScript.SetVerticalAxis("Vertical2" + m_InputAxis);
 
         // Grab the second player's shooting script
-        PlayerShooting shootScript = m_PlayerTwo.GetComponent<PlayerShooting>();
+        PlayerShooting shootScript = GetComponentInParent<PlayerShooting>();
 
         // Switch the shooting script to the XBOX control scheme
-        shootScript.m_FireButton = "Fire2" + m_InputAxis;
+        shootScript.SetFireButton("Fire2" + m_InputAxis);
 
         // Grab the second player's aiming script
-        PlayerAim aimScript = m_PlayerTwo.GetComponentInChildren<PlayerAim>();
+        PlayerAim aimScript = transform.parent.GetComponentInChildren<PlayerAim>();
 
         // Switch the aiming script to the XBOX control scheme
         aimScript.SetHorizontalAxis("AimHorizontal2" + m_InputAxis);

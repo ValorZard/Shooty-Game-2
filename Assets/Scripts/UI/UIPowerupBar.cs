@@ -13,12 +13,6 @@ public class UIPowerupBar : MonoBehaviour
         // The player to track
         public GameObject m_Player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -35,19 +29,8 @@ public class UIPowerupBar : MonoBehaviour
     {
         // Grab the player's attack multiplier script
         PlayerEffectDamage script = m_Player.GetComponentInChildren<PlayerEffectDamage>();
-        
-        // If the player's script is active, reset the time of the attack multiplier powerup UI
-        if(script.m_Active)
-        {
-            // Grab the attack multiplier powerup UI's script
-            UIPowerupIcon icon = transform.Find("PowerupBarDamage").GetComponent<UIPowerupIcon>();
 
-            // Set the icon's max time
-            icon.m_MaxTime = script.m_MaxTime;
-
-            // Set the icon's current time
-            icon.m_CurrentTime = script.m_CurrentTime;
-        }
+        UpdatePowerup(script, "PowerupBarDamage");
     }
 
     private void UpdateSpeedPowerup()
@@ -55,18 +38,7 @@ public class UIPowerupBar : MonoBehaviour
         // Grab the player's speed multiplier script
         PlayerEffectSpeed script = m_Player.GetComponentInChildren<PlayerEffectSpeed>();
 
-        // If the player's script is active, reset the time of the speed multiplier powerup UI
-        if(script.m_Active)
-        {
-            // Grab the speed multiplier powerup UI's script
-            UIPowerupIcon icon = transform.Find("PowerupBarSpeed").GetComponent<UIPowerupIcon>();
-
-            // Set the icon's max time
-            icon.m_MaxTime = script.m_MaxTime;
-            
-            // Set the icon's current time
-            icon.m_CurrentTime = script.m_CurrentTime;
-        }
+        UpdatePowerup(script, "PowerupBarSpeed");
     }
 
     private void UpdateMultiPowerup()
@@ -74,17 +46,22 @@ public class UIPowerupBar : MonoBehaviour
         // Grab the player's multishooting script
         PlayerEffectMulti script = m_Player.GetComponentInChildren<PlayerEffectMulti>();
 
-        // If the player's script is active, reset the time of the multishooting powerup UI
-        if(script.m_Active)
+        UpdatePowerup(script, "PowerupBarMulti");
+    }
+
+    private void UpdatePowerup(PlayerEffectBase script, string str)
+    {
+        // If the player's script is active, reset the time of the powerup UI
+        if(script.GetActive())
         {
-            // Grab the multishooting powerup UI's script
-            UIPowerupIcon icon = transform.Find("PowerupBarMulti").GetComponent<UIPowerupIcon>();
+            // Grab the powerup UI's script
+            UIPowerupIcon icon = transform.Find(str).GetComponent<UIPowerupIcon>();
 
             // Set the icon's max time
-            icon.m_MaxTime = script.m_MaxTime;
-            
+            icon.m_MaxTime = script.GetMaxTime();
+
             // Set the icon's current time
-            icon.m_CurrentTime = script.m_CurrentTime;
+            icon.m_CurrentTime = script.GetCurrentTime();
         }
     }
 }

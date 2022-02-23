@@ -20,11 +20,11 @@ public class PlayerEffectDamage : PlayerEffectBase
 
     protected override void ChangePlayer()
     {
-        m_PlayerScript.m_Damage *= m_Multiplier;
+        m_PlayerScript.SetDamage(m_PlayerScript.GetDamage() * m_Multiplier);
     }
 
     protected override void RevertPlayer()
     {
-        m_PlayerScript.m_Damage /= m_Multiplier;
+        m_PlayerScript.SetDamage(m_PlayerScript.GetDamage() / m_Multiplier);
     }
 }

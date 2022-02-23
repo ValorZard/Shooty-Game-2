@@ -27,17 +27,12 @@ public class GameManager : MonoBehaviour
         public CameraController m_CameraController;
         // Reference to the CanvasManager script
         public CanvasManager m_CanvasManager;
-        // Reference to the JoystickManager script
-        public JoystickManager m_JoystickManager;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnPlayers();
         m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        // Gives the second player reference to the joystick manager to update the control scheme based on controllers
-        AssignPlayerToJoystick();
 
         // Gives references of the players to the canvas manager
         // (has to be above the camera code for some reason??)
@@ -61,20 +56,6 @@ public class GameManager : MonoBehaviour
             m_Players[i].playerNumber = i + 1;
             m_Players[i].Setup();
         }
-    }
-
-    private void AssignPlayerToJoystick()
-    {
-        // If there is a second player...
-        if(m_Players.Length > 1)
-        {
-            // Give the joystick manager the second player
-            m_JoystickManager.m_PlayerTwo = m_Players[1].instance;
-        }
-
-        // Otherwise, disable the joystick manager
-        else
-            m_JoystickManager.enabled = false;
     }
 
     private void AssignPlayersToCanvas()

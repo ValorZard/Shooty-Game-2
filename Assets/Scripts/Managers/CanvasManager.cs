@@ -66,14 +66,8 @@ public class CanvasManager : MonoBehaviour
         // Go through the player list
         for(int i = 0; i < m_Players.Length; i++)
         {
-            // Grab the player...
-            GameObject player = m_Players[i];
-
-            // ... and disable their movement scripts
-            player.GetComponent<PlayerController>().enabled = false;
-            player.GetComponent<PlayerShooting>().enabled = false;
-            player.GetComponent<PlayerShootingMulti>().enabled = false;
-            player.GetComponentInChildren<PlayerSpriteController>().enabled = false;
+            // Disable the player
+            m_Players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
         }
     }
 }
