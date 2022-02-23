@@ -1,3 +1,7 @@
+// Made by Derek Chan and Sarah Harkins
+
+// Helper functions for manipulating children of the Room object.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,56 +17,66 @@ public class RoomScript : MonoBehaviour
     public Camera camera;
     public float camSize;
 
-    // Start is called before the first frame update
-    void Start()
+    public void moveCamToRoom()
     {
-        corridors = this.gameObject.transform.GetChild(1).GetComponent<Tilemap>();
         walls = this.gameObject.transform.GetChild(0).GetComponent<Tilemap>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void moveCamToRoom(Tilemap walls)
-    {
+        // Current screen ratio
         float screenRatio = (float) Screen.width / (float) Screen.height;
+
+        // The ratio we want our camera (size of wall)
         float targetRatio = (float) walls.size[0] / (float) walls.size[1];
+
+        // Do we need to change the current resolution's width or height?
         float scaleHeight = (float) screenRatio / (float) targetRatio;
 
-        Debug.Log(screenRatio);
-        Debug.Log(targetRatio);
-        Debug.Log(scaleHeight);
-
+        // Change height
         if(scaleHeight < 1.0f)
         {
             Rect rect = camera.rect;
-            rect.width = 1.0f;
-            rect.height = scaleHeight;
-            rect.x = 0;
-            rect.y = (1.0f - scaleHeight / 2.0f);
+            rect.width = 1.0f; // full width
+            rect.height = scaleHeight; // adjust height
+            rect.x = 0; // unchanged x
+            rect.y = (1.0f - scaleHeight / 2.0f); // adjust y to be the start of the boundary in camera
             
         }
+        // Change width
         else
         {
-            float scalewidth = 1.0f / scaleHeight;
+            float scaleWidth = 1.0f / scaleHeight; // convert to width
 
             Rect rect = camera.rect;
 
-            rect.width = scalewidth;
-            rect.height = 1.0f;
-            rect.x = (1.0f - scalewidth) / 2.0f;
-            rect.y = 0;
+            rect.width = scaleWidth; // adjust width
+            rect.height = 1.0f; // full height
+            rect.x = (1.0f - scaleWidth) / 2.0f; // adjust x to be the start of the boundary in camera
+            rect.y = 0; // unchanged y
 
             camera.rect = rect;
         }
 
+        // Work around for camera size being unable to change in the algorithm. The resolution will always be correct, the room designer should see what size 
+        // properly fits the room and change it in the inspector.
         camera.orthographicSize = camSize;
 
+        // Move the camera to the center of the room
         Vector3 center = walls.cellBounds.center;
         center[2] = -10;
         camera.transform.position = center;
+    }
+
+    public void disableDoor()
+    {
+        // Self-explanatory
+        Tilemap door = this.gameObject.transform.GetChild(3).GetComponent<Tilemap>();
+        door.gameObject.SetActive(false);
+    }
+
+    public void enableDoor()
+    {
+        // Self-explanatory
+        Tilemap door = this.gameObject.transform.GetChild(3).GetComponent<Tilemap>();
+        door.gameObject.SetActive(true);
+        
     }
 }
