@@ -97,13 +97,13 @@ public class EnemyShooting : MonoBehaviour
             BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
 
             // Set the attack power of the bullet
-            bulletScript.setDamage(m_Damage);
+            bulletScript.SetDamage(m_Damage);
 
             // Set the friendly tag
-            bulletScript.m_Friend = "Enemy";
+            bulletScript.SetFriend("Enemy");
 
             // Set the enemy tag
-            bulletScript.m_Enemy = "Player";
+            bulletScript.SetEnemy("Player");
 
             // Set the bullet's velocity
             bulletInstance.velocity = velocity.normalized * m_Speed;

@@ -40,13 +40,13 @@ public class EnemyShootingBurst : EnemyShooting
                 BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
 
                 // Set the attack power of the bullet
-                bulletScript.setDamage(m_Damage);
+                bulletScript.SetDamage(m_Damage);
 
                 // Set the friendly tag
-                bulletScript.m_Friend = m_Friend;
+                bulletScript.SetFriend(m_Friend);
 
                 // Set the enemy tag
-                bulletScript.m_Enemy = m_Enemy;
+                bulletScript.SetEnemy(m_Enemy);
 
                 // Set the bullet's velocity
                 bulletInstance.velocity = velocity.normalized * m_Speed;

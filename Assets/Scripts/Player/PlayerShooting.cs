@@ -1,8 +1,8 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
         Manhattan: Worked on shooting,
-                   reworked aim calculation,
-                   refactoured for better encapsulation
+            reworked aim calculation,
+            refactoured for better encapsulation
         Pedro: Added player number differentiation
 */
 
@@ -12,10 +12,6 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    // Public variables
-        
-
-
     // Private variables
         // Prefab of the bullet
         [SerializeField] private Rigidbody2D m_Bullet;
@@ -109,13 +105,13 @@ public class PlayerShooting : MonoBehaviour
         BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
 
         // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
-        bulletScript.setDamage(m_Damage);
+        bulletScript.SetDamage(m_Damage);
 
         // Set the friendly tag
-        bulletScript.m_Friend = "Player";
+        bulletScript.SetFriend("Player");
 
         // Set the enemy tag
-        bulletScript.m_Enemy = "Enemy";
+        bulletScript.SetEnemy("Enemy");
 
         // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
         bulletInstance.velocity = velocity.normalized * m_Speed;

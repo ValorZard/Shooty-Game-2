@@ -2,9 +2,9 @@
     Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
         Srayan: Worked on movement
         Pedro: Added player number differentiation,
-               added NavMesh rotation code
+            added NavMesh rotation code
         Manhattan: Refactoured to allow controller compatibility,
-                   refactoured for better encapsulation
+            refactoured for better encapsulation
 */
 
 using System.Collections;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         // Reference to the player's rigidbody
         private Rigidbody2D m_Body;
         // Player number
-        private int m_PlayerNumber;
+        private int m_PlayerNumber = 1;
     
     // Start is called before the first frame update
     void Start()

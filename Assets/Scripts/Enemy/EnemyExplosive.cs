@@ -108,13 +108,13 @@ public class EnemyExplosive : MonoBehaviour
         BulletExplosion explosionScript = explosion.GetComponent<BulletExplosion>();
 
         // Set the explosion's damage
-        explosionScript.m_Damage = m_Damage;
+        explosionScript.SetDamage(m_Damage);
 
         // Set the explosion's friend tag
-        explosionScript.m_Friend = m_Friend;
+        explosionScript.SetFriend(m_Friend);
 
         // Set the explosion's enemy tag
-        explosionScript.m_Enemy = m_Enemy;
+        explosionScript.SetEnemy(m_Enemy);
 
         // Disable the enemy
         transform.parent.gameObject.SetActive(false);

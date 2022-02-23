@@ -5444,10 +5444,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007596631934508497, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
-      propertyPath: m_Damage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6007596631934508497, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
