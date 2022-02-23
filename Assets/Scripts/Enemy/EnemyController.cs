@@ -8,7 +8,7 @@ using UnityEngine.AI;
  *  - Srayan: Refactored code
  *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
                  changed name of variable so it doesn't hide inherited member
-    - Pedro: Base code, Added NavMesh rotation code, added pursuit and wander actions for enemy
+    - Pedro: Base code, Added NavMesh rotation code, added pursuit, evade and wander actions for enemy
  */
 
 public class EnemyController : MonoBehaviour
@@ -22,7 +22,14 @@ public class EnemyController : MonoBehaviour
     public Transform target;
     public float distanceFromPlayer;
 
-    public NavMeshAgent agent;
+    [SerializeField]
+    private bool canFlee;
+    private bool fleeing = false;
+
+    NavMeshAgent agent;
+
+    private HealthScript enemyHealth;
+    private EnemyShooting enemyShooting;
 
     private CircleCollider2D m_Collider;
 
@@ -32,6 +39,8 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         m_Collider = GetComponentInChildren<CircleCollider2D>();
+        enemyHealth = GetComponentInChildren<HealthScript>();
+        enemyShooting = GetComponentInChildren<EnemyShooting>();
     }
 
     private void Start()
@@ -81,7 +90,7 @@ public class EnemyController : MonoBehaviour
 
     private void Flee(Vector3 location)
     {
-        Vector3 fleeVector = location - this.transform.position;
+        Vector3 fleeVector = (location - this.transform.position * 2.0f);
         agent.SetDestination(this.transform.position - fleeVector);
     }
 
@@ -102,16 +111,27 @@ public class EnemyController : MonoBehaviour
             // Get distance from player
             distanceFromPlayer = Vector2.Distance(target.position, transform.position);
 
-            if (playerDetectionArea == true && distanceFromPlayer > shootingRange)
+            if (playerDetectionArea == true && distanceFromPlayer > shootingRange && fleeing == false)
             {
-                //Enemy will pursue player on sight
                 //transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
+                //Enemy will pursue player on sight
+                Debug.Log("ENEMY PURSUING");
                 Pursue();
+
+                if (enemyHealth.GetCurrentHealth() < 40.0f && canFlee == true)
+                {
+                    fleeing = true;
+                    enemyShooting.enabled = false;
+                    //Enemy will flee the scene
+                    Debug.Log("ENEMY FLEEING");
+                }
+
             }
-            else if(distanceFromPlayer < shootingRange)
+            else if(distanceFromPlayer < shootingRange )
             {
                 //Enemy will backup if the player is too close
                 //transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
+                Debug.Log("ENEMY DISTANCING");
                 Evade();
             }
         }
