@@ -7,45 +7,44 @@ using UnityEngine.AI;
  * Srayan Jana, Pedro Longo, Manhattan Calabro
  *  - Srayan: Refactored code
  *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
-                 changed name of variable so it doesn't hide inherited member
+        changed name of variable so it doesn't hide inherited member,
+        refactoured for better encapsulation
     - Pedro: Base code, Added NavMesh rotation code, added pursuit, evade and wander actions for enemy
  */
 
 public class EnemyController : MonoBehaviour
 {
     //public variables
-    public float speed = 2.0f;
+    [SerializeField] private float speed = 2.0f;
     public bool playerDetectionArea;
-    public bool playerInSight;
-    public float shootingRange = 4.0f;
-    public GameObject player;
+    [SerializeField] private float shootingRange = 4.0f;
+    // The target to attack
     public Transform target;
-    public float distanceFromPlayer;
 
-    [SerializeField]
-    private bool canFlee;
-    private bool fleeing = false;
+    // Would the enemy flee?
+    [SerializeField] private bool m_CanFlee;
+    // Is the enemy currently fleeing?
+    private bool m_IsFleeing = false;
 
     NavMeshAgent agent;
 
-    private BaseHealthScript enemyHealth;
-    private EnemyShooting enemyShooting;
-
-    private CircleCollider2D m_Collider;
-
-    private Vector2 wanderTarget = Vector2.zero;
+    // Reference to the health script
+    private BaseHealthScript m_Health;
+    // Reference to the shooting script
+    private EnemyShooting m_Shooting;
+    // Where to wander to
+    private Vector2 m_WanderTarget;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        m_Collider = GetComponentInChildren<CircleCollider2D>();
-        enemyHealth = GetComponentInChildren<BaseHealthScript>();
-        enemyShooting = GetComponentInChildren<EnemyShooting>();
+        m_Health = GetComponentInChildren<BaseHealthScript>();
+        m_Shooting = GetComponentInChildren<EnemyShooting>();
+        m_WanderTarget = Vector2.zero;
     }
 
     private void Start()
     {
-        //Fic rotation of NavMesh agent
+        // Fic rotation of NavMesh agent
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -53,19 +52,21 @@ public class EnemyController : MonoBehaviour
 
     private void Seek(Vector2 location)
     {
-        agent.SetDestination(location);
+        // Only run if the agent exists
+        if(agent.enabled)
+            agent.SetDestination(location);
     }
 
     private void Wander()
     {
         float wanderRadius = 5;
 
-        wanderTarget += new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+        m_WanderTarget += new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
 
-        wanderTarget.Normalize();
-        wanderTarget *= wanderRadius;
+        m_WanderTarget.Normalize();
+        m_WanderTarget *= wanderRadius;
 
-        Vector2 targetWorld = this.gameObject.transform.InverseTransformVector(wanderTarget);
+        Vector2 targetWorld = this.gameObject.transform.InverseTransformVector(m_WanderTarget);
 
         Seek(targetWorld);
     }
@@ -91,7 +92,10 @@ public class EnemyController : MonoBehaviour
     private void Flee(Vector3 location)
     {
         Vector3 fleeVector = (location - this.transform.position * 2.0f);
-        agent.SetDestination(this.transform.position - fleeVector);
+
+        // Only run if the agent exists
+        if(agent.enabled)
+            agent.SetDestination(this.transform.position - fleeVector);
     }
 
     private void Evade()
@@ -105,23 +109,24 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the target exists, run
+        // If the target exists AND the speed is NOT 0, run
         if(target != null)
         {
             // Get distance from player
-            distanceFromPlayer = Vector2.Distance(target.position, transform.position);
+            float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
 
-            if (playerDetectionArea == true && distanceFromPlayer > shootingRange && fleeing == false)
+            if (playerDetectionArea && distanceFromPlayer > shootingRange && !m_IsFleeing)
             {
                 //transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
                 //Enemy will pursue player on sight
                 Debug.Log("ENEMY PURSUING");
                 Pursue();
 
-                if (enemyHealth.GetCurrentHealth() < 40.0f && canFlee == true)
+                if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
                 {
-                    fleeing = true;
-                    enemyShooting.enabled = false;
+                    m_IsFleeing = true;
+                    // The enemy stops shooting while fleeing
+                    m_Shooting.enabled = false;
                     //Enemy will flee the scene
                     Debug.Log("ENEMY FLEEING");
                 }
@@ -140,32 +145,4 @@ public class EnemyController : MonoBehaviour
             Wander();
         }
     }
-
-    /*
-    // the following two functions are for the targeting and tracking of players
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Whenever a player enters enemy sight it will target them
-        if(collision.gameObject.tag == "Player")
-        {
-            playerInSight = true;
-
-            //set new target
-            target = collision.gameObject.transform;     
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //If player exits enemy sight it will stop pursuing
-        if(collision.gameObject.tag == "Player")
-        {
-            playerInSight = false;
-
-            //restart target
-            target = null;
-        }
-    }
-    */
 }
