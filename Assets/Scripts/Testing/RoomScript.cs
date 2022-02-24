@@ -11,12 +11,19 @@ public class RoomScript : MonoBehaviour
 {
     private GameObject[] players;
     private Tilemap walls;
+    private Camera camera;
 
-    public Camera camera;
     public float camSize;
+    public Camera reset;
+
+    void FixedUpdate()
+    {
+        reset.gameObject.SetActive(false);
+    }
 
     public void moveCamToRoom()
     {
+        camera = this.gameObject.transform.GetChild(4).GetComponent<Camera>();
         walls = this.gameObject.transform.GetChild(0).GetComponent<Tilemap>();
 
         // Current screen ratio
@@ -61,6 +68,16 @@ public class RoomScript : MonoBehaviour
         Vector3 center = walls.cellBounds.center;
         center[2] = -10;
         camera.transform.position = center;
+
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("Camera");
+        foreach (GameObject cam in cameras)
+        {
+            cam.SetActive(false);
+        }
+
+        reset.gameObject.SetActive(true);
+
+        camera.gameObject.SetActive(true);
     }
 
     public void disableDoor()
