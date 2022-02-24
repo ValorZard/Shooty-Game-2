@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
         UIHealthBar uiHealthScript = m_PlayerUI[index].GetComponentInChildren<UIHealthBar>();
 
         // Grab the player's health script
-        HealthScript playerHealthScript = m_Players[index].GetComponent<HealthScript>();
+        BaseHealthScript playerHealthScript = m_Players[index].GetComponent<BaseHealthScript>();
 
         // Assign the script to the player health script
         uiHealthScript.m_HealthScript = playerHealthScript;
@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
         GameObject shield = m_Players[index].transform.Find("Shield").gameObject;
 
         // Grab the shield's health script
-        HealthScript shieldHealthScript = shield.GetComponent<HealthScript>();
+        BaseHealthScript shieldHealthScript = shield.GetComponent<BaseHealthScript>();
 
         // Assign the script to the shield health script
         uiShieldScript.m_HealthScript = shieldHealthScript;

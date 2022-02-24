@@ -704,10 +704,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  playerDetectionArea: 0
   playerInSight: 0
   shootingRange: 5
   player: {fileID: 0}
   target: {fileID: 0}
+  distanceFromPlayer: 0
+  canFlee: 0
 --- !u!114 &4765336928545503437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,5 +726,6 @@ MonoBehaviour:
   m_Bullet: {fileID: 208894901331596878, guid: 16f335694c0f46a439107cdabdca7025, type: 3}
   m_Speed: 30
   m_Delay: 0.2
-  m_Damage: 5
-  enemy: {fileID: 0}
+  m_Damage: 15
+  m_Friend: Enemy
+  m_Enemy: Player

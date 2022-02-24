@@ -909,10 +909,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  playerDetectionArea: 0
   playerInSight: 0
   shootingRange: 6
   player: {fileID: 0}
   target: {fileID: 0}
+  distanceFromPlayer: 0
+  canFlee: 0
 --- !u!114 &4792745470798946298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +932,8 @@ MonoBehaviour:
   m_Speed: 30
   m_Delay: 1
   m_Damage: 15
-  enemy: {fileID: 0}
+  m_Friend: Enemy
+  m_Enemy: Player
 --- !u!1 &4792745471130279410
 GameObject:
   m_ObjectHideFlags: 0

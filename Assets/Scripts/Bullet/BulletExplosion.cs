@@ -33,18 +33,25 @@ public class BulletExplosion : BulletBase
                 // ... deal damage to the enemy
                 DealDamage(colliders[i]);
 
-                // Grab the target's rigidbody
-                Rigidbody2D targetRigidbody = colliders[i].GetComponent<Rigidbody2D>();
-
-                // Find the horizontal direction
-                float horizontalForce = targetRigidbody.transform.localPosition.x - transform.localPosition.x;
-
-                // Find the vertical direction
-                float verticalForce = targetRigidbody.transform.localPosition.y - transform.localPosition.y;
-
-                // Add force
-                targetRigidbody.AddForce(new Vector2(horizontalForce, verticalForce).normalized * m_Force);
+                // Launch the target
+                LaunchTarget(colliders[i]);
             }
         }
+    }
+
+    // Launches the target away
+    private void LaunchTarget(Collider2D target)
+    {
+        // Grab the target's rigidbody
+        Rigidbody2D targetRigidbody = target.GetComponent<Rigidbody2D>();
+
+        // Find the horizontal direction
+        float horizontalForce = targetRigidbody.transform.localPosition.x - transform.localPosition.x;
+
+        // Find the vertical direction
+        float verticalForce = targetRigidbody.transform.localPosition.y - transform.localPosition.y;
+
+        // Add force
+        targetRigidbody.AddForce(new Vector2(horizontalForce, verticalForce).normalized * m_Force);
     }
 }

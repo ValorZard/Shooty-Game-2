@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
 
     NavMeshAgent agent;
 
-    private HealthScript enemyHealth;
+    private BaseHealthScript enemyHealth;
     private EnemyShooting enemyShooting;
 
     private CircleCollider2D m_Collider;
@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         m_Collider = GetComponentInChildren<CircleCollider2D>();
-        enemyHealth = GetComponentInChildren<HealthScript>();
+        enemyHealth = GetComponentInChildren<BaseHealthScript>();
         enemyShooting = GetComponentInChildren<EnemyShooting>();
     }
 

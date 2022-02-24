@@ -14,9 +14,9 @@ public class BulletBase : MonoBehaviour
         // The amount of damage done if hit
         [SerializeField] protected float m_Damage = 10f;
         // The tag of friends to NOT hurt
-        protected string m_Friend = "";
+        [SerializeField] protected string m_Friend = "";
         // The tag of enemies to hurt
-        protected string m_Enemy = "";
+        [SerializeField] protected string m_Enemy = "";
         // Reference to the collider
         protected CircleCollider2D m_Collider;
 
@@ -56,7 +56,7 @@ public class BulletBase : MonoBehaviour
         Rigidbody2D targetRigidbody = target.GetComponent<Rigidbody2D>();
 
         // Grab the target's health script
-        HealthScript health = targetRigidbody.GetComponent<HealthScript>();
+        BaseHealthScript health = targetRigidbody.GetComponent<BaseHealthScript>();
 
         // Deal damage to the target
         health.TakeDamage(m_Damage);

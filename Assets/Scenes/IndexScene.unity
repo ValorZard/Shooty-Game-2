@@ -598,7 +598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Can shot in multiple
+  m_text: 'Can shoot in multiple
 
     directions for a limited time.'
   m_isRightToLeft: 0

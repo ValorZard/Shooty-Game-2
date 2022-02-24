@@ -2,22 +2,18 @@
     Programmer: Manhattan Calabro
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerupMultishot : PowerupBase
 {
+    /*
+        The value determines the offset the additional bullets will be shot at.
+    */
+
     // Start is called before the first frame update
     void Start()
     {
         m_Collider = GetComponent<BoxCollider2D>();
-
-        // The angle the additional bullets will be shot at
-        m_Value = 15f;
-
-        // How long the powerup will be active for
-        m_MaxTime = 10f;
     }
 
     // Gives the player a multishot for a limited time when they touch it

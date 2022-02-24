@@ -11,8 +11,6 @@ public class PlayerShootingMulti : MonoBehaviour
     // Private variables
         // Reference to the player's shooting script
         private PlayerShooting m_PlayerScript;
-        // Reference to the player's multishot effect script
-        private PlayerEffectMulti m_PlayerEffect;
         // Reference to the player's aiming script
         private PlayerAim m_PlayerAim;
         // The angle offset to shoot the bullets at
@@ -22,7 +20,6 @@ public class PlayerShootingMulti : MonoBehaviour
     void Start()
     {
         m_PlayerScript = GetComponent<PlayerShooting>();
-        m_PlayerEffect = GetComponentInChildren<PlayerEffectMulti>();
         m_PlayerAim = GetComponentInChildren<PlayerAim>();
     }
 

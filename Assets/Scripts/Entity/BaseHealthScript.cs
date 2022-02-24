@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthScript : MonoBehaviour
+public class BaseHealthScript : MonoBehaviour
 {
     // Public variables
         // The amount of health the character starts with

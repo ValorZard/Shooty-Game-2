@@ -1,7 +1,8 @@
 /*
     Programmers: Pedro Longo, Manhattan Calabro
         Pedro: Wrote the base code
-        Manhattan: Reformatted to work when applied directly to the slider
+        Manhattan: Reformatted to work when applied directly to the slider,
+            refactoured for better encapsulation
 */
 
 using System.Collections;
@@ -11,21 +12,19 @@ using UnityEngine.UI;
 
 public class EnemyHealthSlider : MonoBehaviour
 {
-    // Public variables
-        // The color of the health bar when full
-        public Color m_FullHealthColor = Color.red;
-        // The color of the health bar when empty
-        public Color m_ZeroHealthColor;
-    
     // Private variables
-        // The enemy's health script
-        HealthScript m_HealthScript;
+        // Reference to the enemy's health script
+        private BaseHealthScript m_HealthScript;
+        // The color of the health bar when full
+        [SerializeField] private Color m_FullHealthColor = Color.red;
+        // The color of the health bar when empty
+        [SerializeField] private Color m_ZeroHealthColor;
 
     // Start is called before the first frame update
     void Start()
     {
         // Grab the parent enemy's health script
-        m_HealthScript = GetComponentInParent<HealthScript>();
+        m_HealthScript = GetComponentInParent<BaseHealthScript>();
     }
 
     // Update is called once per frame
@@ -34,6 +33,7 @@ public class EnemyHealthSlider : MonoBehaviour
         SetHealthUI();
     }
 
+    // Updates the enemy's health UI
     private void SetHealthUI()
     {
         // Grab the slider

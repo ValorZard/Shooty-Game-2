@@ -2,16 +2,14 @@
     Programmer: Manhattan Calabro
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IndexElement : MonoBehaviour
 {
-    // Public variable
+    // Private variables
         // Reference to a prefab
-        public GameObject m_Prefab;
+        [SerializeField] private GameObject m_Prefab;
 
     // Start is called before the first frame update
     void Start()

@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517284d6ced178a41837ded3ade4bb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Shield: {fileID: 7323954722990841591, guid: a6d06ebb88633fd469aee954ed7c9296, type: 3}
-  m_ShieldAmount: 25
+  m_Value: 50
+  m_MaxTime: 0

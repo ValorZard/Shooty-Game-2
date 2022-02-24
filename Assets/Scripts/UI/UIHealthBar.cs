@@ -10,7 +10,7 @@ public class UIHealthBar : MonoBehaviour
 {
     // Public varirables
         // The health script of the player
-        public HealthScript m_HealthScript;
+        public BaseHealthScript m_HealthScript;
     
     // Protected variables
         // Reference to the child health bar meter

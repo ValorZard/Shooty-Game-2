@@ -8,17 +8,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Public variables
-        // Approximate time for the camera to refocus
-        public float m_DampTime = 0.2f;
-        // Space between the top/bottom most target and the screen edge
-        public float m_ScreenEdgeBuffer = 1.5f;
-        // The smallest orthographic size the camera can be
-        public float m_MinSize = 5f;
-        // All the targets the camera needs to encompass
-        [HideInInspector] public Transform[] m_Targets;
-
     // Private variables
+        // Approximate time for the camera to refocus
+        [SerializeField] private float m_DampTime = 0.2f;
+        // Space between the top/bottom most target and the screen edge
+        [SerializeField] private float m_ScreenEdgeBuffer = 1.5f;
+        // The smallest orthographic size the camera can be
+        [SerializeField] private float m_MinSize = 5f;
+        // All the targets the camera needs to encompass
+        private Transform[] m_Targets;
         // Used for referencing the camera
         private Camera m_Camera;
         // Reference speed for the smooth damping of the orthographic size
@@ -135,4 +133,6 @@ public class CameraController : MonoBehaviour
         // Find and set the required size of the camera
         m_Camera.orthographicSize = FindRequiredSize();
     }
+
+    public void SetTargets(Transform[] targets) { m_Targets = targets; }
 }

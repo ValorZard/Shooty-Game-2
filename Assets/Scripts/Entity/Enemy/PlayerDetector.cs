@@ -1,8 +1,8 @@
 /*
     Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
-        Srayan: refactored code to its own class
+        Srayan: Refactored code to its own class
         Manhattan: Reformatted for readability,
-                   fixed enemy targeting error
+            fixed enemy targeting error
 */
 
 using System.Collections;
@@ -11,7 +11,9 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    private EnemyController m_Enemy;
+    // Private variables
+        // Reference to the enemy's movement script
+        private EnemyController m_Enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class PlayerDetector : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        // Whenever a player enters enemy sight...
+        // While a player stays within enemy sight...
         if(other.CompareTag("Player"))
         {
             // ... it will target them

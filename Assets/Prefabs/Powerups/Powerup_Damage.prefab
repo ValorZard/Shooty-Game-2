@@ -186,5 +186,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914ccd0d9143c0e44b75d089b9ce2f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AttackMultiplier: 2
+  m_Value: 2
   m_MaxTime: 10

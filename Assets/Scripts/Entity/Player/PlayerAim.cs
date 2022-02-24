@@ -28,6 +28,9 @@ public class PlayerAim : MonoBehaviour
 
         // Get the player number from the controller script
         m_PlayerNumber = controllerScript.GetPlayerNumber();
+
+        // Scale the radius according to the parent player
+        m_Radius *= transform.parent.localScale.x;
     }
 
     // Update is called once per frame

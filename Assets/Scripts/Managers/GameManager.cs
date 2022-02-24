@@ -91,6 +91,6 @@ public class GameManager : MonoBehaviour
         }
 
         // These are the targets the camera should follow
-        m_CameraController.m_Targets = targets;
+        m_CameraController.SetTargets(targets);
     }
 }
