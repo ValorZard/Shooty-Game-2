@@ -10,9 +10,7 @@ using UnityEngine.Tilemaps;
 public class RoomScript : MonoBehaviour
 {
     private GameObject[] players;
-    private Tilemap corridors;
     private Tilemap walls;
-    private Tilemap floor;
 
     public Camera camera;
     public float camSize;
