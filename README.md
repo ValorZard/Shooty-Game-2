@@ -32,8 +32,8 @@ Player Two:
  - Down: Down arrow / D-Pad Down / Left Joystick Down
  - Left: Left arrow / D-Pad Left / Left Joystick Left
  - Right: Right arrow / D-Pad Right / Left Joystick Right
- - Shoot: Right-click / Right Trigger
- - Aim: Mouse cursor
+ - Shoot: Right Trigger
+ - Aim: Right Joystick
 
 
 --- ENEMIES ---
@@ -44,7 +44,7 @@ Who you need to beat. In order, there's
  2. The tanky enemy. A stronger version of the basic enemy, they allow follow and shoot at the player; however, they are stronger and have more health, in exchange for speed.
  3. The turret. An enemy that doesn't move, but still shoots at the player when they spot them. Comes equipped with a shield.
  4. The explosive enemy. Doesn't shoot the player, but instead chases the player. If they touch the player, they count a countdown, at the end of which they explode, causing a large amount of damage to any players caught in the blast.
- 5. The burst enemy. Follows the player has normal, but shoots a ring of bullets around them instead.
+ 5. The burst enemy. Follows the player as normal, but shoots a ring of bullets around them instead.
 
 
 --- POWERUPS ---
