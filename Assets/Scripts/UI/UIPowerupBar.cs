@@ -5,13 +5,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIPowerupBar : MonoBehaviour
 {
-    // Public variables
+    // Private variables
         // The player to track
-        public GameObject m_Player;
+        private GameObject m_Player;
 
     // Update is called once per frame
     void Update()
@@ -58,10 +57,12 @@ public class UIPowerupBar : MonoBehaviour
             UIPowerupIcon icon = transform.Find(str).GetComponent<UIPowerupIcon>();
 
             // Set the icon's max time
-            icon.m_MaxTime = script.GetMaxTime();
+            icon.SetMaxTime(script.GetMaxTime());
 
             // Set the icon's current time
-            icon.m_CurrentTime = script.GetCurrentTime();
+            icon.SetCurrentTime(script.GetCurrentTime());
         }
     }
+
+    public void SetPlayer(GameObject obj) { m_Player = obj; }
 }

@@ -9,27 +9,23 @@ using TMPro;
 
 public class EnemyExplosive : MonoBehaviour
 {
-    // Public variables
-        // Reference to the enemy's collider
-        public Collider2D m_Collider;
-        // How long will the timer last?
-        public float m_MaxTime = 3f;
-        // Damage the explosion will do
-        public float m_Damage = 25f;
-        // Reference to explosion prefab
-        public GameObject m_Explosion;
-        // Reference to the timer's text
-        public GameObject m_Timer;
-    
     // Private variables
+        // How long will the timer last?
+        [SerializeField] private float m_MaxTime;
+        // Damage the explosion will do
+        [SerializeField] private float m_Damage;
+        // Reference to explosion prefab
+        [SerializeField] private GameObject m_Explosion;
+        // Reference to the timer's text
+        [SerializeField] private GameObject m_Timer;
         // The current time before the timer goes off
         [SerializeField] private float m_CurrentTime;
         // Reference to the movement script
         private EnemyController m_MovementScript;
         // The tag of friends to NOT hurt
-        [SerializeField] private string m_Friend;
+        private string m_Friend;
         // The tag of enemies to hurt
-        [SerializeField] private string m_Enemy;
+        private string m_Enemy;
 
     // Start is called before the first frame update
     void Start()

@@ -8,15 +8,18 @@ using UnityEngine;
 
 public class UIEndScreen : MonoBehaviour
 {
-    // Public variables
+    // Private variables
         // List of references to objects
-        public GameObject[] m_Objects;
+        private GameObject[] m_Objects;
         // Is the screen active?
-        public bool m_Active;
+        private bool m_Active;
     
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the array
+        m_Objects = new GameObject[0];
+
         // The screen is not active at the beginning of the game
         m_Active = false;
     }
@@ -55,4 +58,8 @@ public class UIEndScreen : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(true);
         }
     }
+
+    public GameObject[] GetObjects() { return m_Objects; }
+    public void SetObjects(GameObject[] obj) { m_Objects = obj; }
+    public bool GetActive() { return m_Active; }
 }

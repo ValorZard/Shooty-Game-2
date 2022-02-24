@@ -12,14 +12,18 @@ using UnityEngine;
 [Serializable]
 public class PlayerManager
 {
-    //local variables
-    public Transform spawnPoint;
-    public int playerNumber;
-    public GameObject instance;
-
-    //private variables
-    private PlayerController movement;
-    private PlayerShooting shooting;
+    // Private variables
+        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private int m_PlayerNumber;
+        [SerializeField] private GameObject instance;
+        private PlayerController movement;
+        private PlayerShooting shooting;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        instance = null;
+    }
 
     // Sets movement and shooting for player
     public void Setup()
@@ -27,7 +31,12 @@ public class PlayerManager
         movement = instance.GetComponent<PlayerController>();
         shooting = instance.GetComponent<PlayerShooting>();
 
-        movement.SetPlayerNumber(playerNumber);
-        shooting.SetPlayerNumber(playerNumber);
+        movement.SetPlayerNumber(m_PlayerNumber);
+        shooting.SetPlayerNumber(m_PlayerNumber);
     }
+
+    public Transform GetSpawnPoint() { return spawnPoint; }
+    public void SetPlayerNumber(int num) { m_PlayerNumber = num; }
+    public GameObject GetInstance() { return instance; }
+    public void SetInstance(GameObject obj) { instance = obj; }
 }

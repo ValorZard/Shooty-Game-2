@@ -8,11 +8,9 @@ using UnityEngine;
 
 public class UIHealthBar : MonoBehaviour
 {
-    // Public varirables
-        // The health script of the player
-        public BaseHealthScript m_HealthScript;
-    
     // Protected variables
+        // The health script of the player
+        protected BaseHealthScript m_HealthScript;
         // Reference to the child health bar meter
         protected Transform m_HealthBarMeter;
 
@@ -37,7 +35,7 @@ public class UIHealthBar : MonoBehaviour
         if(m_HealthScript != null)
         {
             // Grab the player's starting health
-            float startingHealth = m_HealthScript.m_StartingHealth;
+            float startingHealth = m_HealthScript.GetStartingHealth();
 
             // Grab the player's current health
             float currentHealth = m_HealthScript.GetCurrentHealth();
@@ -49,4 +47,6 @@ public class UIHealthBar : MonoBehaviour
             m_HealthBarMeter.localScale = new Vector3(percentHealth, m_HealthBarMeter.localScale.y, m_HealthBarMeter.localScale.z);
         }
     }
+
+    public void SetHealthScript(BaseHealthScript script) { m_HealthScript = script; }
 }

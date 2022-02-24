@@ -8,11 +8,9 @@ using UnityEngine;
 
 public class BaseHealthScript : MonoBehaviour
 {
-    // Public variables
-        // The amount of health the character starts with
-        public float m_StartingHealth = 100f;
-
     // Private variables
+        // The amount of health the character starts with
+        [SerializeField] private float m_StartingHealth = 100f;
         // How much health the character currently has
         [SerializeField] private float m_CurrentHealth;
 
@@ -49,9 +47,6 @@ public class BaseHealthScript : MonoBehaviour
         }
     }
 
-    // Returns the player's current health
-    public float GetCurrentHealth()
-    {
-        return m_CurrentHealth;
-    }
+    public float GetStartingHealth() { return m_StartingHealth; }
+    public float GetCurrentHealth() { return m_CurrentHealth; }
 }

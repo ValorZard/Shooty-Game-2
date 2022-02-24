@@ -37,7 +37,7 @@ public class EnemyShooting : BaseShooting
         {
             // UPDATED (Pedro Longo)
             // Get position of player in sight
-            if (m_Script.playerDetectionArea)
+            if (m_Script.GetDetection())
             {
                 // Shoot the bullet
                 AssignBullet(CalculateVelocity());

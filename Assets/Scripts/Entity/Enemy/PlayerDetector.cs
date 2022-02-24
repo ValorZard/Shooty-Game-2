@@ -27,7 +27,7 @@ public class PlayerDetector : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // ... it will target them
-            m_Enemy.playerDetectionArea = true;
+            m_Enemy.SetDetection(true);
 
             // Set new target
             m_Enemy.target = other.transform;
@@ -40,7 +40,7 @@ public class PlayerDetector : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             // ... it will stop pursuing
-            m_Enemy.playerDetectionArea = false;
+            m_Enemy.SetDetection(false);
 
             // Reset target
             m_Enemy.target = null;

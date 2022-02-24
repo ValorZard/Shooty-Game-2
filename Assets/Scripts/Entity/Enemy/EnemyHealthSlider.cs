@@ -46,7 +46,7 @@ public class EnemyHealthSlider : MonoBehaviour
         Image image = transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
 
         // The ratio of the current health and the starting health
-        float ratio = m_HealthScript.GetCurrentHealth() / m_HealthScript.m_StartingHealth;
+        float ratio = m_HealthScript.GetCurrentHealth() / m_HealthScript.GetCurrentHealth();
         
         // Fill bar with color and change depending on current health
         image.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, ratio);

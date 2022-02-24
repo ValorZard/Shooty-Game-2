@@ -8,13 +8,11 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    // Public variables
+    // Private variables
         // List of references to the players
-        public GameObject[] m_Players;
+        private GameObject[] m_Players;
         // List of references to the enemies
-        public GameObject[] m_Enemies;
-    
-    // private variables
+        private GameObject[] m_Enemies;
         // Reference to the UI manager
         private UIManager m_UIManager;
         // Reference to the game over screen
@@ -25,6 +23,10 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the arrays
+        m_Players = new GameObject[0];
+        m_Enemies = new GameObject[0];
+
         // Grab the scripts from the children
         m_UIManager = GetComponentInChildren<UIManager>();
         m_GameOverScreen = transform.Find("GameOverScreen").GetComponent<UIEndScreen>();
@@ -37,9 +39,8 @@ public class CanvasManager : MonoBehaviour
     {
         AssignObjectsToUI();
 
-        // If the game over screen or win screen are active...
-        if(m_GameOverScreen.m_Active
-            || m_WinScreen.m_Active)
+        // If the win screen is active...
+        if(m_WinScreen.GetActive())
             // ... disable the players' scripts
             DisablePlayers();
     }
@@ -48,16 +49,16 @@ public class CanvasManager : MonoBehaviour
     private void AssignObjectsToUI()
     {
         // Assign the players to the UI manager
-        if(m_UIManager.m_Players.Length == 0)
-            m_UIManager.m_Players = m_Players;
+        if(m_UIManager.GetPlayers().Length == 0)
+            m_UIManager.SetPlayers(m_Players);
 
         // Assign the players to the game over screen
-        if(m_GameOverScreen.m_Objects.Length == 0)
-            m_GameOverScreen.m_Objects = m_Players;
+        if(m_GameOverScreen.GetObjects().Length == 0)
+            m_GameOverScreen.SetObjects(m_Players);
 
         // Assign the enemies to the game over screen
-        if(m_WinScreen.m_Objects.Length == 0)
-            m_WinScreen.m_Objects = m_Enemies;
+        if(m_WinScreen.GetObjects().Length == 0)
+            m_WinScreen.SetObjects(m_Enemies);
     }
 
     // Disables the players' scripts
@@ -70,4 +71,7 @@ public class CanvasManager : MonoBehaviour
             m_Players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
         }
     }
+
+    public void SetPlayers(GameObject[] obj) { m_Players = obj; }
+    public void SetEnemies(GameObject[] obj) { m_Enemies = obj; }
 }

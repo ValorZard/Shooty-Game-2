@@ -6,27 +6,27 @@
                    added UI control,
                    added XBOX controller compatibility,
                    added win screen,
-                   reformatted for readability
+                   reformatted for readability,
+                   refactoured for better encapsulation
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Public variables
+    // Private variables
         // Reference to the player prefab
-        public GameObject m_PlayerPrefab;
+        [SerializeField] private GameObject m_PlayerPrefab;
         // A collection of player managers
-        public PlayerManager[] m_Players;
+        [SerializeField] private PlayerManager[] m_Players;
         //Reference to enemies
-        public GameObject[] m_Enemies;
+        private GameObject[] m_Enemies;
         // Reference to the CameraController script
-        public CameraController m_CameraController;
+        [SerializeField] private CameraController m_CameraController;
         // Reference to the CanvasManager script
-        public CanvasManager m_CanvasManager;
+        [SerializeField] private CanvasManager m_CanvasManager;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +49,10 @@ public class GameManager : MonoBehaviour
         //loop will instantiate number of players (in this case 2) to spawn locations
         for (int i = 0; i < m_Players.Length; i++)
         {
-            m_Players[i].instance =
-                Instantiate(m_PlayerPrefab, m_Players[i].spawnPoint.position, m_Players[i].spawnPoint.rotation) as GameObject;
+            m_Players[i].SetInstance(Instantiate(m_PlayerPrefab, m_Players[i].GetSpawnPoint().position, m_Players[i].GetSpawnPoint().rotation));
 
             //Defines player number for input
-            m_Players[i].playerNumber = i + 1;
+            m_Players[i].SetPlayerNumber(i + 1);
             m_Players[i].Setup();
         }
     }
@@ -67,15 +66,15 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < targets.Length; i++)
         {
             // ... and adds the player to the canvas manager's list
-            targets[i] = m_Players[i].instance;
+            targets[i] = m_Players[i].GetInstance();
         }
 
-        m_CanvasManager.m_Players = targets;
+        m_CanvasManager.SetPlayers(targets);
     }
 
     private void AssignEnemiesToCanvas()
     {
-        m_CanvasManager.m_Enemies = m_Enemies;
+        m_CanvasManager.SetEnemies(m_Enemies);
     }
 
     private void SetCameraTargets()
@@ -87,7 +86,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < targets.Length; i++)
         {
             // ... set it to the appropriate player transform
-            targets[i] = m_Players[i].instance.transform;
+            targets[i] = m_Players[i].GetInstance().transform;
         }
 
         // These are the targets the camera should follow

@@ -9,13 +9,11 @@ using UnityEngine.UI;
 
 public class UIPowerupIcon : MonoBehaviour
 {
-    // Public variables
-        // How long the powerup will be active for
-        public float m_MaxTime;
-        // How long the powerup has been active for
-        public float m_CurrentTime;
-    
     // Private variables
+        // How long the powerup will be active for
+        private float m_MaxTime;
+        // How long the powerup has been active for
+        private float m_CurrentTime;
         // The icon child
         private GameObject m_Icon;
         // The background child
@@ -80,4 +78,7 @@ public class UIPowerupIcon : MonoBehaviour
             backgroundImage.color = new Color(backgroundImage.color.r, backgroundImage.color.g, backgroundImage.color.b, ratio);
         }
     }
+
+    public void SetMaxTime(float num) { m_MaxTime = num; }
+    public void SetCurrentTime(float num) { m_CurrentTime = num; }
 }

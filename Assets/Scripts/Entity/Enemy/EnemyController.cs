@@ -4,36 +4,37 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /*
- * Srayan Jana, Pedro Longo, Manhattan Calabro
- *  - Srayan: Refactored code
- *  - Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
+    Srayan Jana, Pedro Longo, Manhattan Calabro
+    Srayan: Refactored code
+    Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
         changed name of variable so it doesn't hide inherited member,
         refactoured for better encapsulation
-    - Pedro: Base code, Added NavMesh rotation code, added pursuit, evade and wander actions for enemy
- */
+    Pedro: Base code,
+        Added NavMesh rotation code,
+        added pursuit,
+        evade and wander actions for enemy
+*/
 
 public class EnemyController : MonoBehaviour
 {
-    //public variables
-    [SerializeField] private float speed = 2.0f;
-    public bool playerDetectionArea;
-    [SerializeField] private float shootingRange = 4.0f;
-    // The target to attack
-    public Transform target;
-
-    // Would the enemy flee?
-    [SerializeField] private bool m_CanFlee;
-    // Is the enemy currently fleeing?
-    private bool m_IsFleeing = false;
-
-    NavMeshAgent agent;
-
-    // Reference to the health script
-    private BaseHealthScript m_Health;
-    // Reference to the shooting script
-    private EnemyShooting m_Shooting;
-    // Where to wander to
-    private Vector2 m_WanderTarget;
+    // Private variables
+        // The enemy's movement speed
+        [SerializeField] private float m_MoveSpeed = 2.0f;
+        private bool playerDetectionArea;
+        [SerializeField] private float shootingRange = 4.0f;
+        // The target to attack
+        public Transform target;
+        // Would the enemy flee?
+        [SerializeField] private bool m_CanFlee;
+        // Is the enemy currently fleeing?
+        private bool m_IsFleeing = false;
+        // Reference to the health script
+        private BaseHealthScript m_Health;
+        // Reference to the shooting script
+        private EnemyShooting m_Shooting;
+        // Where to wander to
+        private Vector2 m_WanderTarget;
+        NavMeshAgent agent;
 
     void Awake()
     {
@@ -78,14 +79,14 @@ public class EnemyController : MonoBehaviour
         float relativeHeading = Vector2.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
         float toTarget = Vector2.Angle(this.transform.forward, this.transform.TransformVector(targetDir));
 
-        if ((toTarget > 90 && relativeHeading < 20) || speed < 0.01f)
+        if ((toTarget > 90 && relativeHeading < 20) || m_MoveSpeed < 0.01f)
         {
             Seek(target.transform.position);
             return;
         }
 
 
-        float lookAhead = targetDir.magnitude / (speed);
+        float lookAhead = targetDir.magnitude / (m_MoveSpeed);
         Seek(target.transform.position + target.transform.forward * lookAhead);
     }
 
@@ -145,4 +146,7 @@ public class EnemyController : MonoBehaviour
             Wander();
         }
     }
+
+    public bool GetDetection() { return playerDetectionArea; }
+    public void SetDetection(bool b) { playerDetectionArea = b; }
 }

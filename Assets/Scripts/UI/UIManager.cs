@@ -8,11 +8,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Public variables
-        // List of references to the player
-        public GameObject[] m_Players;
-    
     // Private variables
+        // List of references to the players
+        private GameObject[] m_Players;
         // List of references of the child player UIs
         [SerializeField] private GameObject[] m_PlayerUI;
         // Has the player been connected yet?
@@ -21,6 +19,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the array
+        m_Players = new GameObject[0];
+
         // The length of the lists should be equal to the number of players in-game
         int listLength = transform.childCount;
 
@@ -91,7 +92,7 @@ public class UIManager : MonoBehaviour
         BaseHealthScript playerHealthScript = m_Players[index].GetComponent<BaseHealthScript>();
 
         // Assign the script to the player health script
-        uiHealthScript.m_HealthScript = playerHealthScript;
+        uiHealthScript.SetHealthScript(playerHealthScript);
     }
 
     // Connects the UI shield with the player shield
@@ -107,7 +108,7 @@ public class UIManager : MonoBehaviour
         BaseHealthScript shieldHealthScript = shield.GetComponent<BaseHealthScript>();
 
         // Assign the script to the shield health script
-        uiShieldScript.m_HealthScript = shieldHealthScript;
+        uiShieldScript.SetHealthScript(shieldHealthScript);
     }
 
     // Connects the UI ammo with the player ammo
@@ -123,6 +124,9 @@ public class UIManager : MonoBehaviour
         UIPowerupBar uiPowerupScript = m_PlayerUI[index].GetComponentInChildren<UIPowerupBar>();
 
         // Assign the player to the UI
-        uiPowerupScript.m_Player = m_Players[index];
+        uiPowerupScript.SetPlayer(m_Players[index]);
     }
+
+    public GameObject[] GetPlayers() { return m_Players; }
+    public void SetPlayers(GameObject[] obj) { m_Players = obj; }
 }
