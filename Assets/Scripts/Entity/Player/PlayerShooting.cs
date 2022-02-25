@@ -35,17 +35,25 @@ public class PlayerShooting : BaseShooting
         // If the fire button is pressed,
         // AND the current delay is zero,
         // AND the player is aiming...
-        if(Input.GetButton(m_FireButton)
+        if (Input.GetButton(m_FireButton)
             && m_CurrentDelay == 0f
             && m_PlayerAim.GetAimVector() != Vector2.zero)
+        {
+            if (Input.GetButton(m_FireButton))
+            {
+                Debug.Log("FIRE BUTTON PRESSED");
+            }
             // ... the player can shoot
             return true;
+
+        }
         return false;
     }
 
     // Instantiate the bullet
     protected override void Fire()
     {
+        Debug.Log("PLAYER SHOOTING");
         // Assign variables to the bullet
         AssignBullet(m_PlayerAim.GetAimVector());
     }

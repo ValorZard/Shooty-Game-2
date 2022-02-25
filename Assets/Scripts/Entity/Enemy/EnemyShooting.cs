@@ -40,6 +40,7 @@ public class EnemyShooting : BaseShooting
             if (m_Script.GetDetection())
             {
                 // Shoot the bullet
+                Debug.Log("ENEMY SHOOTING");
                 AssignBullet(CalculateVelocity());
             }
         }

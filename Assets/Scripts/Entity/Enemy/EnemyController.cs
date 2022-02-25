@@ -120,7 +120,7 @@ public class EnemyController : MonoBehaviour
             {
                 //transform.position = Vector2.MoveTowards(this.transform.position, target.position, speed * Time.deltaTime);
                 //Enemy will pursue player on sight
-                Debug.Log("ENEMY PURSUING");
+                //Debug.Log("ENEMY PURSUING");
                 Pursue();
 
                 if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
@@ -129,7 +129,7 @@ public class EnemyController : MonoBehaviour
                     // The enemy stops shooting while fleeing
                     m_Shooting.enabled = false;
                     //Enemy will flee the scene
-                    Debug.Log("ENEMY FLEEING");
+                    //Debug.Log("ENEMY FLEEING");
                 }
 
             }
@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour
             {
                 //Enemy will backup if the player is too close
                 //transform.position = Vector2.MoveTowards(this.transform.position, target.position, -speed * Time.deltaTime);
-                Debug.Log("ENEMY DISTANCING");
+                //Debug.Log("ENEMY DISTANCING");
                 Evade();
             }
         }

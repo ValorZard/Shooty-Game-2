@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
         m_HorizontalVelocity = Input.GetAxisRaw(m_HorizontalAxis);
         m_VerticalVelocity = Input.GetAxisRaw(m_VerticalAxis);
         m_Body.velocity = m_MoveSpeed * (new Vector2(m_HorizontalVelocity, m_VerticalVelocity)).normalized;
+
+        if(m_Body.velocity.magnitude > 0.0f)
+        {
+            Debug.Log("PLAYER MOVING");
+        }
     }
 
     public float GetHorizontalVelocity() { return m_HorizontalVelocity; }

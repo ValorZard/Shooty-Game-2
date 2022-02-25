@@ -14,7 +14,7 @@ public class PlayerManager
 {
     // Private variables
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private int m_PlayerNumber;
+        private int m_PlayerNumber = 1;
         [SerializeField] private GameObject instance;
         private PlayerController movement;
         private PlayerShooting shooting;
@@ -36,7 +36,12 @@ public class PlayerManager
     }
 
     public Transform GetSpawnPoint() { return spawnPoint; }
-    public void SetPlayerNumber(int num) { m_PlayerNumber = num; }
+
+    public void SetPlayerNumber(int num) {
+        Debug.Log("SPAWNING PLAYER " + m_PlayerNumber);
+        m_PlayerNumber = num;
+    }
+
     public GameObject GetInstance() { return instance; }
     public void SetInstance(GameObject obj) { instance = obj; }
 }
