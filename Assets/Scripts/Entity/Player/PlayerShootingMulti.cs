@@ -14,7 +14,7 @@ public class PlayerShootingMulti : MonoBehaviour
         // Reference to the player's aiming script
         private PlayerAim m_PlayerAim;
         // The angle offset to shoot the bullets at
-        private float m_Offset;
+        [SerializeField] private float m_Offset;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,7 @@ public class PlayerShootingMulti : MonoBehaviour
     private void Fire()
     {
         // Calculates the velocity between the cursor and the player
-        Vector2 velocity = m_PlayerAim.GetAimVector().normalized;
+        Vector2 velocity = m_PlayerScript.CalculateVelocity();
 
         // Find the current angle
         float angle = Mathf.Atan(velocity.y / velocity.x) * Mathf.Rad2Deg;

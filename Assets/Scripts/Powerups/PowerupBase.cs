@@ -16,8 +16,9 @@ public abstract class PowerupBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // If the collider belongs to the player, perform some effect
-        if(other.CompareTag("Player"))
+        // Make sure it's not grabbing the shield
+        if(other.CompareTag("Player")
+            && other.GetComponent<ShieldTag>() == null)
         {
             // Grab the player's rigidbody
             Rigidbody2D targetRigidbody = other.GetComponent<Rigidbody2D>();

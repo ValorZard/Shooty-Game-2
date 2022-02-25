@@ -10,52 +10,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShooting : BaseShooting
+public class PlayerShooting : MonoBehaviour
 {
-    // Private variables
+    // Public variables
+        // Prefab of the bullet
+        public Rigidbody2D m_Bullet;
+        // The force given to the bullet
+        public float m_Speed = 30f;
+        // The delay before the player can shoot another bullet
+        public float m_Delay = 0.05f;
+        // The power of the player's attacks
+        public float m_Damage = 10f;
         // Player number
-        private int m_PlayerNumber = 1;
+        public int playerNumber = 1;
+    
+    // Private variables
         // The input axis that is used for shooting bullets
-        private string m_FireButton;
-        // Reference to the player's aiming script
-        private PlayerAim m_PlayerAim;
+        [HideInInspector] public string m_FireButton;
+        // The current delay between shooting bullets
+        [HideInInspector] public float m_CurrentDelay;
 
-    protected override void InitializeShooting()
+    // Start is called before the first frame update
+    void Start()
     {
         // Assign the input to shoot
-        m_FireButton = "Fire" + m_PlayerNumber;
+        m_FireButton = "Fire" + playerNumber;
 
-        // Grab the player's aim script
-        m_PlayerAim = GetComponentInChildren<PlayerAim>();
+        // The current delay is reset
+        m_CurrentDelay = 0f;
     }
 
-    // Checks whether or not the player can shoot
-    public override bool CheckShootStatus()
+    // Update is called once per frame
+    void Update()
     {
-        // If the fire button is pressed,
-        // AND the current delay is zero,
-        // AND the player is aiming...
-        if (Input.GetButton(m_FireButton)
-            && m_CurrentDelay == 0f
-            && m_PlayerAim.GetAimVector() != Vector2.zero)
+        // If the fire button is pressed, AND the current delay is zero...
+        if(CheckShootStatus())
         {
-            if (Input.GetButton(m_FireButton))
-            {
-                Debug.Log("FIRE BUTTON PRESSED");
-            }
-            // ... the player can shoot
-            return true;
+            // ... shoot the bullet
+            Fire();
+            
 
+            // Delay the next shot
+            m_CurrentDelay = m_Delay;
         }
-        return false;
+
+        // Decrement the delay by the time
+        m_CurrentDelay -= Time.deltaTime;
+
+        // If current delay is less than zero...
+        if(m_CurrentDelay < 0f)
+        {
+            // ... set it to zero (prevents a ludicrous amount generating)
+            m_CurrentDelay = 0f;
+        }
     }
 
     // Instantiate the bullet
-    protected override void Fire()
+    private void Fire()
     {
         Debug.Log("PLAYER SHOOTING");
         // Assign variables to the bullet
-        AssignBullet(m_PlayerAim.GetAimVector());
+        AssignBullet(CalculateVelocity());
     }
 
     // Instantiate the bullet
@@ -65,7 +80,54 @@ public class PlayerShooting : BaseShooting
         AssignBullet(CalculateVelocity(angle));
     }
 
-    // Calculate the velocity of the bullet
+    // Assigns variables to a bullet
+    private void AssignBullet(Vector2 velocity)
+    {
+        // Create an instance of the bullet and store a reference to its rigidbody
+        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+
+        // Grab the bullet script
+        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
+        bulletScript.SetDamage(m_Damage);
+
+        // Set the friendly tag
+        bulletScript.SetFriend("Player");
+
+        // Set the enemy tag
+        bulletScript.SetEnemy("Enemy");
+
+        // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
+        bulletInstance.velocity = velocity.normalized * m_Speed;
+    }
+
+    // Calculates the velocity between the cursor and the player
+    public Vector2 CalculateVelocity()
+    {
+        // Second player calculation
+        if(playerNumber == 2)
+        {
+            float horizontal2 = Input.GetAxisRaw("AimHorizontal2");
+            float vertical2 = Input.GetAxisRaw("AimVertical2");
+            return new Vector2(horizontal2, vertical2);
+        }
+
+        // Get the mouse's position relative to the screen
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Get the player's position
+        Vector2 pos = transform.position;
+
+        // Calculate the bullet's horizontal movement
+        float horizontal = mousePos.x - pos.x;
+
+        // Calculate the bullet's vertical movement
+        float vertical = mousePos.y - pos.y;
+
+        return new Vector2(horizontal, vertical);
+    }
+
     private Vector2 CalculateVelocity(float angle)
     {
         // Calculate the bullet's horizontal movement
@@ -74,7 +136,7 @@ public class PlayerShooting : BaseShooting
         // Calculate the bullet's vertical movement
         float vertical = Mathf.Sin(angle * Mathf.Deg2Rad);
 
-        if(m_PlayerAim.GetAimVector().x < 0)
+        if(CalculateVelocity().x < 0)
         {
             horizontal *= -1;
             vertical *= -1;
@@ -83,6 +145,13 @@ public class PlayerShooting : BaseShooting
         return new Vector2(horizontal, vertical);
     }
 
-    public void SetPlayerNumber(int num) { m_PlayerNumber = num; }
+    public bool CheckShootStatus()
+    {
+        return Input.GetButton(m_FireButton) && m_CurrentDelay == 0f;
+    }
+
+    public float GetDamage() { return m_Damage; }
+    public void SetDamage(float num) { m_Damage = num; }
+    public void SetPlayerNumber(int num) { playerNumber = num; }
     public void SetFireButton(string str) { m_FireButton = str; }
 }

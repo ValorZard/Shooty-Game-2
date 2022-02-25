@@ -27,6 +27,9 @@ public class PlayerDisable : MonoBehaviour
         // Disable the aim child
         transform.parent.Find("AimReticle").gameObject.SetActive(false);
 
+        // Disable the joystick manager
+        transform.parent.GetComponentInChildren<JoystickManager>().enabled = false;
+
         /*
             I could save all of these as variables to make it look neater...
             ... but then it would be taking up unnecessary memory.

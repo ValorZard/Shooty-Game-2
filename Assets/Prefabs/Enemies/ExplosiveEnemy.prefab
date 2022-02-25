@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3394126290487943311}
   - component: {fileID: 6545536647623844753}
   - component: {fileID: 6545536646890486918}
-  - component: {fileID: 1551825207}
   m_Layer: 0
   m_Name: ExplosiveEnemy
   m_TagString: Enemy
@@ -197,36 +196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36112162fa91c404fb6a6b0184d59e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  playerDetectionArea: 0
-  playerInSight: 0
+  m_MoveSpeed: 3
   shootingRange: 0
-  player: {fileID: 0}
   target: {fileID: 0}
-  distanceFromPlayer: 0
-  canFlee: 0
---- !u!195 &1551825207
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3394126290487943310}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.32
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.64
-  m_BaseOffset: 0.32
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_CanFlee: 0
 --- !u!1 &6545536646953906933
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,14 +732,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed49b5ba17faae4ba0c3289a33a0b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Collider: {fileID: 6545536648421148042}
   m_MaxTime: 3
   m_Damage: 25
   m_Explosion: {fileID: 319670239823212869, guid: 3ae0e10056d06084093395abb2e408a1, type: 3}
   m_Timer: {fileID: 6545536647765988744}
   m_CurrentTime: 0
-  m_Friend: 
-  m_Enemy: 
 --- !u!1 &6545536648433417714
 GameObject:
   m_ObjectHideFlags: 0

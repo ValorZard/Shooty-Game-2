@@ -23,9 +23,9 @@ public class EnemyExplosive : MonoBehaviour
         // Reference to the movement script
         private EnemyController m_MovementScript;
         // The tag of friends to NOT hurt
-        private string m_Friend;
+        [SerializeField] private string m_Friend;
         // The tag of enemies to hurt
-        private string m_Enemy;
+        [SerializeField] private string m_Enemy;
 
     // Start is called before the first frame update
     void Start()

@@ -1,8 +1,7 @@
 /*
     Programmers: Srayan Jana, Pedro Longo, Manhattan Calabro
         Srayan: Worked on movement
-        Pedro: Added player number differentiation,
-            added NavMesh rotation code
+        Pedro: Added player number differentiation
         Manhattan: Refactoured to allow controller compatibility,
             refactoured for better encapsulation
 */
@@ -10,13 +9,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    // Public variables
-        NavMeshAgent agent;
-    
     // Private variables
         // The horizontal velocity and vertical velocity
         private float m_HorizontalVelocity, m_VerticalVelocity;
@@ -32,11 +27,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Fix rotation of NavMesh agent
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-
         m_Body = GetComponent<Rigidbody2D>();
 
         // Assign the input axes

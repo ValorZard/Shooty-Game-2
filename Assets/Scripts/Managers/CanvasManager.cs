@@ -24,14 +24,15 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {
         // Initialize the arrays
-        m_Players = new GameObject[0];
-        m_Enemies = new GameObject[0];
+        //m_Players = new GameObject[0];
+        //m_Enemies = new GameObject[0];
+        m_Players = GameObject.FindGameObjectsWithTag("Player");
+        m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         // Grab the scripts from the children
         m_UIManager = GetComponentInChildren<UIManager>();
         m_GameOverScreen = transform.Find("GameOverScreen").GetComponent<UIEndScreen>();
         m_WinScreen = transform.Find("WinScreen").GetComponent<UIEndScreen>();
-
     }
 
     // Update is called once per frame
@@ -67,8 +68,10 @@ public class CanvasManager : MonoBehaviour
         // Go through the player list
         for(int i = 0; i < m_Players.Length; i++)
         {
-            // Disable the player
-            m_Players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
+            // If the player is alive...
+            if(m_Players[i].activeSelf)
+                // ... disable the player
+                m_Players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
         }
     }
 
