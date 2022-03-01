@@ -29,7 +29,7 @@ public class PlayerManager
     public void Setup()
     {
         movement = instance.GetComponent<PlayerController>();
-        shooting = instance.GetComponent<PlayerShooting>();
+        shooting = instance.GetComponentInChildren<PlayerShooting>();
 
         movement.SetPlayerNumber(m_PlayerNumber);
         shooting.SetPlayerNumber(m_PlayerNumber);

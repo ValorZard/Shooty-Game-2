@@ -16,10 +16,10 @@ public class PlayerDisable : MonoBehaviour
         GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
 
         // Disable the shooting script
-        GetComponentInParent<PlayerShooting>().enabled = false;
+        transform.parent.GetComponentInChildren<PlayerShooting>().enabled = false;
 
         // Disable the multishooting script
-        GetComponentInParent<PlayerShootingMulti>().enabled = false;
+        transform.parent.GetComponentInChildren<PlayerShootingMulti>().enabled = false;
 
         // Disable the sprite controller
         transform.parent.GetComponentInChildren<PlayerSpriteController>().enabled = false;

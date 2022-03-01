@@ -15,7 +15,7 @@ public class PlayerEffectDamage : PlayerEffectBase
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerScript = gameObject.GetComponentInParent<PlayerShooting>();
+        m_PlayerScript = transform.parent.GetComponentInChildren<PlayerShooting>();
     }
 
     protected override void ChangePlayer()

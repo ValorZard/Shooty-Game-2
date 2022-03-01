@@ -67,7 +67,7 @@ public class JoystickManager : MonoBehaviour
         movementScript.SetVerticalAxis("Vertical2" + m_InputAxis);
 
         // Grab the second player's shooting script
-        PlayerShooting shootScript = GetComponentInParent<PlayerShooting>();
+        PlayerShooting shootScript = transform.parent.GetComponentInChildren<PlayerShooting>();
 
         // Switch the shooting script to the XBOX control scheme
         shootScript.SetFireButton("Fire2" + m_InputAxis);
