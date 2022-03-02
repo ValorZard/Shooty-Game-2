@@ -21,23 +21,13 @@ public class GameManager : MonoBehaviour
         [SerializeField] private GameObject m_PlayerPrefab;
         // A collection of player managers
         [SerializeField] private PlayerManager[] m_Players;
-        //Reference to enemies
-        private GameObject[] m_Enemies;
         // Reference to the CameraController script
         [SerializeField] private CameraController m_CameraController;
-        // Reference to the CanvasManager script
-        [SerializeField] private CanvasManager m_CanvasManager;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnPlayers();
-        m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        // Gives references of the players to the canvas manager
-        // (has to be above the camera code for some reason??)
-        AssignPlayersToCanvas();
-        AssignEnemiesToCanvas();
 
         // Snap the camera's position and zoom to something appropriate for the preset players
         SetCameraTargets();
@@ -56,26 +46,6 @@ public class GameManager : MonoBehaviour
             m_Players[i].Setup();
             Debug.Log("ASSIGNED INPUT TO PLAYER " + i);
         }
-    }
-
-    private void AssignPlayersToCanvas()
-    {
-        // Initialize the list of players to give to the canvas manager
-        GameObject[] targets = new GameObject[m_Players.Length];
-
-        // Goes through the list of players...
-        for(int i = 0; i < targets.Length; i++)
-        {
-            // ... and adds the player to the canvas manager's list
-            targets[i] = m_Players[i].GetInstance();
-        }
-
-        m_CanvasManager.SetPlayers(targets);
-    }
-
-    private void AssignEnemiesToCanvas()
-    {
-        m_CanvasManager.SetEnemies(m_Enemies);
     }
 
     private void SetCameraTargets()

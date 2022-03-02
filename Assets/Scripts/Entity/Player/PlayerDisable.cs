@@ -15,11 +15,16 @@ public class PlayerDisable : MonoBehaviour
         // Stops the player's current movement
         GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
 
+        // Disable the shooting child
+        transform.parent.Find("ShootingManager").gameObject.SetActive(false);
+
+        /*
         // Disable the shooting script
         transform.parent.GetComponentInChildren<PlayerShooting>().enabled = false;
 
         // Disable the multishooting script
         transform.parent.GetComponentInChildren<PlayerShootingMulti>().enabled = false;
+        */
 
         // Disable the sprite controller
         transform.parent.GetComponentInChildren<PlayerSpriteController>().enabled = false;

@@ -30,6 +30,9 @@ public class PlayerShooting : MonoBehaviour
         // The current delay between shooting bullets
         [HideInInspector] public float m_CurrentDelay;
 
+        // Reference to the player's ammo script
+        private AmmoManager m_AmmoManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +41,15 @@ public class PlayerShooting : MonoBehaviour
 
         // The current delay is reset
         m_CurrentDelay = 0f;
+
+        // Grab the ammo manager
+        m_AmmoManager = GetComponent<AmmoManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the fire button is pressed, AND the current delay is zero...
+        // If the player can shoot...
         if(CheckShootStatus())
         {
             // ... shoot the bullet
@@ -71,6 +77,9 @@ public class PlayerShooting : MonoBehaviour
         Debug.Log("PLAYER SHOOTING");
         // Assign variables to the bullet
         AssignBullet(CalculateVelocity());
+
+        // Removes one from the ammo count
+        m_AmmoManager.DecrementAmmo();
     }
 
     // Instantiate the bullet
@@ -145,9 +154,17 @@ public class PlayerShooting : MonoBehaviour
         return new Vector2(horizontal, vertical);
     }
 
+    // Checks if the player can shoot
     public bool CheckShootStatus()
     {
-        return Input.GetButton(m_FireButton) && m_CurrentDelay == 0f;
+        // Can only shoot if the shooting button is held down...
+        return Input.GetButton(m_FireButton)
+            // ... if the current delay is zero...
+            && m_CurrentDelay == 0f
+            // ... and if the player has ammo
+            && m_AmmoManager.GetCurrentAmmo() != 0
+            // ... and the shooting velocity isn't zero
+            && CalculateVelocity() != Vector2.zero;
     }
 
     public float GetDamage() { return m_Damage; }

@@ -1,3 +1,7 @@
+/*
+    Programmer: Manhattan Calabro
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,6 +38,6 @@ public class AimController : MonoBehaviour
             m_SpriteRenderer.enabled = false;
 
         // Update the reticle's position
-        transform.position = transform.parent.position + new Vector3(m_Offset.x, m_Offset.y, 0f);
+        transform.position = transform.parent.position + new Vector3(m_Offset.x, m_Offset.y, -1f);
     }
 }

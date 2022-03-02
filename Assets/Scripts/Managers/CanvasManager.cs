@@ -9,72 +9,52 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     // Private variables
-        // List of references to the players
-        private GameObject[] m_Players;
-        // List of references to the enemies
-        private GameObject[] m_Enemies;
-        // Reference to the UI manager
-        private UIManager m_UIManager;
-        // Reference to the game over screen
-        private UIEndScreen m_GameOverScreen;
-        // Reference to the win screen
-        private UIEndScreen m_WinScreen;
+        // Reference to the end screen
+        private UIEndScreen m_EndScreen;
+        // Have the players been disabled yet? (included so the script to get players doesn't replay repeatedly)
+        private bool m_IsDisabled;
+        // Reference to the player and enemy lists
+        private FindEntities m_Entities;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the arrays
-        //m_Players = new GameObject[0];
-        //m_Enemies = new GameObject[0];
-        m_Players = GameObject.FindGameObjectsWithTag("Player");
-        m_Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // Grab the end screen script
+        m_EndScreen = GetComponentInChildren<UIEndScreen>();
 
-        // Grab the scripts from the children
-        m_UIManager = GetComponentInChildren<UIManager>();
-        m_GameOverScreen = transform.Find("GameOverScreen").GetComponent<UIEndScreen>();
-        m_WinScreen = transform.Find("WinScreen").GetComponent<UIEndScreen>();
+        // The players should not be disabled yet
+        m_IsDisabled = false;
+
+        // Grab the lists
+        m_Entities = GetComponentInParent<FindEntities>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AssignObjectsToUI();
-
-        // If the win screen is active...
-        if(m_WinScreen.GetActive())
+        // If the win screen is active AND the players haven't been disabled yet...
+        if(m_EndScreen.GetActive()
+            && !m_IsDisabled)
             // ... disable the players' scripts
             DisablePlayers();
-    }
-
-    // Assigns objects to the UI, if they haven't been assigned yet
-    private void AssignObjectsToUI()
-    {
-        // Assign the players to the UI manager
-        if(m_UIManager.GetPlayers().Length == 0)
-            m_UIManager.SetPlayers(m_Players);
-
-        // Assign the players to the game over screen
-        if(m_GameOverScreen.GetObjects().Length == 0)
-            m_GameOverScreen.SetObjects(m_Players);
-
-        // Assign the enemies to the game over screen
-        if(m_WinScreen.GetObjects().Length == 0)
-            m_WinScreen.SetObjects(m_Enemies);
     }
 
     // Disables the players' scripts
     private void DisablePlayers()
     {
-        // Go through the player list
-        for(int i = 0; i < m_Players.Length; i++)
-        {
-            // If the player is alive...
-            if(m_Players[i].activeSelf)
-                // ... disable the player
-                m_Players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
-        }
-    }
+        // Grab the players
+        List<GameObject> players = m_Entities.GetPlayersRefresh();
 
-    public void SetPlayers(GameObject[] obj) { m_Players = obj; }
-    public void SetEnemies(GameObject[] obj) { m_Enemies = obj; }
+        // Go through the player list
+        for(int i = 0; i < players.Count; i++)
+        {
+            // If the player is active...
+            if(players[i].activeSelf)
+                // ... disable the player
+                players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
+        }
+
+        // The players have been disabled
+        m_IsDisabled = true;
+    }
 }

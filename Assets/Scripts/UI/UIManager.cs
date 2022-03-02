@@ -9,39 +9,41 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     // Private variables
-        // List of references to the players
-        private GameObject[] m_Players;
+        // Reference to the player and enemy lsits
+        private FindEntities m_Entities;
         // List of references of the child player UIs
         [SerializeField] private GameObject[] m_PlayerUI;
         // Has the player been connected yet?
-        [SerializeField] private bool[] m_Connected;
+        [SerializeField] private bool m_Connected;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the array
-        m_Players = new GameObject[0];
+        // Grab the lists
+        m_Entities = GetComponentInParent<FindEntities>();
 
         // The length of the lists should be equal to the number of players in-game
         int listLength = transform.childCount;
 
-        // Initializes the lists
+        // Initializes the list
         m_PlayerUI = new GameObject[listLength];
-        m_Connected = new bool[listLength];
-
-        // Goes through the children...
         for(int i = 0; i < listLength; i++)
         {
             m_PlayerUI[i] = transform.GetChild(i).gameObject;
-            m_Connected[i] = false;
         }
+
+        // The player(s) haven't been connected yet
+        m_Connected = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Only run if the player list has objects
-        if(m_Players.Length != 0)
+        m_Entities.GetPlayersRefresh();
+
+        // Only run if the player list has objects AND the players haven't been connected yet
+        if(m_Entities.GetPlayers().Count != 0
+            && !m_Connected)
         {
             // Connects the player UIs to their respective players
             ConnectUI();
@@ -51,35 +53,26 @@ public class UIManager : MonoBehaviour
     // Connects the UI with the player
     private void ConnectUI()
     {
-        // Goes through the list of connectedness...
-        for(int i = 0; i < m_Connected.Length; i++)
+        // Connect the first player
+        ConnectUIHealth(0);
+        ConnectUIShield(0);
+        ConnectUIAmmo(0);
+        ConnectUIPowerup(0);
+
+        // If the second player exists...
+        if(m_Entities.GetPlayers().Count > 1)
         {
-            // If the index exceeds the total number of players...
-            if(i >= m_Players.Length)
-            {
-                // ... deactivate the current UI
-                m_PlayerUI[i].SetActive(false);
-            }
-            
-            // Otherwise, if the player UI hasn't been connected yet, connect the UI
-            else if(!m_Connected[i])
-            {
-                // Connects the healths
-                ConnectUIHealth(i);
-
-                // Connects the shield
-                ConnectUIShield(i);
-
-                // Connects the ammos
-                ConnectUIAmmo(i);
-
-                // Connects the powerups
-                ConnectUIPowerup(i);
-
-                // Make sure this only runs once
-                m_Connected[i] = true;
-            }
+            // ... connect the second player
+            ConnectUIHealth(1);
+            ConnectUIShield(1);
+            ConnectUIAmmo(1);
+            ConnectUIPowerup(1);
         }
+        // Otherwise, disable the second player UI
+        else
+            m_PlayerUI[1].SetActive(false);
+        
+        m_Connected = true;
     }
 
     // Connects the UI health with the player health
@@ -89,7 +82,7 @@ public class UIManager : MonoBehaviour
         UIHealthBar uiHealthScript = m_PlayerUI[index].GetComponentInChildren<UIHealthBar>();
 
         // Grab the player's health script
-        BaseHealthScript playerHealthScript = m_Players[index].GetComponent<BaseHealthScript>();
+        BaseHealthScript playerHealthScript = m_Entities.GetPlayers()[index].GetComponent<BaseHealthScript>();
 
         // Assign the script to the player health script
         uiHealthScript.SetHealthScript(playerHealthScript);
@@ -101,11 +94,8 @@ public class UIManager : MonoBehaviour
         // Grab the player's UI's shield bar script
         UIShieldBar uiShieldScript = m_PlayerUI[index].GetComponentInChildren<UIShieldBar>();
 
-        // Grab the player's shield child
-        GameObject shield = m_Players[index].transform.Find("Shield").gameObject;
-
         // Grab the shield's health script
-        BaseHealthScript shieldHealthScript = shield.GetComponent<BaseHealthScript>();
+        BaseHealthScript shieldHealthScript = m_Entities.GetPlayers()[index].transform.Find("Shield").GetComponent<BaseHealthScript>();
 
         // Assign the script to the shield health script
         uiShieldScript.SetHealthScript(shieldHealthScript);
@@ -114,7 +104,14 @@ public class UIManager : MonoBehaviour
     // Connects the UI ammo with the player ammo
     private void ConnectUIAmmo(int index)
     {
-        // add code here for when the players actually have ammo
+        // Grab the player's UI's ammo bar script
+        UIAmmoBar uiAmmoScript = m_PlayerUI[index].GetComponentInChildren<UIAmmoBar>();
+
+        // Grab the player's ammo script
+        AmmoManager playerAmmoScript = m_Entities.GetPlayers()[index].GetComponentInChildren<AmmoManager>();
+
+        // Assign the script to the player ammo script
+        uiAmmoScript.SetAmmoScript(playerAmmoScript);
     }
 
     // Connects the UI powerups with the player powerups
@@ -124,9 +121,6 @@ public class UIManager : MonoBehaviour
         UIPowerupBar uiPowerupScript = m_PlayerUI[index].GetComponentInChildren<UIPowerupBar>();
 
         // Assign the player to the UI
-        uiPowerupScript.SetPlayer(m_Players[index]);
+        uiPowerupScript.SetPlayer(m_Entities.GetPlayers()[index]);
     }
-
-    public GameObject[] GetPlayers() { return m_Players; }
-    public void SetPlayers(GameObject[] obj) { m_Players = obj; }
 }

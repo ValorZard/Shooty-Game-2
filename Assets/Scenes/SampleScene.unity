@@ -704,17 +704,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
---- !u!114 &1718898351 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4694634510513631117, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
-  m_PrefabInstance: {fileID: 1718898350}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e08432e095375c4094dd83bfb6f1743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1718898352 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4694634509238232978, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
@@ -825,13 +814,10 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 6580856813603429442, guid: dceff38e4a733f146bde26b5fcce5e9c, type: 3}
   m_Players:
   - spawnPoint: {fileID: 451433050}
-    m_PlayerNumber: 0
     instance: {fileID: 0}
   - spawnPoint: {fileID: 1711390724}
-    m_PlayerNumber: 0
     instance: {fileID: 0}
   m_CameraController: {fileID: 1718898352}
-  m_CanvasManager: {fileID: 1718898351}
 --- !u!4 &1934502860
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,6 +1335,10 @@ PrefabInstance:
     - target: {fileID: 4792745470798946303, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792745471130279422, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 9093274417437124478, guid: 951deb2e6bb8e894b8f94dd6dcc83a3e, type: 3}
       propertyPath: m_AnchorMax.x
