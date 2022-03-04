@@ -16,5 +16,8 @@ public class IndexElement : MonoBehaviour
     {
         // Set the icon to the prefab's sprite
         GetComponentInChildren<Image>().sprite = m_Prefab.GetComponent<SpriteRenderer>().sprite;
+
+        // Use the same color as the prefab's sprite
+        GetComponentInChildren<Image>().color = m_Prefab.GetComponent<SpriteRenderer>().color;
     }
 }

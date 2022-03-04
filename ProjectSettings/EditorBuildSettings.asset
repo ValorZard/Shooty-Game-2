@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: f4008fb3b2a874b4f96d497bf7cd49c1
   - enabled: 1
+    path: Assets/Scenes/Controls1Scene.unity
+    guid: 2ee1e013d455c824fb0d3ac7a7ca9d51
+  - enabled: 1
+    path: Assets/Scenes/Controls2Scene.unity
+    guid: 52553e2b80453db4bbf8f7a7b2d7e8fe
+  - enabled: 1
     path: Assets/Scenes/IndexScene.unity
     guid: e1c0a938b95e4c246bb48e8c6a05d547
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: 7f5ced92c4115ae419e1539be7fc232a
   - enabled: 1
     path: Assets/Scenes/ModeSelectScene.unity
     guid: da2e6800bb98ee345b43f1658a4c6228
@@ -20,7 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/TestUIScene.unity
-    guid: 49de1c3b540b3a749a415dc57d6fc3e5
   m_configObjects: {}
