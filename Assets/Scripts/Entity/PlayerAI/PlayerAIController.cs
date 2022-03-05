@@ -25,8 +25,6 @@ public class PlayerAIController : MonoBehaviour
     private BaseHealthScript m_Health;
     // Reference to the shooting script
     private EnemyShooting m_Shooting;
-    //Player to follow
-    private GameObject m_Player;
 
     void Awake()
     {
@@ -34,30 +32,8 @@ public class PlayerAIController : MonoBehaviour
         m_Shooting = GetComponentInChildren<EnemyShooting>();
     }
 
-    private void Start()
-    {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
-    }
-
     private void Pursue()
     {
-        /*
-        Vector2 targetDir = target.transform.position - this.transform.position;
-
-        float relativeHeading = Vector2.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
-        float toTarget = Vector2.Angle(this.transform.forward, this.transform.TransformVector(targetDir));
-
-        if ((toTarget > 90 && relativeHeading < 20) || m_MoveSpeed < 0.01f)
-        {
-            Seek(target.transform.position);
-            return;
-        }
-
-
-        float lookAhead = targetDir.magnitude / (m_MoveSpeed);
-        Seek(target.transform.position + target.transform.forward * lookAhead);
-        */
-
         transform.position = Vector2.MoveTowards(this.transform.position, target.position, m_MoveSpeed * Time.deltaTime);
     }
 
@@ -66,25 +42,8 @@ public class PlayerAIController : MonoBehaviour
         
     }
 
-    /*
-    private void Flee(Vector3 location)
-    {
-        Vector3 fleeVector = (location - this.transform.position * 2.0f);
-
-        // Only run if the agent exists
-        if(agent.enabled)
-            agent.SetDestination(this.transform.position - fleeVector);
-    }
-    */
-
     private void Evade()
     {
-        /*
-        Vector3 targetDir = target.transform.position - this.transform.position;
-        float lookAhead = targetDir.magnitude / (agent.speed);
-        Flee(target.transform.position + target.transform.forward * lookAhead);
-        */
-
         transform.position = Vector2.MoveTowards(this.transform.position, target.position, -m_MoveSpeed * Time.deltaTime);
     }
 
@@ -95,11 +54,11 @@ public class PlayerAIController : MonoBehaviour
         if (target != null)
         {
             // Get distance from target
-            float distanceFromEnemy = Vector2.Distance(target.position, transform.position);
+            float distanceFromTarget = Vector2.Distance(target.position, transform.position);
 
             Pursue();
 
-            if (distanceFromEnemy < shootingRange)
+            if (distanceFromTarget < shootingRange)
             {
                 Evade();
             }

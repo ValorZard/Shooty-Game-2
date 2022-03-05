@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
         [SerializeField] private GameObject m_PlayerPrefab;
         // A collection of player managers
         [SerializeField] private PlayerManager[] m_Players;
+        // Reference to the player AI prefab
+        [SerializeField] private GameObject m_AIPlayerPrefab;
+        // Player AI
+        [SerializeField] private AIPlayerManager m_PlayerAI;
         // Reference to the CameraController script
         [SerializeField] private CameraController m_CameraController;
 
@@ -28,7 +32,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnPlayers();
-
 
         //If player equals 1, then spawn AI player
         //CODE
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnAIPlayer()
     {
-
+        m_PlayerAI.SetInstance(Instantiate(m_AIPlayerPrefab, m_PlayerAI.GetSpawnPoint().position, m_PlayerAI.GetSpawnPoint().rotation));
     }
 
     private void SetCameraTargets()

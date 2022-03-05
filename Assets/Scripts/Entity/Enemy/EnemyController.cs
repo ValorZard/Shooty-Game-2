@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.AI;
+using UnityEngine.AI;
 
 /*
     Srayan Jana, Pedro Longo, Manhattan Calabro
@@ -35,7 +35,8 @@ public class EnemyController : MonoBehaviour
         private EnemyShooting m_Shooting;
         // Where to wander to
         private Vector2 m_WanderTarget;
-        //NavMeshAgent agent;
+
+        NavMeshAgent agent;
 
     void Awake()
     {
@@ -46,8 +47,8 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        /*
-        // Fic rotation of NavMesh agent
+        
+        //Fix rotation of NavMesh agent
         agent = GetComponent<NavMeshAgent>();
 
         if(agent != null)
@@ -55,16 +56,17 @@ public class EnemyController : MonoBehaviour
             agent.updateRotation = false;
             agent.updateUpAxis = false;
         }
-        */
+        
     }
 
     private void Seek(Vector2 location)
     {
-        /*
+        
         // Only run if the agent exists
         if(agent.enabled)
             agent.SetDestination(location);
-        */
+        
+        
         
         // Has the enemy been interrupted by seeing the player?
         if(!playerDetectionArea)
@@ -98,7 +100,6 @@ public class EnemyController : MonoBehaviour
 
     private void Pursue()
     {
-        /*
         Vector2 targetDir = target.transform.position - this.transform.position;
 
         float relativeHeading = Vector2.Angle(this.transform.forward, this.transform.TransformVector(target.transform.forward));
@@ -113,12 +114,7 @@ public class EnemyController : MonoBehaviour
 
         float lookAhead = targetDir.magnitude / (m_MoveSpeed);
         Seek(target.transform.position + target.transform.forward * lookAhead);
-        */
-
-        transform.position = Vector2.MoveTowards(this.transform.position, target.position, m_MoveSpeed * Time.deltaTime);
     }
-
-    /*
     private void Flee(Vector3 location)
     {
         Vector3 fleeVector = (location - this.transform.position * 2.0f);
@@ -127,17 +123,12 @@ public class EnemyController : MonoBehaviour
         if(agent.enabled)
             agent.SetDestination(this.transform.position - fleeVector);
     }
-    */
-
+  
     private void Evade()
     {
-        /*
         Vector3 targetDir = target.transform.position - this.transform.position;
         float lookAhead = targetDir.magnitude / (agent.speed);
-        Flee(target.transform.position + target.transform.forward * lookAhead);
-        */
-
-        transform.position = Vector2.MoveTowards(this.transform.position, target.position, -m_MoveSpeed * Time.deltaTime);
+        Flee(target.transform.position + target.transform.forward * lookAhead);       
     }
 
     // Update is called once per frame
@@ -152,7 +143,7 @@ public class EnemyController : MonoBehaviour
             if (playerDetectionArea && distanceFromPlayer > shootingRange && !m_IsFleeing)
             {
                 //Enemy will pursue player on sight
-                //Debug.Log("ENEMY PURSUING");
+                Debug.Log("ENEMY PURSUING");
                 Pursue();
 
                 if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
@@ -161,19 +152,20 @@ public class EnemyController : MonoBehaviour
                     // The enemy stops shooting while fleeing
                     m_Shooting.enabled = false;
                     //Enemy will flee the scene
-                    //Debug.Log("ENEMY FLEEING");
+                    Debug.Log("ENEMY FLEEING");
                 }
 
             }
             else if(distanceFromPlayer < shootingRange )
             {
                 //Enemy will backup if the player is too close
-                //Debug.Log("ENEMY DISTANCING");
+                Debug.Log("ENEMY DISTANCING");
                 Evade();
             }
         }
         else
         {
+            Debug.Log("ENEMY WANDERING");
             Wander();
         }
     }
