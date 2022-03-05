@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - EnemyView
   - Camera
+  - ViewAI
   layers:
   - Default
   - TransparentFX

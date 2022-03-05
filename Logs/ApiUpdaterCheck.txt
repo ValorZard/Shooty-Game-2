@@ -378,3 +378,83 @@ C# parse time         : 303ms
 candidates check time : 44ms
 console write time    : 0ms
 
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:13:56 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 249.3327ms
+moved types parse time: 121ms
+candidates parse time : 2ms
+C# parse time         : 375ms
+candidates check time : 85ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:15:15 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 74.7997ms
+moved types parse time: 81ms
+candidates parse time : 1ms
+C# parse time         : 248ms
+candidates check time : 86ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:24:48 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 82.7809ms
+moved types parse time: 71ms
+candidates parse time : 1ms
+C# parse time         : 377ms
+candidates check time : 100ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:24:56 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 81.78ms
+moved types parse time: 94ms
+candidates parse time : 2ms
+C# parse time         : 321ms
+candidates check time : 80ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:25:21 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 88.7621ms
+moved types parse time: 86ms
+candidates parse time : 2ms
+C# parse time         : 407ms
+candidates check time : 95ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:25:35 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 86.7812ms
+moved types parse time: 78ms
+candidates parse time : 1ms
+C# parse time         : 285ms
+candidates check time : 71ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 4:25:44 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 79.1246ms
+moved types parse time: 89ms
+candidates parse time : 2ms
+C# parse time         : 384ms
+candidates check time : 92ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 3/4/2022 5:16:34 PM : Starting C:/Users/Pedro Longo/Documents/New Unity Project/2020.3.25f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 95.2586ms
+moved types parse time: 85ms
+candidates parse time : 2ms
+C# parse time         : 356ms
+candidates check time : 50ms
+console write time    : 0ms
+

@@ -29,6 +29,14 @@ public class GameManager : MonoBehaviour
     {
         SpawnPlayers();
 
+
+        //If player equals 1, then spawn AI player
+        //CODE
+        if (m_Players.Length == 1)
+        {
+            SpawnAIPlayer();
+        }
+
         // Snap the camera's position and zoom to something appropriate for the preset players
         SetCameraTargets();
         m_CameraController.SetStartPositionAndSize();
@@ -46,6 +54,11 @@ public class GameManager : MonoBehaviour
             m_Players[i].Setup();
             Debug.Log("ASSIGNED INPUT TO PLAYER " + i);
         }
+    }
+
+    private void SpawnAIPlayer()
+    {
+
     }
 
     private void SetCameraTargets()

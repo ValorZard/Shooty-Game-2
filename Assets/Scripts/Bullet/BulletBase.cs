@@ -45,6 +45,9 @@ public class BulletBase : MonoBehaviour
         // If the collider belongs to enemy view detection, return true
         if(other.CompareTag("EnemyView"))
             return true;
+        // If the collider belongs to Player AI detection, return true
+        if (other.CompareTag("ViewAI"))
+            return true;
 
         return false;
     }

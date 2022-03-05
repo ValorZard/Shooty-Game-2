@@ -13,6 +13,8 @@ public class FindEntities : MonoBehaviour
         [SerializeField] private List<GameObject> m_Players;
         // List of enemies
         [SerializeField] private List<GameObject> m_Enemies;
+    //Player AI
+        [SerializeField] private List<GameObject> m_PlayerAI;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,14 @@ public class FindEntities : MonoBehaviour
         // Initialize the lists
         m_Players = new List<GameObject>();
         m_Enemies = new List<GameObject>();
+        m_PlayerAI = new List<GameObject>();
     }
 
     public List<GameObject> GetPlayers() { return m_Players; }
 
     public List<GameObject> GetEnemies() { return m_Enemies; }
+
+    public List<GameObject> GetPlayerAI() { return m_PlayerAI; }
 
     public List<GameObject> GetPlayersRefresh()
     {
@@ -38,6 +43,13 @@ public class FindEntities : MonoBehaviour
         m_Enemies.Clear();
         m_Enemies = Refresh("Enemy");
         return m_Enemies;
+    }
+
+    public List<GameObject> GetPlayerAIRefresh()
+    {
+        m_PlayerAI.Clear();
+        m_PlayerAI = Refresh("PlayerAI");
+        return m_PlayerAI;
     }
 
     private List<GameObject> Refresh(string str)
