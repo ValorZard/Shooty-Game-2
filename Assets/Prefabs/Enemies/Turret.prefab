@@ -908,9 +908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36112162fa91c404fb6a6b0184d59e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveSpeed: 0
-  shootingRange: 6
   target: {fileID: 0}
+  m_MoveSpeed: 0
+  m_ShootingRange: 4
   m_CanFlee: 0
 --- !u!114 &4792745470798946298
 MonoBehaviour:
@@ -928,8 +928,6 @@ MonoBehaviour:
   m_Speed: 30
   m_Delay: 1
   m_Damage: 15
-  m_Friend: Enemy
-  m_Enemy: Player
 --- !u!1 &4792745471130279410
 GameObject:
   m_ObjectHideFlags: 0

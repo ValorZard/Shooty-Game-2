@@ -31,7 +31,7 @@ abstract public class AIShooting : BaseShooting
             if (m_Script.GetDetection())
             {
                 // Shoot the bullet
-                AssignBullet(CalculateVelocity());
+                LaunchBullet(CalculateVelocity());
             }
         }
     }

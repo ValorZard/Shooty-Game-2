@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3394126290487943311}
   - component: {fileID: 6545536647623844753}
   - component: {fileID: 6545536646890486918}
+  - component: {fileID: 2080790033}
   m_Layer: 0
   m_Name: ExplosiveEnemy
   m_TagString: Enemy
@@ -196,10 +197,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36112162fa91c404fb6a6b0184d59e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveSpeed: 3
-  shootingRange: 0
   target: {fileID: 0}
+  m_MoveSpeed: 3
+  m_ShootingRange: 0
   m_CanFlee: 0
+--- !u!195 &2080790033
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394126290487943310}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.32
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.64
+  m_BaseOffset: 0.32
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &6545536646953906933
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +446,7 @@ GameObject:
   - component: {fileID: 6545536647765988747}
   - component: {fileID: 6545536647765988749}
   - component: {fileID: 6545536647765988746}
+  - component: {fileID: 3222165186356728421}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -546,6 +570,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3222165186356728421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6545536647765988744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f828dc8329478549b3dabf210cbb009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6545536647856096389
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,7 +697,7 @@ GameObject:
   - component: {fileID: 6545536648421148043}
   - component: {fileID: 6545536648421148045}
   - component: {fileID: 6545536648421148042}
-  - component: {fileID: 6545536648421148044}
+  - component: {fileID: 1943925792930810384}
   m_Layer: 0
   m_Name: ActivationRadius
   m_TagString: Untagged
@@ -720,7 +756,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!114 &6545536648421148044
+--- !u!114 &1943925792930810384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -732,13 +768,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed49b5ba17faae4ba0c3289a33a0b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxTime: 3
+  m_Bullet: {fileID: 20525252270909047, guid: 3ae0e10056d06084093395abb2e408a1, type: 3}
+  m_Speed: 0
+  m_Delay: 0
   m_Damage: 25
-  m_Explosion: {fileID: 319670239823212869, guid: 3ae0e10056d06084093395abb2e408a1, type: 3}
-  m_Timer: {fileID: 6545536647765988744}
-  m_CurrentTime: 0
-  m_Friend: 
-  m_Enemy: 
+  m_MaxTime: 3
 --- !u!1 &6545536648433417714
 GameObject:
   m_ObjectHideFlags: 0

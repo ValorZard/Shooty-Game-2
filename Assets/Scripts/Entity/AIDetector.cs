@@ -15,7 +15,7 @@ abstract public class AIDetector : MonoBehaviour
         // Reference to the movement script
         protected AIController m_Movement;
         // Reference to the shoot script
-        protected AIShooting m_Shooting;
+        protected BaseShooting m_Shooting;
 
     protected void OnTriggerStay2D(Collider2D other)
     {

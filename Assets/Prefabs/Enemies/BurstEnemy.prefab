@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 1839923958662715695}
   - component: {fileID: 1839923959479974142}
   - component: {fileID: 1839923958662715694}
+  - component: {fileID: 60263030}
   m_Layer: 0
   m_Name: BurstEnemy
   m_TagString: Enemy
@@ -703,9 +704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36112162fa91c404fb6a6b0184d59e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveSpeed: 2
-  shootingRange: 4
   target: {fileID: 0}
+  m_MoveSpeed: 2
+  m_ShootingRange: 4
   m_CanFlee: 0
 --- !u!114 &1839923958662715694
 MonoBehaviour:
@@ -723,5 +724,25 @@ MonoBehaviour:
   m_Speed: 10
   m_Delay: 0.5
   m_Damage: 1
-  m_Friend: Enemy
-  m_Enemy: Player
+--- !u!195 &60263030
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801510063656723702}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.32
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.64
+  m_BaseOffset: 0.32
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

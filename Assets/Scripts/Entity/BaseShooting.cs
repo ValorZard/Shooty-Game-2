@@ -55,6 +55,11 @@ abstract public class BaseShooting : MonoBehaviour
             m_CurrentDelay = m_Delay;
         }
 
+        UpdateTime();
+    }
+
+    private void UpdateTime()
+    {
         // Decrement the delay by the time
         m_CurrentDelay -= Time.deltaTime;
 
@@ -65,26 +70,35 @@ abstract public class BaseShooting : MonoBehaviour
     }
 
     // Assign variables to a bullet
-    protected void AssignBullet(Vector2 velocity)
+    protected void LaunchBullet(Vector2 velocity)
+    {
+        // Set the bullet's velocity
+        // Note: Don't use Time.deltaTime; seems to break speed consistency between bullets
+        CreateBullet().velocity = velocity.normalized * m_Speed;
+    }
+
+    // Creates the bullet
+    protected Rigidbody2D CreateBullet()
     {
         // Create an instance of the bullet and store a reference to its rigidbody
-        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation) as Rigidbody2D;
+        Rigidbody2D bulletInstance = Instantiate(m_Bullet, transform.position, transform.rotation);
 
         // Grab the bullet script
-        BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+        BulletBase bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // If the bullet script doesn't exist...
+        if(bulletScript == null)
+            //... it's actually an explosion
+            bulletScript = bulletInstance.GetComponent<BulletExplosion>();
 
         // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
         bulletScript.SetDamage(m_Damage);
 
-        // Set the friendly tag
+        // Set the friendly and enemy tags
         bulletScript.SetFriend(m_Friend);
-
-        // Set the enemy tag
         bulletScript.SetEnemy(m_Enemy);
 
-        // Set the bullet's velocity
-        // Note: Don't use Time.deltaTime; seems to break speed consistency between bullets
-        bulletInstance.velocity = velocity.normalized * m_Speed;
+        return bulletInstance;
     }
 
     abstract protected void InitializeShooting();

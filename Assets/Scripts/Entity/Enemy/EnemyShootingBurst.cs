@@ -25,7 +25,7 @@ public class EnemyShootingBurst : EnemyShooting
             while(angle < 360)
             {
                 // Shoot the bullet
-                AssignBullet(CalculateVelocity(angle));
+                LaunchBullet(CalculateVelocity(angle));
 
                 // Increment the angle
                 angle += m_Angle;
