@@ -1007,10 +1007,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerPrefab: {fileID: 6580856813603429442, guid: dceff38e4a733f146bde26b5fcce5e9c, type: 3}
   m_Players:
-  - spawnPoint: {fileID: 451433050}
-    instance: {fileID: 0}
-  - spawnPoint: {fileID: 1711390724}
-    instance: {fileID: 0}
+  - m_SpawnPoint: {fileID: 451433050}
+    m_Instance: {fileID: 0}
+  - m_SpawnPoint: {fileID: 1711390724}
+    m_Instance: {fileID: 0}
+  m_AIPlayerPrefab: {fileID: 0}
+  m_PlayerAI:
+    m_SpawnPoint: {fileID: 0}
+    m_Instance: {fileID: 0}
   m_CameraController: {fileID: 1718898352}
 --- !u!4 &1934502860
 Transform:

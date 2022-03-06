@@ -1,49 +1,32 @@
 /*
-    Programmers: Pedro Longo
+    Programmers: Pedro Longo, Manhattan Calabro
+        Pedro: Added player following
+        Manhattan: Refactoured for better encapsulation
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDetector : MonoBehaviour
+public class EnemyDetector : AIDetector
 {
     // Private variables
-    // Reference to the Player AI's movement script
-    private PlayerAIController m_PlayerAI;
-    private GameObject m_Player;
+        // Reference to the player
+        private GameObject m_Player;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_PlayerAI = GetComponentInParent<PlayerAIController>();
+        // Grab the scripts
+        m_Movement = GetComponentInParent<PlayerAIController>();
+        m_Shooting = GetComponentInParent<PlayerAIShooting>();
+
+        // Follow the player around
         m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_PlayerAI.target = m_Player.transform;
+        m_Movement.target = m_Player.transform;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    protected override void ResetTarget()
     {
-        // While a player stays within enemy sight...
-        if (other.CompareTag("Enemy"))
-        {
-            // ... it will target them
-            m_PlayerAI.SetDetection(true);
-
-            // Set new target
-            m_PlayerAI.target = other.transform;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        // If player exits enemy sight...
-        if (other.CompareTag("Enemy"))
-        {
-            // ... it will stop pursuing
-            m_PlayerAI.SetDetection(false);
-
-            // Reset target
-            m_PlayerAI.target = m_Player.transform;
-        }
+        // Follow the player around again
+        m_Movement.target = m_Player.transform;
     }
 }

@@ -1,86 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+/*
+    Programmers: Pedro Longo, Manhattan Calabro
+        Pedro: Base code,
+            added NavMesh rotation code,
+            added wander action
+        Manhattan: Refactoured for better encapsulation
+*/
+
 using UnityEngine;
 using UnityEngine.AI;
 
-/*
-    Srayan Jana, Pedro Longo, Manhattan Calabro
-    Srayan: Refactored code
-    Manhattan: Added check for whether target exists (that way, there won't be several console exceptions),
-        changed name of variable so it doesn't hide inherited member,
-        refactoured for better encapsulation
-    Pedro: Base code,
-        Added NavMesh rotation code,
-        added pursuit,
-        evade and wander actions for enemy
-*/
-
-public class EnemyController : MonoBehaviour
+public class EnemyController : AIController
 {
     // Private variables
-        // The enemy's movement speed
-        [SerializeField] private float m_MoveSpeed = 2.0f;
-        // Does the enemy see a player?
-        private bool playerDetectionArea;
-        [SerializeField] private float shootingRange = 4.0f;
-        // The target to attack
-        public Transform target;
         // Would the enemy flee?
         [SerializeField] private bool m_CanFlee;
         // Is the enemy currently fleeing?
         private bool m_IsFleeing = false;
-        // Reference to the health script
-        private BaseHealthScript m_Health;
-        // Reference to the shooting script
-        private EnemyShooting m_Shooting;
         // Where to wander to
         private Vector2 m_WanderTarget;
 
         NavMeshAgent agent;
 
-    void Awake()
+    protected override void OnStart()
     {
-        m_Health = GetComponentInChildren<BaseHealthScript>();
         m_Shooting = GetComponentInChildren<EnemyShooting>();
         m_WanderTarget = Vector2.zero;
-    }
 
-    private void Start()
-    {
-        
-        //Fix rotation of NavMesh agent
+        // Fix rotation of NavMesh agent
         agent = GetComponent<NavMeshAgent>();
-
+        // Only perform if agent exists
         if(agent != null)
         {
             agent.updateRotation = false;
             agent.updateUpAxis = false;
-        }
-        
-    }
-
-    private void Seek(Vector2 location)
-    {
-        
-        // Only run if the agent exists
-        if(agent.enabled)
-            agent.SetDestination(location);
-        
-        
-        
-        // Has the enemy been interrupted by seeing the player?
-        if(!playerDetectionArea)
-        {
-            // Has the location been reached yet?
-            if(transform.position.x != m_WanderTarget.x
-                && transform.position.y != m_WanderTarget.y)
-            {
-                // If not, travel toward the location
-                float horizontal = m_WanderTarget.x - transform.position.x;
-                float vertical = m_WanderTarget.y - transform.position.y;
-                Rigidbody2D body = GetComponent<Rigidbody2D>();
-                body.velocity = new Vector2(horizontal, vertical).normalized * m_MoveSpeed;
-            }
         }
     }
 
@@ -98,7 +50,30 @@ public class EnemyController : MonoBehaviour
         Seek(targetWorld);
     }
 
-    private void Pursue()
+    private void Seek(Vector2 location)
+    {
+        
+        // Only run if the agent exists
+        if(agent != null && agent.enabled)
+            agent.SetDestination(location);
+        
+        // Has the enemy been interrupted by seeing the player?
+        if(!m_DetectionArea)
+        {
+            // Has the location been reached yet?
+            if(transform.position.x != m_WanderTarget.x
+                && transform.position.y != m_WanderTarget.y)
+            {
+                // If not, travel toward the location
+                float horizontal = m_WanderTarget.x - transform.position.x;
+                float vertical = m_WanderTarget.y - transform.position.y;
+                Rigidbody2D body = GetComponent<Rigidbody2D>();
+                body.velocity = new Vector2(horizontal, vertical).normalized * m_MoveSpeed;
+            }
+        }
+    }
+
+    protected override void Pursue()
     {
         Vector2 targetDir = target.transform.position - this.transform.position;
 
@@ -111,10 +86,10 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-
         float lookAhead = targetDir.magnitude / (m_MoveSpeed);
         Seek(target.transform.position + target.transform.forward * lookAhead);
     }
+
     private void Flee(Vector3 location)
     {
         Vector3 fleeVector = (location - this.transform.position * 2.0f);
@@ -124,7 +99,7 @@ public class EnemyController : MonoBehaviour
             agent.SetDestination(this.transform.position - fleeVector);
     }
   
-    private void Evade()
+    protected override void Evade()
     {
         Vector3 targetDir = target.transform.position - this.transform.position;
         float lookAhead = targetDir.magnitude / (agent.speed);
@@ -140,7 +115,7 @@ public class EnemyController : MonoBehaviour
             // Get distance from player
             float distanceFromPlayer = Vector2.Distance(target.position, transform.position);
 
-            if (playerDetectionArea && distanceFromPlayer > shootingRange && !m_IsFleeing)
+            if (m_DetectionArea && distanceFromPlayer > m_ShootingRange && !m_IsFleeing)
             {
                 //Enemy will pursue player on sight
                 Debug.Log("ENEMY PURSUING");
@@ -156,7 +131,7 @@ public class EnemyController : MonoBehaviour
                 }
 
             }
-            else if(distanceFromPlayer < shootingRange )
+            else if(distanceFromPlayer < m_ShootingRange )
             {
                 //Enemy will backup if the player is too close
                 Debug.Log("ENEMY DISTANCING");
@@ -169,7 +144,4 @@ public class EnemyController : MonoBehaviour
             Wander();
         }
     }
-
-    public bool GetDetection() { return playerDetectionArea; }
-    public void SetDetection(bool b) { playerDetectionArea = b; }
 }

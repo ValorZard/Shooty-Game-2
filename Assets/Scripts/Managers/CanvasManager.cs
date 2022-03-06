@@ -48,8 +48,9 @@ public class CanvasManager : MonoBehaviour
         // Go through the player list
         for(int i = 0; i < players.Count; i++)
         {
-            // If the player is active...
-            if(players[i].activeSelf)
+            // If the player is active AND can be disabled...
+            if(players[i].activeSelf
+                && players[i].GetComponentInChildren<PlayerDisable>())
                 // ... disable the player
                 players[i].GetComponentInChildren<PlayerDisable>().DisablePlayer();
         }

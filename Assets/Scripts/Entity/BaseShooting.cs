@@ -20,14 +20,23 @@ abstract public class BaseShooting : MonoBehaviour
         // The current delay between shooting bullets
         protected float m_CurrentDelay;
         // The tag of friends to NOT hurt
-        [SerializeField] protected string m_Friend; 
+        protected string m_Friend; 
         // The tag of enemies to hurt
-        [SerializeField] protected string m_Enemy;
+        protected string m_Enemy;
     
     void Start()
     {
         // The current delay is reset
         m_CurrentDelay = 0f;
+
+        // Assign the friendly tag
+        m_Friend = transform.tag;
+        
+        // Assign the enemy tag
+        if(m_Friend == "Player")
+            m_Enemy = "Enemy";
+        else
+            m_Enemy = "Player";
 
         // Complete any other specialized tasks
         InitializeShooting();
@@ -85,4 +94,8 @@ abstract public class BaseShooting : MonoBehaviour
     
     public float GetDamage() { return m_Damage; }
     public void SetDamage(float num) { m_Damage = num; }
+    public string GetFriend() { return m_Friend; }
+    public void SetFriend(string str) { m_Friend = str; }
+    public string GetEnemy() { return m_Enemy; }
+    public void SetEnemy(string str) { m_Enemy = str; }
 }

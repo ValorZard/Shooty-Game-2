@@ -1,5 +1,7 @@
 /*
-    Programmer: Manhattan Calabro
+    Programmers: Manhattan Calabro, Pedro Longo
+        Manhattan: Created base class
+        Pedro: Added tracking AI players
 */
 
 using System.Collections;

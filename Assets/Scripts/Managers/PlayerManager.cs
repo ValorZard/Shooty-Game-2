@@ -5,43 +5,31 @@
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PlayerManager
+public class PlayerManager : BasePlayerManager
 {
     // Private variables
-        [SerializeField] private Transform spawnPoint;
+        // Which player this is (1 or 2)
         private int m_PlayerNumber = 1;
-        [SerializeField] private GameObject instance;
-        private PlayerController movement;
-        private PlayerShooting shooting;
-    
-    // Start is called before the first frame update
-    void Start()
+        // Reference to the movement script
+        private PlayerController m_Movement;
+        // Reference to the shooting script
+        private PlayerShooting m_Shooting;
+
+    public override void Setup()
     {
-        instance = null;
+        m_Movement = m_Instance.GetComponent<PlayerController>();
+        m_Shooting = m_Instance.GetComponentInChildren<PlayerShooting>();
+
+        m_Movement.SetPlayerNumber(m_PlayerNumber);
+        m_Shooting.SetPlayerNumber(m_PlayerNumber);
     }
 
-    // Sets movement and shooting for player
-    public void Setup()
+    public void SetPlayerNumber(int num)
     {
-        movement = instance.GetComponent<PlayerController>();
-        shooting = instance.GetComponentInChildren<PlayerShooting>();
-
-        movement.SetPlayerNumber(m_PlayerNumber);
-        shooting.SetPlayerNumber(m_PlayerNumber);
-    }
-
-    public Transform GetSpawnPoint() { return spawnPoint; }
-
-    public void SetPlayerNumber(int num) {
         Debug.Log("SPAWNING PLAYER " + m_PlayerNumber);
         m_PlayerNumber = num;
     }
-
-    public GameObject GetInstance() { return instance; }
-    public void SetInstance(GameObject obj) { instance = obj; }
 }
