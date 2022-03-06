@@ -1,6 +1,7 @@
 /*
     Programmers: Manhattan Calabro, Pedro Longo
-        Manhattan: Created base class
+        Manhattan: Created base class,
+            redid AI tracking
         Pedro: Added tracking AI players
 */
 
@@ -50,7 +51,22 @@ public class FindEntities : MonoBehaviour
     public List<GameObject> GetPlayerAIRefresh()
     {
         m_PlayerAI.Clear();
-        m_PlayerAI = Refresh("PlayerAI");
+        m_PlayerAI = GetPlayersRefresh();
+
+        // Go through the list
+        for(int i = 0; i < m_PlayerAI.Count; i++)
+        {
+            // If the player has an AI script...
+            if(m_PlayerAI[i].GetComponent<PlayerAIController>() != null)
+            {
+                // ... remove the element
+                m_PlayerAI.RemoveAt(i);
+
+                // Go back an index
+                i--;
+            }
+        }
+
         return m_PlayerAI;
     }
 

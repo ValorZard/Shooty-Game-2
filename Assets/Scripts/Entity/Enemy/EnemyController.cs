@@ -28,8 +28,7 @@ public class EnemyController : AIController
 
         // Fix rotation of NavMesh agent
         agent = GetComponent<NavMeshAgent>();
-        // Only perform if agent exists
-        if(agent != null)
+        if(AgentExists())
         {
             agent.updateRotation = false;
             agent.updateUpAxis = false;
@@ -52,9 +51,7 @@ public class EnemyController : AIController
 
     private void Seek(Vector2 location)
     {
-        
-        // Only run if the agent exists
-        if(agent != null && agent.enabled)
+        if(AgentExists())
             agent.SetDestination(location);
         
         // Has the enemy been interrupted by seeing the player?
@@ -94,22 +91,24 @@ public class EnemyController : AIController
     {
         Vector3 fleeVector = (location - this.transform.position * 2.0f);
 
-        // Only run if the agent exists
-        if(agent.enabled)
+        if(AgentExists())
             agent.SetDestination(this.transform.position - fleeVector);
     }
   
     protected override void Evade()
     {
         Vector3 targetDir = target.transform.position - this.transform.position;
-        float lookAhead = targetDir.magnitude / (agent.speed);
-        Flee(target.transform.position + target.transform.forward * lookAhead);       
+        if(AgentExists())
+        {
+            float lookAhead = targetDir.magnitude / (agent.speed);
+            Flee(target.transform.position + target.transform.forward * lookAhead);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the target exists AND the speed is NOT 0, run
+        // If the target exists, run
         if(target != null)
         {
             // Get distance from player
@@ -131,7 +130,7 @@ public class EnemyController : AIController
                 }
 
             }
-            else if(distanceFromPlayer < m_ShootingRange )
+            else if(distanceFromPlayer < m_ShootingRange)
             {
                 //Enemy will backup if the player is too close
                 Debug.Log("ENEMY DISTANCING");
@@ -143,5 +142,11 @@ public class EnemyController : AIController
             Debug.Log("ENEMY WANDERING");
             Wander();
         }
+    }
+
+    // Does the agent exist?
+    private bool AgentExists()
+    {
+        return agent != null && agent.enabled;
     }
 }

@@ -64,9 +64,35 @@ public class UIManager : MonoBehaviour
         {
             // ... connect the second player
             ConnectUIHealth(1);
-            ConnectUIShield(1);
-            ConnectUIAmmo(1);
-            ConnectUIPowerup(1);
+
+            // If the second player doesn't contain an AI script...
+            if(m_Entities.GetPlayers()[1].GetComponent<PlayerAIController>() == null)
+            {
+                // ... add the other UI elements
+                ConnectUIShield(1);
+                ConnectUIAmmo(1);
+                ConnectUIPowerup(1);
+            }
+            // Otherwise, disable those UI elements
+            else
+            {
+                // The second player UI
+                Transform secondUI = m_PlayerUI[1].transform;
+                
+                // Go through the correct children
+                for(int i = 2; i < secondUI.childCount; i++)
+                {
+                    // Disable the child
+                    secondUI.GetChild(i).gameObject.SetActive(false);
+                }
+
+                // The AI's health bar
+                Transform healthBar = secondUI.GetChild(1);
+
+                // Change the health bar's position and size
+                healthBar.localPosition = new Vector3(healthBar.localPosition.x, -61.5f, healthBar.localPosition.z);
+                healthBar.localScale = new Vector3(healthBar.localScale.x, healthBar.localScale.y * 2, healthBar.localScale.z);
+            }
         }
         // Otherwise, disable the second player UI
         else

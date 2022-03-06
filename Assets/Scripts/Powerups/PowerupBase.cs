@@ -16,9 +16,10 @@ public abstract class PowerupBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Make sure it's not grabbing the shield
+        // Make sure it's not grabbing the shield nor the player AI
         if(other.CompareTag("Player")
-            && other.GetComponent<ShieldTag>() == null)
+            && other.GetComponent<ShieldTag>() == null
+            && other.GetComponent<PlayerAIController>() == null)
         {
             // Grab the player's rigidbody
             Rigidbody2D targetRigidbody = other.GetComponent<Rigidbody2D>();

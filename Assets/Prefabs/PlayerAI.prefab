@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a071997f85c584cbb0be228706cbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveSpeed: 5
-  shootingRange: 4
   target: {fileID: 0}
+  m_MoveSpeed: 5
+  m_ShootingRange: 4
 --- !u!114 &1245549308989219438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,8 +173,6 @@ MonoBehaviour:
   m_Speed: 30
   m_Delay: 0.5
   m_Damage: 5
-  m_Friend: 
-  m_Enemy: 
 --- !u!114 &1245549308989219433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bb435a808e9e74ab97ead384f5f2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 100
+  m_StartingHealth: 200
   m_CurrentHealth: 0
 --- !u!1 &1245549309527621132
 GameObject:
