@@ -32,6 +32,11 @@ public class DialogueManager : MonoBehaviour
         m_Characters = GetComponentsInChildren<CharacterManager>();
         m_Text = GetComponentInChildren<TextMeshProUGUI>();
 
+        // set colors of text
+        m_Text.color = new Color32(255, 225, 0, 255);
+        m_Text.outlineWidth = 0.2f;
+        m_Text.outlineColor = new Color32(0, 0, 0, 0);
+
         // Get the names
         m_Names = new List<TextMeshProUGUI>();
         TextMeshProUGUI[] names = GetComponentsInChildren<TextMeshProUGUI>();
