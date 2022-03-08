@@ -21,7 +21,9 @@ public class DialogueManager : MonoBehaviour
         // Reference to the names
         private List<TextMeshProUGUI> m_Names;
         // The current dialogue playing
-        private int index;
+        private int m_DialogueIndex;
+        // The current index of the text of the current dialogue
+        private int m_TextIndex;
         // The dialogue
         [SerializeField] private List<DialogueClass> m_Dialogue;
 
@@ -46,7 +48,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         // Starts at the first message
-        index = 0;
+        m_DialogueIndex = 0;
+        // Starts at the first letter
+        m_TextIndex = 0;
     }
 
     // Update is called once per frame
@@ -57,14 +61,14 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayMessage()
     {
-        // Only run if the index is within bounds
+        // Only run if the indices are within bounds
         try
         {
             // Changes the message
-            DialogueClass dialogue = m_Dialogue[index];
-            m_Text.text = dialogue.GetMessage();
+            UpdateTextbox();
 
             // Changes the image
+            DialogueClass dialogue = m_Dialogue[m_DialogueIndex];
             m_Characters[dialogue.GetCharacterNumber()].UpdateImage(dialogue.GetEmotion());
             m_Characters[dialogue.GetCharacterNumber()].BrightenImage();
 
@@ -75,9 +79,22 @@ public class DialogueManager : MonoBehaviour
 
     public void NextMessage()
     {
-        // Increment the index
-        index++;
-
+        // Reset the text index (start at the beginning of the next message)
+        m_TextIndex = 0;
+        // Move to the next message
+        m_DialogueIndex++;
         DisplayMessage();
+    }
+
+    private void UpdateTextbox()
+    {
+        // The message to display
+        string str = m_Dialogue[m_DialogueIndex].GetMessage().Substring(0, m_TextIndex + 1);
+        
+        // Display the message
+        m_Text.text = str;
+
+        // Move to the next letter
+        m_TextIndex++;
     }
 }
