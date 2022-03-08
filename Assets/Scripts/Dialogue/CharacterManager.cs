@@ -16,12 +16,16 @@ public class CharacterManager : MonoBehaviour
         [SerializeField] private List<Sprite> m_Sprites;
         // The image displayer
         private Image m_Image;
-
+        // The target colour
+        private Color m_Target;
+        // Constant of how much to change the colour at a time (might get docked points for initializing the value here, but this is just a good value)
+        private float m_Constant = 3f;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Image = GetComponentInChildren<Image>();
+        m_Target = m_Image.color;
     }
 
     // Update the image
@@ -60,12 +64,47 @@ public class CharacterManager : MonoBehaviour
 
     public void BrightenImage()
     {
-        m_Image.color = Color.white;
+        m_Target = Color.white;
     }
 
     public void DarkenImage()
     {
-        m_Image.color = Color.grey;
+        m_Target = Color.grey;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Only run if the target colour isn't the same as the current colour
+        if(m_Target != m_Image.color)
+        {
+            // The constant to change the colour by
+            float constant = m_Constant * Time.deltaTime;
+
+            // Resultant colour values
+            float red = m_Image.color.r;
+            float green = m_Image.color.g;
+            float blue = m_Image.color.b;
+
+            // (Assume the colours are greyscale)
+            // If the target colour is brighter than the current colour...
+            if(m_Target.r > m_Image.color.r)
+            {
+                red = Mathf.Min(red + constant, m_Target.r);
+                green = Mathf.Min(green + constant, m_Target.g);
+                blue = Mathf.Min(blue + constant, m_Target.b);
+            }
+            // Otherwise, the target colour is darker than the current colour...
+            else
+            {
+                red = Mathf.Max(red - constant, m_Target.r);
+                green = Mathf.Max(green - constant, m_Target.g);
+                blue = Mathf.Max(blue - constant, m_Target.b);
+            }
+
+            // Final colour
+            m_Image.color = new Color(red, green, blue);
+        }
     }
 
     public string GetName() { return m_ID; }
