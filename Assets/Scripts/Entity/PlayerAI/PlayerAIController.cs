@@ -34,9 +34,9 @@ public class PlayerAIController : AIController
                 Pursue();
 
             // Only evade if the target is NOT a player
-            if(!target.CompareTag("Player"))
-                if (distanceFromTarget < m_ShootingRange)
-                    Evade();
+            //else if(!target.CompareTag("Player"))
+            //    if (distanceFromTarget < m_ShootingRange && distanceFromTarget >= range)
+            //        Evade();
         }
     }
 }
