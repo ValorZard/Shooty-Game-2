@@ -9,30 +9,15 @@ using System.IO;
 
 public class DialogueReader : MonoBehaviour
 {
-    // Private variables
+    // Protected variables
         // The file to read
-        [SerializeField] private TextAsset m_File;
+        [SerializeField] protected TextAsset m_File;
         // The file reader
-        private StreamReader m_Reader;
+        protected StreamReader m_Reader;
         // The last read line
-        private string m_LastLine;
+        protected string m_LastLine;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Open the file
-        m_Reader = new StreamReader("Assets/Dialogue/" + m_File.name + ".txt");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // If the end of the file has been reached, close the file
-        if(m_Reader.EndOfStream)
-            Close();
-    }
-
-    private void NextLine()
+    protected void NextLine()
     {
         // Continue until a valid line is found
         m_LastLine = "";
@@ -50,7 +35,7 @@ public class DialogueReader : MonoBehaviour
         }
     }
 
-    public DialogueClass GenerateDialogueFromLine()
+    protected DialogueClass GenerateDialogueFromLine()
     {
         // Try to grab a line
         NextLine();
@@ -80,15 +65,5 @@ public class DialogueReader : MonoBehaviour
         // Otherwise, return null
         else
             return null;
-    }
-
-    public bool EndOfStream() { return m_Reader.EndOfStream; }
-    public void Close()
-    {
-        // Close the stream
-        m_Reader.Close();
-
-        // Disable the script
-        enabled = false;
     }
 }

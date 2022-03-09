@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 53830314}
   - component: {fileID: 53830315}
-  - component: {fileID: 53830316}
   m_Layer: 5
   m_Name: DialogManager
   m_TagString: Untagged
@@ -172,18 +171,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71aff76780f7c4d4590d8c2d8f769219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &53830316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53830313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cf4d5945bbfbfe488d6465c9a5c57dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_File: {fileID: 4900000, guid: 0e0e125031cb6234184765731df4707f, type: 3}

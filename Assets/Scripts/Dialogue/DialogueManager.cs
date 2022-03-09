@@ -2,7 +2,8 @@
     Programmers: Srayan Jana, Manhattan Calabro
         Srayan: Base code
         Manhattan: Changed to use TextMeshPro instead of TextMesh,
-            added message update
+            added message update,
+            combined DialogueReader and DialogueManager because there was some weird glitch with trying to grab from the reader when it was separate... I don't know how to explain it
 */
 
 using System.Collections;
@@ -10,8 +11,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : DialogueReader
 {
     // Private variables
         // The active characters
@@ -26,8 +28,6 @@ public class DialogueManager : MonoBehaviour
         private int m_TextIndex;
         // The dialogue
         private List<DialogueClass> m_Dialogue;
-        // The dialogue reader
-        private DialogueReader m_Reader;
 
     // Start is called before the first frame update
     void Start()
@@ -54,18 +54,27 @@ public class DialogueManager : MonoBehaviour
         // Starts at the first letter
         m_TextIndex = 0;
 
-        // Grabs the dialogue reader
-        m_Reader = GetComponent<DialogueReader>();
+        // Open the file
+        m_Reader = new StreamReader("Assets/Dialogue/" + m_File.name + ".txt");
 
         // Gets the dialogue from the reader
         m_Dialogue = new List<DialogueClass>();
-        while(!m_Reader.EndOfStream())
-            m_Dialogue.Add(m_Reader.GenerateDialogueFromLine());
+        //while(!m_Reader.EndOfStream())
+        while(!m_Reader.EndOfStream)
+            m_Dialogue.Add(GenerateDialogueFromLine());
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If the end of the file has been reached, close the file
+        if(m_Reader != null)
+            if(m_Reader.EndOfStream)
+            {
+                m_Reader.Dispose();
+                m_Reader = null;
+            }
+
         DisplayMessage();
     }
 
