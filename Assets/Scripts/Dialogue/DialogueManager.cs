@@ -25,7 +25,9 @@ public class DialogueManager : MonoBehaviour
         // The current index of the text of the current dialogue
         private int m_TextIndex;
         // The dialogue
-        [SerializeField] private List<DialogueClass> m_Dialogue;
+        private List<DialogueClass> m_Dialogue;
+        // The dialogue reader
+        private DialogueReader m_Reader;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,14 @@ public class DialogueManager : MonoBehaviour
         m_DialogueIndex = 0;
         // Starts at the first letter
         m_TextIndex = 0;
+
+        // Grabs the dialogue reader
+        m_Reader = GetComponent<DialogueReader>();
+
+        // Gets the dialogue from the reader
+        m_Dialogue = new List<DialogueClass>();
+        while(!m_Reader.EndOfStream())
+            m_Dialogue.Add(m_Reader.GenerateDialogueFromLine());
     }
 
     // Update is called once per frame

@@ -19,12 +19,22 @@ public class EnemyHealthSlider : MonoBehaviour
         [SerializeField] private Color m_FullHealthColor = Color.red;
         // The color of the health bar when empty
         [SerializeField] private Color m_ZeroHealthColor;
+        // Reference to the slider
+        private Slider m_Slider;
 
     // Start is called before the first frame update
     void Start()
     {
         // Grab the parent enemy's health script
         m_HealthScript = GetComponentInParent<BaseHealthScript>();
+
+        // Grab the slider component
+        m_Slider = GetComponent<Slider>();
+
+        // Change the max value to to the max health
+        // Max health
+        float maxHealth = m_HealthScript.GetStartingHealth();
+        m_Slider.maxValue = maxHealth;
     }
 
     // Update is called once per frame

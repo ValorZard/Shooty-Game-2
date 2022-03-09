@@ -16,8 +16,6 @@ public class PlayerAIController : AIController
         transform.position = Vector2.MoveTowards(this.transform.position, target.position, m_MoveSpeed * Time.deltaTime);
     }
 
-    private void Follow(){}
-
     protected override void Evade()
     {
         transform.position = Vector2.MoveTowards(this.transform.position, target.position, -m_MoveSpeed * Time.deltaTime);
@@ -32,10 +30,13 @@ public class PlayerAIController : AIController
             // Get distance from target
             float distanceFromTarget = Vector2.Distance(target.position, transform.position);
 
-            Pursue();
+            if(distanceFromTarget >= m_ShootingRange)
+                Pursue();
 
-            if (distanceFromTarget < m_ShootingRange)
-                Evade();
+            // Only evade if the target is NOT a player
+            if(!target.CompareTag("Player"))
+                if (distanceFromTarget < m_ShootingRange)
+                    Evade();
         }
     }
 }

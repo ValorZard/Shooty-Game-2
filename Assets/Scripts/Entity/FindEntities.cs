@@ -56,8 +56,8 @@ public class FindEntities : MonoBehaviour
         // Go through the list
         for(int i = 0; i < m_PlayerAI.Count; i++)
         {
-            // If the player has an AI script...
-            if(m_PlayerAI[i].GetComponent<PlayerAIController>() != null)
+            // If the player DOES NOT have an AI script...
+            if(m_PlayerAI[i].GetComponent<PlayerAIController>() == null)
             {
                 // ... remove the element
                 m_PlayerAI.RemoveAt(i);

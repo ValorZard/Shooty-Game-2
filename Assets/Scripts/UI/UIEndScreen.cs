@@ -25,13 +25,16 @@ public class UIEndScreen : MonoBehaviour
         // Only run if the screen isn't showing
         if(!GetActive())
         {
+            // Removed, because now the win screen is in a different scene
+            /*
             // If all enemies are inactive...
             if(AllObjectsInactive(m_Entities.GetEnemiesRefresh()))
                 // ... the players have won
                 ShowScreen("YOU WIN!");
+            */
             
             // Otherwise, if all players are inactive...
-            else if(AllObjectsInactive(m_Entities.GetPlayersRefresh()))
+            /*else*/ if(AllObjectsInactive(m_Entities.GetPlayersRefresh()))
                 // ... the players have lost
                 ShowScreen("GAME OVER");
         }

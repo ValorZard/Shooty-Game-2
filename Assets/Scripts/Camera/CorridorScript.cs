@@ -9,16 +9,23 @@ using UnityEngine.Tilemaps;
 
 public class CorridorScript : MonoBehaviour
 {
-
-    private GameObject[] players;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             Tilemap tilemap = this.GetComponent<Tilemap>();
-            players = GameObject.FindGameObjectsWithTag("Player");
-            if (players.Length > 1) // This part is for 2 player support
+
+            // Find the active players (excluding AIs)
+            List<GameObject> players = new List<GameObject>();
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("Player");
+            // Go through the list
+            foreach(GameObject t in targets)
+                // If the element doesn't have an AI script...
+                if(t.GetComponent<PlayerAIController>() == null)
+                    // ... it's a player; add it to the list
+                    players.Add(t);
+
+            if (players.Count > 1) // This part is for 2 player support
             {
                 int playersInCorridor = 0;
                 // Find all colliders in the corridor
@@ -31,7 +38,7 @@ public class CorridorScript : MonoBehaviour
                         playersInCorridor++;
                     }
                 }
-                if (playersInCorridor == players.Length)
+                if (playersInCorridor == players.Count)
                 {
                     // If both players are ready to move into the next room
                     this.transform.parent.gameObject.GetComponent<RoomScript>().moveCamToRoom();
@@ -41,7 +48,11 @@ public class CorridorScript : MonoBehaviour
             else
             {
                 // If there's only 1 player, the player is in the corridor and is ready to move into the next room
-                this.transform.parent.gameObject.GetComponent<RoomScript>().moveCamToRoom();
+
+                // If the collider DOES NOT belong to an AI...
+                if(other.GetComponent<PlayerAIController>() == null)
+                    // ... it's a player; have the camera follow the player
+                    this.transform.parent.gameObject.GetComponent<RoomScript>().moveCamToRoom();
                 this.transform.parent.gameObject.GetComponent<RoomScript>().disableDoor();
             }
         }

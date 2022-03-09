@@ -1,4 +1,8 @@
-// Written by Derek Chan
+/*
+    Programmers: Derek Chan, Manhattan Calabro
+        Derek: Base code
+        Manhattan: Refactoured for better encapsulation
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,28 +10,34 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-    public bool isAttacking = false;
-
-    private GameObject closestPlayer;
-    private GameObject fartherPlayer;
-
-    private BossAttacks attacks;
+    // Private variables
+        // Is the boss attacking?
+        private bool isAttacking = false;
+        // The player closest to the boss
+        private GameObject closestPlayer;
+        // The player farthest to the boss
+        private GameObject fartherPlayer;
+        // Reference to the boss attacking script
+        private BossAttacks attacks;
 
     // Start is called before the first frame update
     void Start()
     {
-        getPlayers();
         attacks = this.gameObject.GetComponent<BossAttacks>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Get the active players
         getPlayers();
+
+        // If the boss isn't attacking yet...
         if(isAttacking == false)
         {
+            // ... choose a random attack
             float rng = Random.Range(0.0f, 1.0f);
-            if(rng < 0.20f)
+            if(rng < 0.2f)
             {
                 isAttacking = true;
                 attacks.execute("Adds", closestPlayer, fartherPlayer);
@@ -55,30 +65,44 @@ public class BossAI : MonoBehaviour
         }
     }
 
-    void getPlayers()
+    // Finds the closest and farthest players
+    private void getPlayers()
     {
+        // Initialize the player list
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        
+        // If there is only one player...
         if(players.Length == 1)
         {
+            // ... the player is both targets
             closestPlayer = players[0];
             fartherPlayer = players[0];
         }
+
+        // Otherwise, if there's two players...
         else if (players.Length == 2)
         {
+            // Run if the first player is closer
             if (Vector3.Distance(this.transform.position, players[0].transform.position) <= Vector3.Distance(this.transform.position, players[1].transform.position))
             {
                 closestPlayer = players[0];
                 fartherPlayer = players[1];
             }
+            // Otherwise, the second player is closer
             else
             {
                 closestPlayer = players[1];
                 fartherPlayer = players[0];
             }
         }
+
+        // It shouldn't come to this, since there should only be two players
         else
         {
+            // what
             Debug.Log("what");
         }
     }
+
+    public void SetAttacking(bool b) { isAttacking = b; }
 }

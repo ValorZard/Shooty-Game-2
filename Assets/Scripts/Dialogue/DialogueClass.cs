@@ -31,6 +31,9 @@ public class DialogueClass
     }
 
     public int GetCharacterNumber() { return m_CharNum; }
+    public void SetCharacterNumber(int num) { m_CharNum = num; }
     public int GetEmotion() { return m_Emote; }
+    public void SetEmotion(int num) { m_Emote = num; }
     public string GetMessage() { return m_Message; }
+    public void SetMessage(string str) { m_Message = str; }
 }

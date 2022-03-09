@@ -33,7 +33,8 @@ public class CanvasManager : MonoBehaviour
     void Update()
     {
         // If the win screen is active AND the players haven't been disabled yet...
-        if(m_EndScreen.GetActive()
+        if(m_EndScreen != null
+            && m_EndScreen.GetActive()
             && !m_IsDisabled)
             // ... disable the players' scripts
             DisablePlayers();

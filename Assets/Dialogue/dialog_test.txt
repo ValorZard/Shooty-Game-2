@@ -1,0 +1,10 @@
+# First number represents the character number (min. 0)
+# Second number represents the emotion number (min. 0)
+# Text afterward is, well, text.
+# DON'T FORGET TO PUT SPACES IN BETWEEN!!!!
+# Write comments by starting a line with '#'.
+
+0 0 I am Player One.
+1 0 I am Player Two.
+0 0 pog
+1 0 yeah pog

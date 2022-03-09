@@ -1,4 +1,8 @@
-// Written by Derek Chan
+/*
+    Programmers: Derek Chan, Manhattan Calabro
+        Derek: Base code
+        Manhattan: Refactoured for better encapsulation
+*/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,56 +10,58 @@ using UnityEngine;
 
 public class BossStandardAttack : MonoBehaviour
 {
-    public float timeLeftActive = 3.0f;
-    public float timeLeftDestroy = 2.0f;
-    public float totalTime = 5.0f;
-    public float damageTaken = 25.0f;
-
-    private bool active = false;
-    private SpriteRenderer renderer;
+    // Private variables
+        // Time before the attack activates
+        [SerializeField] private float timeLeftActive = 3.0f;
+        // Time before the attack destroys itself
+        [SerializeField] private float timeLeftDestroy = 2.0f;
+        // How much damage the attack deals
+        [SerializeField] private float damageTaken = 25.0f;
+        // Reference to the attack's sprite renderer
+        private SpriteRenderer m_Renderer;
 
 
     void Start()
     {
-        renderer = GetComponentInChildren<SpriteRenderer>();
+        // Grab the sprite renderer
+        m_Renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (active == false)
+        // If the attack isn't active yet...
+        if (!GetComponent<Collider2D>().enabled)
         {
+            // If the setup time is over, activate the collider
             if (timeLeftActive <= 0.0)
-            {
                 this.gameObject.GetComponent<Collider2D>().enabled = true;
-                active = true;
-            }
+            // Otherwise, decrement the time
             else
-            {
                 timeLeftActive -= Time.deltaTime;
-            }
         }
+        // Otherwise...
         else
         {
-            renderer.color = Color.red;
-            if (timeLeftDestroy <= 0.0)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                timeLeftDestroy -= Time.deltaTime;
-            }
+            // ... the attack is now active and can harm the player
+            m_Renderer.color = Color.red;
+
+            // Destroy the object when the attack is done
+            Destroy(gameObject, timeLeftDestroy);
         }
         
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // If the player collides with the attack...
         if(other.gameObject.tag == "Player")
         {
+            // ... the player is damaged
             BaseHealthScript health = other.gameObject.GetComponent<BaseHealthScript>();
             health.TakeDamage(damageTaken);
         }
     }
+
+    public float GetTotalTime() { return timeLeftActive + timeLeftDestroy; }
 }
