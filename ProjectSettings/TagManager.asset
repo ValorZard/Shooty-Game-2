@@ -10,6 +10,8 @@ TagManager:
   - EnemyView
   - Camera
   - ViewAI
+  - Test
+  - Spawner
   layers:
   - Default
   - TransparentFX

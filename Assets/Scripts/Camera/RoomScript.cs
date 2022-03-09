@@ -69,7 +69,7 @@ public class RoomScript : MonoBehaviour
         center[2] = -10;
         camera.transform.position = center;
 
-        GameObject[] cameras = GameObject.FindGameObjectsWithTag("Camera");
+        GameObject[] cameras = GameObject.FindGameObjectsWithTag("MainCamera");
         foreach (GameObject cam in cameras)
         {
             cam.SetActive(false);
