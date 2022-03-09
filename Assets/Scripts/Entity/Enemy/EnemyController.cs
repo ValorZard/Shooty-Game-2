@@ -139,8 +139,8 @@ public class EnemyController : AIController
         }
         else
         {
-            Debug.Log("ENEMY WANDERING");
-            Wander();
+            //Debug.Log("ENEMY WANDERING");
+            //Wander();
         }
     }
 
