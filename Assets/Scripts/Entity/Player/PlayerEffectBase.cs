@@ -28,11 +28,12 @@ public abstract class PlayerEffectBase : MonoBehaviour
         m_CurrentTime = 0f;
         m_MaxTime = maxTime;
 
+        // Only change the player if the powerup isn't already active (grabbing a new one just resets duration)
+        if(!m_Active)
+            ChangePlayer();
+
         // Start tracking the current duration
         m_Active = true;
-
-        // Change the player
-        ChangePlayer();
     }
 
     // Update is called once per frame

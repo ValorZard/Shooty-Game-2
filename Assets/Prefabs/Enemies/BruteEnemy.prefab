@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 697934368097718887}
   - component: {fileID: 4765336928545503437}
   - component: {fileID: 1252930722}
+  - component: {fileID: -6351549282607922841}
   m_Layer: 0
   m_Name: BruteEnemy
   m_TagString: Enemy
@@ -746,3 +747,16 @@ NavMeshAgent:
   m_BaseOffset: 0.32
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6351549282607922841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8963217253951344239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8a8c73a2960954aa2f8e18e1f061fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Powerup: {fileID: 783359171946062836, guid: db3b063f669849b459c17ae0ceb36f69, type: 3}

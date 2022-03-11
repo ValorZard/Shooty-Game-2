@@ -39,12 +39,8 @@ public class BaseHealthScript : MonoBehaviour
     // Increase the character's health
     public void Heal(float amount)
     {
-        m_CurrentHealth += amount;
-
-        // If the current health is greater than the starting health...
-        if(m_CurrentHealth > m_StartingHealth)
-            // ... set the current health to the starting health
-            m_CurrentHealth = m_StartingHealth;
+        // Heals the character (but not over their max health)
+        m_CurrentHealth = Mathf.Min(m_CurrentHealth + amount, m_StartingHealth);
     }
 
     // Decrease the character's health
@@ -53,15 +49,18 @@ public class BaseHealthScript : MonoBehaviour
         // Perform the damaged animation
         m_IsDamaged = true;
 
-        m_CurrentHealth -= amount;
+        // Damages the character (but not below 0)
+        m_CurrentHealth = Mathf.Max(m_CurrentHealth - amount, 0);
 
-        // If the current health is at or below zero...
-        if(m_CurrentHealth <= 0f)
+        // If the current health is at zero...
+        if(m_CurrentHealth == 0f)
         {
-            // ... set the health to exactly 0 (so it doesn't mess with the health UI)
-            m_CurrentHealth = 0f;
+            // If the character has a powerup spawner...
+            if(GetComponent<PowerupSpawner>() != null)
+                // ... spawn the powerup
+                GetComponent<PowerupSpawner>().SpawnPowerup();
 
-            // Disable the character
+            // ... disable the character
             gameObject.SetActive(false);
         }
     }

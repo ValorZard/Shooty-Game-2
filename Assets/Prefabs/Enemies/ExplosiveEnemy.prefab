@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6545536647623844753}
   - component: {fileID: 6545536646890486918}
   - component: {fileID: 2080790033}
+  - component: {fileID: 4546767283017404144}
   m_Layer: 0
   m_Name: ExplosiveEnemy
   m_TagString: Enemy
@@ -223,6 +224,19 @@ NavMeshAgent:
   m_BaseOffset: 0.32
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4546767283017404144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394126290487943310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8a8c73a2960954aa2f8e18e1f061fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Powerup: {fileID: 5189927846455083583, guid: 621e65afbab2e854ab8e12708ff166f7, type: 3}
 --- !u!1 &6545536646953906933
 GameObject:
   m_ObjectHideFlags: 0
