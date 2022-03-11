@@ -4,7 +4,8 @@
 # DON'T FORGET TO PUT SPACES IN BETWEEN!!!!
 # Write comments by starting a line with '#'.
 
-0 0 I am Player One.
-1 0 I am Player Two.
-0 0 pog
-1 0 yeah pog
+0 0 Look, I know we don't really have the best relationship
+1 0 You think??
+0 0 Yeah, yeah I know, but... I think together we can break out of here.
+1 0 ... You sure?
+0 0 We won't know until we try.

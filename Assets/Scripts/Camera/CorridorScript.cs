@@ -1,4 +1,6 @@
-// Made by Derek Chan and Sarah Harkins
+// Made by Derek Chan, Sarah Harkins, Srayan Jana
+
+// Srayan Jana: added Text management
 
 // The primary goal of this script is to detect when all players are in the corridor and move the camera and open the door when they are.
 
@@ -63,5 +65,6 @@ public class CorridorScript : MonoBehaviour
         // Reenable the door. As long as there is some corridor on both sides of the door, players will always be able to open the door the
         // second player is stuck behind (and also won't be able to progress without the second player)
         this.transform.parent.gameObject.GetComponent<RoomScript>().enableDoor();
+        Destroy(GameObject.Find("TextCanvas"));
     }
 }

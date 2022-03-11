@@ -1,5 +1,6 @@
 /*
-    Programmer: Manhattan Calabro
+    Programmer: Manhattan Calabro, Srayan Jana
+        Srayan Jana: Refactored certain things
 */
 
 using System;
@@ -16,18 +17,11 @@ public class DialogueClass
         // The message to display
         [SerializeField] private string m_Message;
 
-    public DialogueClass()
+    public DialogueClass(int charNum = 0, int emote = 0, string message = "")
     {
-        m_CharNum = 0;
-        m_Emote = 0;
-        m_Message = "";
-    }
-
-    public DialogueClass(int x, int y, string str)
-    {
-        m_CharNum = x;
-        m_Emote = y;
-        m_Message = str;
+        m_CharNum = charNum;
+        m_Emote = emote;
+        m_Message = message;
     }
 
     public int GetCharacterNumber() { return m_CharNum; }
