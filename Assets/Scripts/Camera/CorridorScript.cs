@@ -52,18 +52,25 @@ public class CorridorScript : MonoBehaviour
         // Only run if the collider detects a player
         if(m_Players.PlayerCheck(other))
         {
-            Tilemap tilemap = this.GetComponent<Tilemap>();
-
             List<GameObject> players = m_Players.GetPlayersManualRefresh();
 
-            if(players.Count == 2)
+            // For singleplayer
+            if(players.Count == 1)
             {
+                // Disable the door
+                GetComponentInParent<RoomScript>().disableDoor();
+            }
+
+            // For multiplayer
+            else //if(players.Count == 2)
+            {
+                // Find all colliders in the corridor
+                Tilemap tilemap = GetComponent<Tilemap>();
+                Collider2D[] colliders = Physics2D.OverlapBoxAll(tilemap.cellBounds.center, new Vector2((float) tilemap.size[0], (float) tilemap.size[1]), 0.0f);
+                
                 // The number of players currently in the corridor
                 int playersInCorridor = 0;
 
-                // Find all colliders in the corridor
-                Collider2D[] colliders = Physics2D.OverlapBoxAll(tilemap.cellBounds.center, new Vector2((float) tilemap.size[0], (float) tilemap.size[1]), 0.0f);
-                
                 // Go through the list
                 foreach (Collider2D collider in colliders)
                     // If the collider belongs to a player...
