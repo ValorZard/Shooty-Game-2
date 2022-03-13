@@ -4,19 +4,15 @@
         Manhattan: Refactoured for better encapsulation
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovingAttack : MonoBehaviour
+public class BossMovingAttack : DamageBase
 {
     // Private variables
         // Reference to the rigidbody
         private Rigidbody2D rb;
         // How fast the attack moves
         [SerializeField] private float speed;
-        // How much damage the attack deals
-        [SerializeField] private float damageTaken;
         // How much time before the attack changes direction
         private float timer = 3.0f;
 
@@ -49,11 +45,10 @@ public class BossMovingAttack : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         // If the attack collides with a player...
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == m_Friend)
         {
             // Hurt the player
-            BaseHealthScript health = other.gameObject.GetComponent<BaseHealthScript>();
-            health.TakeDamage(damageTaken);
+            DealDamage(other.collider);
 
             // Destroy the attack; it has completed its purpose
             Destroy(this.gameObject);

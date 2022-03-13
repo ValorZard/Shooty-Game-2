@@ -4,19 +4,15 @@
         Manhattan: Refactoured for better encapsulation
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStandardAttack : MonoBehaviour
+public class BossStandardAttack : DamageBase
 {
     // Private variables
         // Time before the attack activates
         [SerializeField] private float timeLeftActive = 3.0f;
         // Time before the attack destroys itself
         [SerializeField] private float timeLeftDestroy = 2.0f;
-        // How much damage the attack deals
-        [SerializeField] private float damageTaken = 25.0f;
         // Reference to the attack's sprite renderer
         private SpriteRenderer m_Renderer;
 
@@ -58,8 +54,7 @@ public class BossStandardAttack : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             // ... the player is damaged
-            BaseHealthScript health = other.gameObject.GetComponent<BaseHealthScript>();
-            health.TakeDamage(damageTaken);
+            DealDamage(other);
         }
     }
 

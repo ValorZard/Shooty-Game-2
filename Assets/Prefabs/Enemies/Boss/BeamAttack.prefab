@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7862340206460021747}
   - component: {fileID: 9113178878652589582}
-  - component: {fileID: 5384261201802525702}
   - component: {fileID: 7333493829963883664}
+  - component: {fileID: 5384261201802525702}
   m_Layer: 0
   m_Name: BeamAttack
   m_TagString: Untagged
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5384261201802525702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9123349141334079015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5154438832cf111438ee53564f28bb56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeLeftActive: 1.5
-  timeLeftDestroy: 0.5
-  totalTime: 2
-  damageTaken: 25
 --- !u!70 &7333493829963883664
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,3 +100,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.004658617, y: 0.025407862}
   m_Size: {x: 1.0254083, y: 2.0459583}
   m_Direction: 1
+--- !u!114 &5384261201802525702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123349141334079015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5154438832cf111438ee53564f28bb56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damage: 25
+  m_Friend: Enemy
+  m_Enemy: Player
+  timeLeftActive: 1.5
+  timeLeftDestroy: 0.5

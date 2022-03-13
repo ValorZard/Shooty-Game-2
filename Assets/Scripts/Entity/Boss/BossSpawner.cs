@@ -18,17 +18,22 @@ public class BossSpawner : MonoBehaviour
         private Transform bossLocation;
         // Prefab of the boss tracker
         [SerializeField] private GameObject m_BossTracker;
+        // Reference to the players
+        private FindEntities m_Players;
 
     void Start()
     {
         // Grab the location from the child
         bossLocation = this.gameObject.transform.GetChild(0);
+
+        // Grab the players
+        m_Players = GameObject.FindObjectOfType<FindEntities>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // When the player enters the room...
-        if(other.gameObject.tag == "Player")
+        if(m_Players.PlayerCheck(other))
         {
             // ... spawn the boss
             GameObject spawned = Instantiate(boss, bossLocation.position, bossLocation.rotation);

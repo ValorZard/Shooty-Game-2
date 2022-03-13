@@ -4,21 +4,13 @@
         Pedro: Added ignoring the AI player's view
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBase : MonoBehaviour
+public class BulletBase : DamageBase
 {
     // Protected variables
         // How long the object should be active for
         [SerializeField] protected float m_MaxTime = 1f;
-        // The amount of damage done if hit
-        [SerializeField] protected float m_Damage = 10f;
-        // The tag of friends to NOT hurt
-        [SerializeField] protected string m_Friend = "";
-        // The tag of enemies to hurt
-        [SerializeField] protected string m_Enemy = "";
         // Reference to the collider
         protected CircleCollider2D m_Collider;
 
@@ -53,21 +45,4 @@ public class BulletBase : MonoBehaviour
 
         return false;
     }
-
-    // Deals damage to a target
-    protected void DealDamage(Collider2D target)
-    {
-        // Grab the target's rigidbody
-        Rigidbody2D targetRigidbody = target.GetComponent<Rigidbody2D>();
-
-        // Grab the target's health script
-        BaseHealthScript health = targetRigidbody.GetComponent<BaseHealthScript>();
-
-        // Deal damage to the target
-        health.TakeDamage(m_Damage);
-    }
-
-    public void SetDamage(float num) { m_Damage = num; }
-    public void SetFriend(string str) { m_Friend = str; }
-    public void SetEnemy(string str) { m_Enemy = str; }
 }

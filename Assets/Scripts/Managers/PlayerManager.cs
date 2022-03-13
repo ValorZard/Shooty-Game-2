@@ -27,9 +27,5 @@ public class PlayerManager : BasePlayerManager
         m_Shooting.SetPlayerNumber(m_PlayerNumber);
     }
 
-    public void SetPlayerNumber(int num)
-    {
-        Debug.Log("SPAWNING PLAYER " + m_PlayerNumber);
-        m_PlayerNumber = num;
-    }
+    public void SetPlayerNumber(int num) { m_PlayerNumber = num; }
 }

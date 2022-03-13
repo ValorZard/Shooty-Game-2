@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6545536646890486918}
   - component: {fileID: 2080790033}
   - component: {fileID: 4546767283017404144}
+  - component: {fileID: 4569382609849983414}
   m_Layer: 0
   m_Name: ExplosiveEnemy
   m_TagString: Enemy
@@ -237,6 +238,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Powerup: {fileID: 5189927846455083583, guid: 621e65afbab2e854ab8e12708ff166f7, type: 3}
+--- !u!114 &4569382609849983414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394126290487943310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45328585a8ccb142ad874aed545428e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6545536646953906933
 GameObject:
   m_ObjectHideFlags: 0

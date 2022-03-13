@@ -1,6 +1,6 @@
-// Made by Derek Chan, Sarah Harkins, and Srayan Jana
-
-// Srayan Jana: did some refactoring
+/*
+    Programmers: Derek Chan, Sarah Harkins
+*/
 
 // Helper functions for manipulating children of the Room object.
 
@@ -16,14 +16,6 @@ public class RoomScript : MonoBehaviour
         private Camera m_Camera;
         [SerializeField] private float camSize;
         [SerializeField] private Camera reset;
-    // Public variables
-    //public bool isRoomOne;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void FixedUpdate()
     {

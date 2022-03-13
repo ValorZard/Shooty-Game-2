@@ -117,29 +117,25 @@ public class EnemyController : AIController
             if (m_DetectionArea && distanceFromPlayer > m_ShootingRange && !m_IsFleeing)
             {
                 //Enemy will pursue player on sight
-                Debug.Log("ENEMY PURSUING");
                 Pursue();
 
                 if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
                 {
+                    // Enemy will flee the scene
                     m_IsFleeing = true;
                     // The enemy stops shooting while fleeing
                     m_Shooting.enabled = false;
-                    //Enemy will flee the scene
-                    Debug.Log("ENEMY FLEEING");
                 }
 
             }
             else if(distanceFromPlayer < m_ShootingRange)
             {
                 //Enemy will backup if the player is too close
-                Debug.Log("ENEMY DISTANCING");
                 Evade();
             }
         }
         else
         {
-            //Debug.Log("ENEMY WANDERING");
             //Wander();
         }
     }

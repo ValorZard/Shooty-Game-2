@@ -1,6 +1,7 @@
 /*
-    Programmer: Manhattan Calabro, Srayan Jana
-        Srayan Jana: Refactored certain things
+    Programmers: Manhattan Calabro, Srayan Jana
+        Manhattan: Base code
+        Srayan: Refactored constructor
 */
 
 using System;

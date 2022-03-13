@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5154438832cf111438ee53564f28bb56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Damage: 25
+  m_Friend: Enemy
+  m_Enemy: Player
   timeLeftActive: 0.75
   timeLeftDestroy: 0.5
-  totalTime: 1.25
-  damageTaken: 25

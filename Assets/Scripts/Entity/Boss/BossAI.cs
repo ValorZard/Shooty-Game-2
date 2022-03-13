@@ -1,7 +1,8 @@
 /*
     Programmers: Derek Chan, Manhattan Calabro
         Derek: Base code
-        Manhattan: Refactoured for better encapsulation
+        Manhattan: Refactoured for better encapsulation,
+            refactoured player-finding
 */
 
 using System.Collections;
@@ -19,11 +20,16 @@ public class BossAI : MonoBehaviour
         private GameObject fartherPlayer;
         // Reference to the boss attacking script
         private BossAttacks attacks;
+        // Reference to the players
+        private FindEntities m_Players;
 
     // Start is called before the first frame update
     void Start()
     {
         attacks = this.gameObject.GetComponent<BossAttacks>();
+
+        // Grab the players
+        m_Players = GameObject.FindObjectOfType<FindEntities>();
     }
 
     // Update is called once per frame
@@ -69,10 +75,10 @@ public class BossAI : MonoBehaviour
     private void getPlayers()
     {
         // Initialize the player list
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        List<GameObject> players = m_Players.GetPlayersRefresh();
         
         // If there is only one player...
-        if(players.Length == 1)
+        if(players.Count == 1)
         {
             // ... the player is both targets
             closestPlayer = players[0];
@@ -80,7 +86,7 @@ public class BossAI : MonoBehaviour
         }
 
         // Otherwise, if there's two players...
-        else if (players.Length == 2)
+        else if (players.Count == 2)
         {
             // Run if the first player is closer
             if (Vector3.Distance(this.transform.position, players[0].transform.position) <= Vector3.Distance(this.transform.position, players[1].transform.position))

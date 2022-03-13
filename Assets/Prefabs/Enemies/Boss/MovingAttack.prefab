@@ -134,5 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd65ee09fd70bee4780aa2bd3cc9140c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Damage: 10
+  m_Friend: Enemy
+  m_Enemy: Player
   speed: 3
-  damageTaken: 10

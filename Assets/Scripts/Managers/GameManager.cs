@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
             //Defines player number for input
             m_Players[i].SetPlayerNumber(i + 1);
             m_Players[i].Setup();
-            Debug.Log("ASSIGNED INPUT TO PLAYER " + i);
         }
     }
 
