@@ -8,7 +8,6 @@
 
 // The primary goal of this script is to detect when all players are in the corridor and move the camera and open the door when they are.
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -26,48 +25,60 @@ public class CorridorScript : MonoBehaviour
         m_Players = GameObject.FindObjectOfType<FindEntities>();
     }
 
+    // For singleplayer
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Only run if the collider detects a player
         if (m_Players.PlayerCheck(other))
         {
-            Tilemap tilemap = this.GetComponent<Tilemap>();
-
             List<GameObject> players = m_Players.GetPlayersManualRefresh();
 
-            // If there's only 1 player, the player is in the corridor and is ready to move into the next room
             if(players.Count == 1)
             {
                 // If the collider DOES NOT belong to an AI...
                 if(other.GetComponent<PlayerAIController>() == null)
                     // ... it's a player; have the camera follow the player
-                    this.transform.parent.gameObject.GetComponent<RoomScript>().moveCamToRoom();
-            }
-            // This part is for 2 player support
-            else
-            {
-                int playersInCorridor = 0;
-                // Find all colliders in the corridor
-                Collider2D[] colliders = Physics2D.OverlapBoxAll(tilemap.cellBounds.center, new Vector2((float) tilemap.size[0], (float) tilemap.size[1]), 0.0f);
-                foreach (Collider2D collider in colliders)
-                    if (m_Players.PlayerCheck(collider))
-                        // Count players in the corridor
-                        playersInCorridor++;
-                if (playersInCorridor == players.Count)
-                    // If both players are ready to move into the next room
-                    this.transform.parent.gameObject.GetComponent<RoomScript>().moveCamToRoom();
+                    GetComponentInParent<RoomScript>().moveCamToRoom();
+
+                // Disable the door regardless
+                GetComponentInParent<RoomScript>().disableDoor();
             }
         }
     }
 
-    // Controls the opening of doors
+    // For multiplayer
     private void OnTriggerStay2D(Collider2D other)
     {
-        // If the collider detects a player...
+        // Only run if the collider detects a player
         if(m_Players.PlayerCheck(other))
         {
-            // ... disable the door
-            transform.parent.gameObject.GetComponent<RoomScript>().disableDoor();
+            Tilemap tilemap = this.GetComponent<Tilemap>();
+
+            List<GameObject> players = m_Players.GetPlayersManualRefresh();
+
+            if(players.Count == 2)
+            {
+                // The number of players currently in the corridor
+                int playersInCorridor = 0;
+
+                // Find all colliders in the corridor
+                Collider2D[] colliders = Physics2D.OverlapBoxAll(tilemap.cellBounds.center, new Vector2((float) tilemap.size[0], (float) tilemap.size[1]), 0.0f);
+                
+                // Go through the list
+                foreach (Collider2D collider in colliders)
+                    // If the collider belongs to a player...
+                    if (m_Players.PlayerCheck(collider))
+                        // ... increment the counter
+                        playersInCorridor++;
+
+                // If the number of players in the corridor is the same as the number of active players...
+                if (playersInCorridor == players.Count)
+                {
+                    // ... move into the next room
+                    GetComponentInParent<RoomScript>().moveCamToRoom();
+                    GetComponentInParent<RoomScript>().disableDoor();
+                }
+            }
         }
     }
 

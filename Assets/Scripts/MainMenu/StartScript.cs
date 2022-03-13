@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class StartScript : MonoBehaviour
 {
-    // Private variables
+    // Protected variables
         // The name of the scene to load
-        [SerializeField] private string m_LevelName;
+        [SerializeField] protected string m_LevelName;
+        // The file path
+        protected string m_Path = "Assets/Resources/PlayerNumber.txt";
 
     // Moves to the game scene
     public void StartGame()

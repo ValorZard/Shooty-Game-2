@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : DialogueReader
 {
@@ -28,6 +29,8 @@ public class DialogueManager : DialogueReader
         private int m_TextIndex;
         // The dialogue
         private List<DialogueClass> m_Dialogue;
+        // Black screen
+        [SerializeField] private GameObject m_Black;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +96,14 @@ public class DialogueManager : DialogueReader
 
             // Darkens the other character; they aren't talking
             m_Characters[(dialogue.GetCharacterNumber()+1)%2].DarkenImage();
-        } catch { /* Possibly fade to black or cut to a new scene. */ }
+        }
+        // The end of the dialogue has been reached
+        catch
+        {
+            // Fade to black
+            m_Black.SetActive(true);
+            enabled = false;
+        }
     }
 
     public void NextMessage()
@@ -114,6 +124,6 @@ public class DialogueManager : DialogueReader
         m_Text.text = str;
 
         // Move to the next letter
-        m_TextIndex++;
+        m_TextIndex = Mathf.Min(m_TextIndex + 1, m_Dialogue[m_DialogueIndex].GetMessage().Length - 1);
     }
 }

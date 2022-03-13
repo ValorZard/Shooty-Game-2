@@ -1111,8 +1111,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1229693658}
-        m_TargetAssemblyTypeName: StartScript, Assembly-CSharp
-        m_MethodName: StartGame
+        m_TargetAssemblyTypeName: StartAndWriteScript, Assembly-CSharp
+        m_MethodName: StartAndWrite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1169,10 +1169,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229693653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3022a89e7fe8e20459a4bcbfb48dc31d, type: 3}
+  m_Script: {fileID: 11500000, guid: ea79d10ac91fc01448e319a717280f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelName: SampleScene
+  m_LevelName: DialogSample
+  m_Text: 1
 --- !u!114 &1229693659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,8 +1271,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1378865308}
-        m_TargetAssemblyTypeName: StartScript, Assembly-CSharp
-        m_MethodName: StartGame
+        m_TargetAssemblyTypeName: StartAndWriteScript, Assembly-CSharp
+        m_MethodName: StartAndWrite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1328,10 +1329,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1378865303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3022a89e7fe8e20459a4bcbfb48dc31d, type: 3}
+  m_Script: {fileID: 11500000, guid: ea79d10ac91fc01448e319a717280f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelName: LevelOne
+  m_LevelName: DialogSample
+  m_Text: 
 --- !u!1 &1384486824
 GameObject:
   m_ObjectHideFlags: 0

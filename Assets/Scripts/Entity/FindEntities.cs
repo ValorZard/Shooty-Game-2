@@ -5,7 +5,6 @@
         Pedro: Added tracking AI players
 */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,7 +105,7 @@ public class FindEntities : MonoBehaviour
         foreach(GameObject t in targets)
             // If the "object" has a surface-level shield script...
             // ... then it's actually a shield; don't add it
-            if(!t.GetComponent<ShieldTag>())
+            if(t.GetComponent<ShieldTag>() == null)
                 objects.Add(t);
         
         return objects;
@@ -119,7 +118,7 @@ public class FindEntities : MonoBehaviour
         bool first = other.CompareTag("Player");
 
         // The player should be valid
-        bool second = GetPlayersRefresh().Contains(other.gameObject);
+        bool second = m_Players.Contains(other.gameObject);
 
         // Return the result
         return first && second;
