@@ -14,6 +14,14 @@ public class StartAndWriteScript : StartScript
     // Start is called before the first frame update
     public void StartAndWrite()
     {
+        // Create the directories if they don't exist
+        if(!Directory.Exists("Assets"))
+            Directory.CreateDirectory("Assets");
+        if(!Directory.Exists("Assets/Resources"))
+            Directory.CreateDirectory("Assets/Resources");
+        if(!Directory.Exists("Assets/Dialogue"))
+            Directory.CreateDirectory("Assets/Dialogue");
+
         // Write the text
         File.WriteAllText(m_Path, m_Text);
 

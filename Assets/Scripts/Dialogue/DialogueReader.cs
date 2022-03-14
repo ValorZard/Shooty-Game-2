@@ -1,5 +1,5 @@
 /*
-    Programmer: Manhattan Calabro, Srayan Jana
+    Programmers: Manhattan Calabro, Srayan Jana
 */
 
 using UnityEngine;
