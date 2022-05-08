@@ -42,6 +42,9 @@ public class BulletBase : DamageBase
         // If the collider belongs to Player AI detection, return true
         if (other.CompareTag("ViewAI"))
             return true;
+        // If the collider is a teleporter, return true
+        if(other.GetComponent<Teleport>())
+            return true;
 
         return false;
     }

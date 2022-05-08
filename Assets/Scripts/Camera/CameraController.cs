@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
         // The smallest orthographic size the camera can be
         [SerializeField] private float m_MinSize = 5f;
         // All the targets the camera needs to encompass
-        private Transform[] m_Targets;
+        [SerializeField] private Transform[] m_Targets = new Transform[0];
         // Used for referencing the camera
         private Camera m_Camera;
         // Reference speed for the smooth damping of the orthographic size

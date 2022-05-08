@@ -13,7 +13,7 @@ public class Teleport : MonoBehaviour
         // The linked teleporter
         [SerializeField] private GameObject m_Link;
         // Can the player use the teleporter?
-        private bool m_Active;
+        [SerializeField] private bool m_Active = true;
         // The player tag to track
         private string m_Tag = "Player";
         // Prefab of player teleportation particles
@@ -22,14 +22,17 @@ public class Teleport : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Enable();
+        if(m_Active)
+            Enable();
+        else
+            Disable();
     }
 
     // Run while the player is still inside the teleporter
     private void OnTriggerStay2D(Collider2D other)
     {
         // If the player is touching the teleporter...
-        if(other.CompareTag(m_Tag))
+        if(IsPlayer(other))
         {
             // Grab the player's teleport animation script
             TeleportAnimation anim = other.GetComponentInChildren<TeleportAnimation>();
@@ -73,10 +76,6 @@ public class Teleport : MonoBehaviour
                     // Perform the player's exit teleport animation
                     anim.SetExit(true);
                     anim.SetEnter(false);
-
-                    // this is really jank, remove later!!!!
-                    GameObject.Find("DialogueBox").GetComponentInChildren<Text>().text = "Ah! I see you figured out how to use the teleporter!";
-
                 }
             }
 
@@ -100,7 +99,7 @@ public class Teleport : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         // If the player stops touching the teleporter...
-        if(other.CompareTag(m_Tag))
+        if(IsPlayer(other))
         {
             // Enable the teleporter
             Enable();
@@ -123,4 +122,25 @@ public class Teleport : MonoBehaviour
         // Disable the particle system
         GetComponentInChildren<ParticleSystem>().Stop();
     }
+
+    // Is the "player" actually a player?
+    private bool IsPlayer(Collider2D other)
+    {
+        // Does it have the "Player" tag?
+        if(other.CompareTag(m_Tag))
+        {
+            // If the "player" has a shield script...
+            // ... OR a bullet script...
+            // ... then it's not a player
+            if(other.GetComponent<ShieldTag>()
+                || other.GetComponent<BulletHit>())
+                return false;
+            
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool GetActive() { return m_Active; }
 }
