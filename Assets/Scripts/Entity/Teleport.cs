@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Teleport : MonoBehaviour
 {
@@ -72,6 +73,10 @@ public class Teleport : MonoBehaviour
                     // Perform the player's exit teleport animation
                     anim.SetExit(true);
                     anim.SetEnter(false);
+
+                    // this is really jank, remove later!!!!
+                    GameObject.Find("DialogueBox").GetComponentInChildren<Text>().text = "Ah! I see you figured out how to use the teleporter!";
+
                 }
             }
 
