@@ -13,7 +13,7 @@ public class TeleportFlagDefeatEntities : TeleportFlagBase
         [SerializeField] private GameObject[] m_Entities;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void FlagStart()
     {
         // If there are no entities, log an error
         if(m_Entities == null)
@@ -39,5 +39,11 @@ public class TeleportFlagDefeatEntities : TeleportFlagBase
     protected override void FlagActivation()
     {
         m_Teleporter.GetComponent<Teleport>().Enable();
+    }
+
+    // Alternately, disable the teleporter
+    protected override void FlagAlternate()
+    {
+        m_Teleporter.GetComponent<Teleport>().Disable();
     }
 }

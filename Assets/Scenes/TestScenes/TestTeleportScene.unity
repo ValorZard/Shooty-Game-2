@@ -2397,6 +2397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 3616496810027548236, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3616496810027548237, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -15,6 +15,9 @@ public class TeleportFlagUpdateText : TeleportFlagBase
         // The replacement text
         [SerializeField] private string m_String;
 
+    // No starting actions
+    protected override void FlagStart() {}
+
     // Is the teleporter disabled?
     protected override bool FlagCondition()
     {
@@ -26,4 +29,7 @@ public class TeleportFlagUpdateText : TeleportFlagBase
     {
         m_Text.text = m_String;
     }
+
+    // No alternate action
+    protected override void FlagAlternate() {}
 }

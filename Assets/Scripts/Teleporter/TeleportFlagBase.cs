@@ -18,6 +18,8 @@ abstract public class TeleportFlagBase : MonoBehaviour
         // If the teleporter isn't assigned, log an error
         if(m_Teleporter == null)
             Debug.Log("ERROR: No teleporter was assigned!");
+        
+        FlagStart();
     }
 
     // Update is called once per frame
@@ -31,14 +33,20 @@ abstract public class TeleportFlagBase : MonoBehaviour
             enabled = false;
         }
         else
-            m_Teleporter.GetComponent<Teleport>().Disable();
+            FlagAlternate();
     }
+
+    // Is there anything else that has to be done at the start?
+    abstract protected void FlagStart();
 
     // What must be true for the action to take place?
     abstract protected bool FlagCondition();
 
     // What is the action?
     abstract protected void FlagActivation();
+
+    // Should there be an alternate action?
+    abstract protected void FlagAlternate();
 
     protected bool GetActive() { return m_Teleporter.GetComponent<Teleport>().GetActive(); }
 }
