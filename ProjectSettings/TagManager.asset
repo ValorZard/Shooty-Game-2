@@ -12,6 +12,7 @@ TagManager:
   - ViewAI
   - Test
   - Spawner
+  - Background
   layers:
   - Default
   - TransparentFX

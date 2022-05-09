@@ -4818,7 +4818,7 @@ GameObject:
   - component: {fileID: 6831628663040075532}
   m_Layer: 0
   m_Name: Teleporter
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4918,4 +4918,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Link: {fileID: 0}
+  m_Active: 1
   m_Particles: {fileID: 8535033530936940320, guid: f28916c3dbe6cf045816c148b6db5e31, type: 3}
