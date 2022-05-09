@@ -21,7 +21,7 @@ public class TeleportFlagDefeatEntities : TeleportFlagBase
     }
 
     // Are all entities defeated?
-    protected override bool FlagCondition()
+    public override bool FlagCondition()
     {
         // Go through the list
         foreach(GameObject entity in m_Entities)

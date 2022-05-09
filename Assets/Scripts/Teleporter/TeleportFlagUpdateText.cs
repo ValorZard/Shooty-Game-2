@@ -19,7 +19,7 @@ public class TeleportFlagUpdateText : TeleportFlagBase
     protected override void FlagStart() {}
 
     // Is the teleporter disabled?
-    protected override bool FlagCondition()
+    public override bool FlagCondition()
     {
         return !GetActive();
     }

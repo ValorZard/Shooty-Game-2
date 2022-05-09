@@ -40,7 +40,7 @@ abstract public class TeleportFlagBase : MonoBehaviour
     abstract protected void FlagStart();
 
     // What must be true for the action to take place?
-    abstract protected bool FlagCondition();
+    abstract public bool FlagCondition();
 
     // What is the action?
     abstract protected void FlagActivation();
