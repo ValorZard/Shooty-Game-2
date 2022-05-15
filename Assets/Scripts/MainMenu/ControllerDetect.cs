@@ -5,45 +5,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class ControllerDetect : MonoBehaviour
 {
     // Private variables
-        // Reference to the text
-        private TextMeshProUGUI m_TMP;
-        // Reference to the button
-        private Button m_Button;
         // List of controllers
-        private List<string> m_StringList;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_TMP = GetComponent<TextMeshProUGUI>();
-        m_Button = GetComponent<Button>();
-    }
+        protected List<string> m_StringList;
 
     // Update is called once per frame
     void Update()
     {
         // Refresh the list
         RefreshControllerList();
-
-        // If the text exists...
-        if(m_TMP != null)
-            // ... check the text
-            CheckText();
-        
-        // If the button exists...
-        if(m_Button != null)
-            // ... check the button
-            CheckButton();
     }
 
     // Refresh the controller list
-    private void RefreshControllerList()
+    protected void RefreshControllerList()
     {
         // Reset the list
         m_StringList = new List<string>();
@@ -64,29 +41,5 @@ public class ControllerDetect : MonoBehaviour
             controllers, since Input returns empty controllers when
             there used to be a controller plugged in.
         */
-    }
-
-    // Enables/disables the warning text
-    private void CheckText()
-    {
-        // If a controller is detected, hide the warning text
-        if(m_StringList.Count > 0)
-            m_TMP.enabled = false;
-        
-        // Otherwise, show the warning text
-        else
-            m_TMP.enabled = true;
-    }
-
-    // Enables/disables the button
-    private void CheckButton()
-    {
-        // If a controller is detected, enable the button
-        if(m_StringList.Count > 0)
-            m_Button.interactable = true;
-        
-        // Otherwise, disable the button
-        else
-            m_Button.interactable = false;
     }
 }
