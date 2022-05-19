@@ -76,4 +76,10 @@ public class CharacterConfirmation : MonoBehaviour
             foreach(SpriteRenderer rend in m_Renderers)
                 rend.enabled = b;
     }
+
+    // Is the position set to the first character?
+    public bool IsFirst()
+    {
+        return m_Script.IsFirst();
+    }
 }

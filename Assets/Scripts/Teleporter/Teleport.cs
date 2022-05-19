@@ -6,92 +6,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+public class Teleport : TeleportBaseInScene
 {
     // Private variables
         // The linked teleporter
         [SerializeField] private GameObject m_Link;
-        // Can the player use the teleporter?
-        [SerializeField] private bool m_Active = true;
-        // The player tag to track
-        private string m_Tag = "Player";
-        // Prefab of player teleportation particles
-        [SerializeField] private GameObject m_Particles; 
 
-    // Start is called before the first frame update
-    void Start()
+    protected override void EnterComplete(Collider2D other)
     {
-        if(m_Active)
-            Enable();
-        else
-            Disable();
-    }
+        // Create a burst of particles at the player's position before teleporting
+        Instantiate(m_Particles, other.transform.position, other.transform.rotation);
 
-    // Run while the player is still inside the teleporter
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        // If the player is touching the teleporter...
-        if(IsPlayer(other))
-        {
-            // Grab the player's teleport animation script
-            TeleportAnimation anim = other.GetComponentInChildren<TeleportAnimation>();
-            // Grab the player's movement script
-            PlayerController move = other.GetComponentInChildren<PlayerController>();
+        // Teleport the player
+        other.transform.position = new Vector3(m_Link.transform.position.x,
+                                            m_Link.transform.position.y,
+                                            other.transform.position.z);
 
-            // If the teleporter is active...
-            if(m_Active)
-            {
-                // Only run once
-                if(move.enabled)
-                {
-                    // If the player stops moving during the teleportation process...
-                    if(other.GetComponentInChildren<Rigidbody2D>().velocity == Vector2.zero)
-                    {
-                        // ... disable the player's movement (so they don't move away from the teleporter during the teleportation animation)
-                        move.enabled = false;
+        // Create another burst of particles at the player's position after teleporting
+        Instantiate(m_Particles, other.transform.position, other.transform.rotation);
 
-                        // Perform the player's enter teleport animation
-                        anim.SetEnter(true);
-                    }
-                }
+        // Disable the linked teleporter (prevents repeated teleportation)
+        m_Link.GetComponent<Teleport>().Disable();
 
-                // If the enter animation is complete...
-                if(anim.GetEnterFinished())
-                {
-                    // ... create a burst of particles at the player's position before teleporting
-                    Instantiate(m_Particles, other.transform.position, other.transform.rotation);
-
-                    // Teleport the player
-                    other.transform.position = new Vector3(m_Link.transform.position.x,
-                                                        m_Link.transform.position.y,
-                                                        other.transform.position.z);
-
-                    // Create another burst of particles at the player's position after teleporting
-                    Instantiate(m_Particles, other.transform.position, other.transform.rotation);
-
-                    // Disable the linked teleporter (prevents repeated teleportation)
-                    m_Link.GetComponent<Teleport>().Disable();
-
-                    // Perform the player's exit teleport animation
-                    anim.SetExit(true);
-                    anim.SetEnter(false);
-                }
-            }
-
-            // Otherwise, the teleporter isn't active...
-            else
-            {
-                // If the exit animation is complete...
-                if(anim.GetExitFinished())
-                {
-                    // ... enable the player's movement
-                    move.enabled = true;
-
-                    // Stop the player's exit teleport animation
-                    anim.SetExit(false);
-                }
-            }
-        }
+        // Perform the player's exit teleport animation
+        TeleportAnimation anim = other.GetComponentInChildren<TeleportAnimation>();
+        anim.SetExit(true);
+        anim.SetEnter(false);
     }
 
     // Only run when the player first STOPS touching the teleporter
@@ -104,42 +44,4 @@ public class Teleport : MonoBehaviour
             Enable();
         }
     }
-
-    public void Enable()
-    {
-        // The player can use the teleporter
-        m_Active = true;
-
-        // Enable the particle system
-        GetComponentInChildren<ParticleSystem>().Play();
-    }
-    public void Disable()
-    {
-        // The player can't use the teleporter
-        m_Active = false;
-
-        // Disable the particle system
-        GetComponentInChildren<ParticleSystem>().Stop();
-    }
-
-    // Is the "player" actually a player?
-    private bool IsPlayer(Collider2D other)
-    {
-        // Does it have the "Player" tag?
-        if(other.CompareTag(m_Tag))
-        {
-            // If the "player" has a shield script...
-            // ... OR a bullet script...
-            // ... then it's not a player
-            if(other.GetComponent<ShieldTag>()
-                || other.GetComponent<BulletHit>())
-                return false;
-            
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool GetActive() { return m_Active; }
 }

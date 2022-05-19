@@ -10,7 +10,7 @@ public class CameraControllerSimple : MonoBehaviour
 {
     // Private variables
         // The target to follow
-        [SerializeField] private Transform m_Target;
+        private Transform m_Target;
         // The camera
         private Camera m_Camera;
 
@@ -24,9 +24,15 @@ public class CameraControllerSimple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Simply follow the target around. Nothing fancy.
-        m_Camera.transform.position = new Vector3(m_Target.position.x,
-                                                  m_Target.position.y,
-                                                  m_Camera.transform.position.z);
+        // Only run if the target exists
+        if(m_Target != null)
+            // Simply follow the target around. Nothing fancy.
+            m_Camera.transform.position = new Vector3(m_Target.position.x,
+                                                    m_Target.position.y,
+                                                    m_Camera.transform.position.z);
+    
+        // Otherwise, find the target
+        else
+            m_Target = GetComponent<FindEntities>().GetPlayers()[0].transform;
     }
 }

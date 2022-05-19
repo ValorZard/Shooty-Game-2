@@ -23,6 +23,8 @@ abstract public class BaseShooting : MonoBehaviour
         protected string m_Friend; 
         // The tag of enemies to hurt
         protected string m_Enemy;
+        // How long the bullet should be active for
+        protected float m_ActiveTime = 1f;
     
     void Start()
     {
@@ -90,6 +92,9 @@ abstract public class BaseShooting : MonoBehaviour
         if(bulletScript == null)
             //... it's actually an explosion
             bulletScript = bulletInstance.GetComponent<BulletExplosion>();
+
+        // Destroy the bullet after a certain amount of time
+        bulletScript.DestructTimer(m_ActiveTime);
 
         // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
         bulletScript.SetDamage(m_Damage);

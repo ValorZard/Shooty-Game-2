@@ -28,6 +28,8 @@ public class CharacterSelect : MonoBehaviour
         private TextMeshProUGUI m_Text;
         // The position of the text
         [SerializeField] private float m_X;
+        // Reference to the other select script
+        private CharacterSelect m_Script;
 
     // Start is called before the first frame update
     void Start()
@@ -53,29 +55,51 @@ public class CharacterSelect : MonoBehaviour
         else
             // Change the cursor's position to the second character
             SetSecond();
+        
+        // Grab the other select script
+        CharacterSelect[] list = transform.parent.parent.GetComponentsInChildren<CharacterSelect>(true);
+        foreach(CharacterSelect c in list)
+            if(c != this)
+                m_Script = c;
+        if(m_Script == null)
+            m_Script = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the left key is tapped, highlight the first character
-        if(Input.GetAxis("Horizontal" + m_PlayerNumber) < 0)
+        // Only run if the character hasn't been selected yet
+        if(m_Script.enabled)
         {
-            // Make sure the cursor is visible
-            SetAble(true);
+            // If the left key is tapped, highlight the first character
+            if(Input.GetAxis("Horizontal" + m_PlayerNumber) < 0)
+            {
+                // Make sure the cursor is visible
+                SetAble(true);
 
-            // Change the cursor's position
-            SetFirst();
+                // Change the cursor's position
+                SetFirst();
+            }
+
+            // Otherwise, if the right key is tapped, highlight the second character
+            else if(Input.GetAxis("Horizontal" + m_PlayerNumber) > 0)
+            {
+                // Make sure the cursor is visible
+                SetAble(true);
+
+                // Change the cursor's position
+                SetSecond();
+            }
         }
 
-        // Otherwise, if the right key is tapped, highlight the second character
-        else if(Input.GetAxis("Horizontal" + m_PlayerNumber) > 0)
+        // If the charactere has been selected...
+        else
         {
-            // Make sure the cursor is visible
-            SetAble(true);
-
-            // Change the cursor's position
-            SetSecond();
+            // ... move the cursor to the other character if necessary
+            if(m_Script.IsFirst())
+                SetSecond();
+            else
+                SetFirst();
         }
     }
 
@@ -111,6 +135,12 @@ public class CharacterSelect : MonoBehaviour
         m_Text.transform.localPosition = new Vector3(m_X,
                                                      m_Text.transform.localPosition.y,
                                                      m_Text.transform.localPosition.z);
+    }
+
+    // Is the cursor set to the first character?
+    public bool IsFirst()
+    {
+        return m_Rect.pivot == m_FirstRect.pivot;
     }
 
     public bool GetAble() { return m_Renderers[0].enabled; }

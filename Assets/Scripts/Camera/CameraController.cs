@@ -29,16 +29,29 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Grab the camera
         m_Camera = GetComponentInChildren<Camera>();
     }
 
     private void FixedUpdate()
     {
-        // Move the camera towards a desired position
-        Move();
+        // Only run if the targets exist
+        if(m_Targets.Length != 0)
+        {
+            // Move the camera towards a desired position
+            Move();
 
-        // Change the size of the camera based
-        Zoom();
+            // Change the size of the camera based
+            Zoom();
+        }
+        // Otherwise, find the targets
+        else
+        {
+            List<GameObject> list = GetComponent<FindEntities>().GetPlayers();
+            m_Targets = new Transform[list.Count];
+            for(int z = 0; z < list.Count; z++)
+                m_Targets[z] = list[z].transform;
+        }
     }
 
     private void Move()

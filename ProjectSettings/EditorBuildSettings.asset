@@ -35,4 +35,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: 303dd2c68a0f8e746a12b758d63d0cb6
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/CharacterSelectScene.unity
+    guid: 852cef0a284da1b48b2205cd5590c08c
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/MovementTutorial.unity
+    guid: 4a99fb8069b4d4d40adaeec2e07c043e
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/ShootingTutorial.unity
+    guid: 56bcae7a0b16bd14783df630d16e5dd5
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/HealthTutorial.unity
+    guid: 06ef1d2225caffd489919f73d88d7c22
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/MovementTutorial1.unity
+    guid: f2692e21b5ea9f7458a3e2dd20d4b9b6
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/ShootingTutorial1.unity
+    guid: c32ad6a5345b92c43bb81462353ec8d3
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/HealthTutorial1.unity
+    guid: 65f4c687a1363ac4d96915e8f5819171
   m_configObjects: {}

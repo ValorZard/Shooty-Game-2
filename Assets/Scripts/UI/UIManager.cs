@@ -82,8 +82,14 @@ public class UIManager : MonoBehaviour
                 // Go through the correct children
                 for(int i = 2; i < secondUI.childCount; i++)
                 {
-                    // Disable the child
-                    secondUI.GetChild(i).gameObject.SetActive(false);
+                    // If the element isn't the health text, disable the child
+                    if(secondUI.GetChild(i).GetComponent<UIHealthText>() == null)
+                        secondUI.GetChild(i).gameObject.SetActive(false);
+                    // Otherwise, correct the height of the health text
+                    else
+                        secondUI.GetChild(i).localPosition = new Vector3(secondUI.GetChild(i).localPosition.x,
+                                                                         15,
+                                                                         secondUI.GetChild(i).localPosition.z);
                 }
 
                 // The AI's health bar
@@ -112,6 +118,12 @@ public class UIManager : MonoBehaviour
 
         // Assign the script to the player health script
         uiHealthScript.SetHealthScript(playerHealthScript);
+
+        // Grab the player's UI's health bar text
+        UIHealthText uiHealthText = m_PlayerUI[index].GetComponentInChildren<UIHealthText>();
+
+        // Assign the script to the player health text
+        uiHealthText.SetHealthScript(playerHealthScript);
     }
 
     // Connects the UI shield with the player shield

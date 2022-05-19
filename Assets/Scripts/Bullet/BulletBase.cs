@@ -9,8 +9,6 @@ using UnityEngine;
 public class BulletBase : DamageBase
 {
     // Protected variables
-        // How long the object should be active for
-        [SerializeField] protected float m_MaxTime = 1f;
         // Reference to the collider
         protected CircleCollider2D m_Collider;
 
@@ -19,9 +17,6 @@ public class BulletBase : DamageBase
     {
         // Grab the object's collider
         m_Collider = GetComponent<CircleCollider2D>();
-
-        // Let the object exist for a limited time
-        Destroy(gameObject, m_MaxTime);
     }
 
     // Checks if the given collider has an ignorable tag
@@ -48,4 +43,6 @@ public class BulletBase : DamageBase
 
         return false;
     }
+
+    public void DestructTimer(float num) { Destroy(gameObject, num); }
 }

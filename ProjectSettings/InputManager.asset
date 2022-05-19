@@ -233,7 +233,7 @@ InputManager:
     m_Name: Fire2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick button 6
     positiveButton: joystick button 7
     altNegativeButton: 
     altPositiveButton: 

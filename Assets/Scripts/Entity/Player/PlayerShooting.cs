@@ -23,6 +23,8 @@ public class PlayerShooting : MonoBehaviour
         public float m_Damage = 10f;
         // Player number
         public int playerNumber = 1;
+        // How long the bullet should be active for
+        public float m_ActiveTime = 1f;
     
     // Private variables
         // The input axis that is used for shooting bullets
@@ -96,6 +98,9 @@ public class PlayerShooting : MonoBehaviour
 
         // Grab the bullet script
         BulletHit bulletScript = bulletInstance.GetComponent<BulletHit>();
+
+        // Destroy the bullet after a certain amount of time
+        bulletScript.DestructTimer(m_ActiveTime);
 
         // Set the attack power of the bullet (this is here in case the player gets an attack powerup; the bullet spawns with the new attack)
         bulletScript.SetDamage(m_Damage);
