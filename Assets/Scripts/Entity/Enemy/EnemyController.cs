@@ -2,7 +2,7 @@
     Programmers: Pedro Longo, Manhattan Calabro
         Pedro: Base code,
             added NavMesh rotation code,
-            added wander action
+            added wander action, added animator
         Manhattan: Refactoured for better encapsulation
 */
 
@@ -18,13 +18,17 @@ public class EnemyController : AIController
         private bool m_IsFleeing = false;
         // Where to wander to
         private Vector2 m_WanderTarget;
+    private bool facingRight;
 
         NavMeshAgent agent;
+        Animator animator;
 
     protected override void OnStart()
     {
         m_Shooting = GetComponentInChildren<EnemyShooting>();
+        animator = GetComponent<Animator>();
         m_WanderTarget = Vector2.zero;
+
 
         // Fix rotation of NavMesh agent
         agent = GetComponent<NavMeshAgent>();
@@ -33,6 +37,11 @@ public class EnemyController : AIController
             agent.updateRotation = false;
             agent.updateUpAxis = false;
         }
+
+        if (target.position.x > gameObject.transform.position.x)
+            facingRight = true; 
+        else
+            facingRight = false;
     }
 
     private void Wander()
@@ -117,6 +126,7 @@ public class EnemyController : AIController
             if (m_DetectionArea && distanceFromPlayer > m_ShootingRange && !m_IsFleeing)
             {
                 //Enemy will pursue player on sight
+                animator.SetBool("Walk", true);
                 Pursue();
 
                 if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
@@ -136,13 +146,34 @@ public class EnemyController : AIController
         }
         else
         {
+            animator.SetBool("Walk", false);
+
             //Wander();
         }
+
+        if(target.position.x > gameObject.transform.position.x && !facingRight)
+        {
+            Flip();
+        }
+        else if(target.position.x < gameObject.transform.position.x && facingRight)
+        {
+            Flip();
+        }
+
     }
 
     // Does the agent exist?
     private bool AgentExists()
     {
         return agent != null && agent.enabled;
+    }
+
+    private void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 }
