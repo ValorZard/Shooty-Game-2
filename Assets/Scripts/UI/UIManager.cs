@@ -150,6 +150,12 @@ public class UIManager : MonoBehaviour
 
         // Assign the script to the player ammo script
         uiAmmoScript.SetAmmoScript(playerAmmoScript);
+
+        // Grab the player's UI's ammo bar text
+        UIAmmoText uiAmmoText = m_PlayerUI[index].GetComponentInChildren<UIAmmoText>();
+
+        // Assign the script to the player ammo text
+        uiAmmoText.SetAmmoScript(playerAmmoScript);
     }
 
     // Connects the UI powerups with the player powerups

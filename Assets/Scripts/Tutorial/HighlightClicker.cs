@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HighlightClickers : MonoBehaviour
+public class HighlightClicker : MonoBehaviour
 {
     // Private variables
         // Reference to the image
