@@ -283,6 +283,8 @@ GameObject:
   - component: {fileID: 4694634509238232979}
   - component: {fileID: 4694634509238232978}
   - component: {fileID: 940398050322632259}
+  - component: {fileID: 8913780483957994605}
+  - component: {fileID: 7700164316330278932}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -332,6 +334,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4c693f9b393e334f94e224fee9567b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8913780483957994605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694634509238232977}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5fbb54210f0d3419eb6848a0db65da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7700164316330278932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694634509238232977}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cfe30a7871184641ba814db084283f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4694634509304862284

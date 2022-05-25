@@ -162,7 +162,7 @@ public class PlayerShooting : MonoBehaviour
     public bool CheckShootStatus()
     {
         // Can only shoot if the shooting button is held down...
-        return Input.GetButton(m_FireButton)
+        return Input.GetAxisRaw(m_FireButton) > 0 //Input.GetButton(m_FireButton)
             // ... if the current delay is zero...
             && m_CurrentDelay == 0f
             // ... and if the player has ammo

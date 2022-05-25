@@ -13,6 +13,7 @@ TagManager:
   - Test
   - Spawner
   - Background
+  - Corridor
   layers:
   - Default
   - TransparentFX

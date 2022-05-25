@@ -38,7 +38,8 @@ public class EnemyController : AIController
             agent.updateUpAxis = false;
         }
 
-        if (target.position.x > gameObject.transform.position.x)
+        // Only run if the target exists
+        if (target != null && target.position.x > gameObject.transform.position.x)
             facingRight = true; 
         else
             facingRight = false;
@@ -125,8 +126,10 @@ public class EnemyController : AIController
 
             if (m_DetectionArea && distanceFromPlayer > m_ShootingRange && !m_IsFleeing)
             {
+                // Only animate if the animator exists
+                if(animator != null)
+                    animator.SetBool("Walk", true);
                 //Enemy will pursue player on sight
-                animator.SetBool("Walk", true);
                 Pursue();
 
                 if (m_Health.GetCurrentHealth() < 40.0f && m_CanFlee)
@@ -146,20 +149,25 @@ public class EnemyController : AIController
         }
         else
         {
-            animator.SetBool("Walk", false);
+            // Only animate if the animator exists
+            if(animator != null)
+                animator.SetBool("Walk", false);
 
             //Wander();
         }
 
-        if(target.position.x > gameObject.transform.position.x && !facingRight)
+        // Only run if the target exists
+        if(target != null)
         {
-            Flip();
+            if(target.position.x > gameObject.transform.position.x && !facingRight)
+            {
+                Flip();
+            }
+            else if(target.position.x < gameObject.transform.position.x && facingRight)
+            {
+                Flip();
+            }
         }
-        else if(target.position.x < gameObject.transform.position.x && facingRight)
-        {
-            Flip();
-        }
-
     }
 
     // Does the agent exist?

@@ -2911,6 +2911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7527c161ced77914d8ac024d95e62304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MouseButton: 0
 --- !u!114 &876900022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2960,6 +2961,7 @@ GameObject:
   - component: {fileID: 980073549}
   - component: {fileID: 980073551}
   - component: {fileID: 980073550}
+  - component: {fileID: 980073552}
   m_Layer: 5
   m_Name: Right Mouse
   m_TagString: Untagged
@@ -3024,6 +3026,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980073548}
   m_CullTransparentMesh: 1
+--- !u!114 &980073552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980073548}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7527c161ced77914d8ac024d95e62304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MouseButton: 1
 --- !u!1 &1006521282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3360,6 +3375,10 @@ PrefabInstance:
     - target: {fileID: 4694634509238232978, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694634509238232978, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
+      propertyPath: m_ScopeLimit
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4694634509238232978, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
       propertyPath: m_Targets.Array.size
@@ -3735,23 +3754,6 @@ MonoBehaviour:
   m_Teleporter: {fileID: 476155923}
   m_Text: {fileID: 1549404813}
   m_String: Good job!
---- !u!1 &1769489051 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4694634509238232977, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
-  m_PrefabInstance: {fileID: 1451906522}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1769489052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769489051}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba5fbb54210f0d3419eb6848a0db65da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1795296208
 GameObject:
   m_ObjectHideFlags: 0

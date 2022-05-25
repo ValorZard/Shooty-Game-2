@@ -40,6 +40,9 @@ public class BulletBase : DamageBase
         // If the collider is a background object, return true
         if(other.CompareTag("Background"))
             return true;
+        // If the collider is a corridor object, return true
+        if(other.CompareTag("Corridor"))
+            return true;
 
         return false;
     }

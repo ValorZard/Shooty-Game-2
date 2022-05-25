@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour
         private Vector3 m_MoveVelocity;
         // The position the camera is moving towards
         private Vector3 m_DesiredPosition;
+        // Limit to how far away the player can scope
+        [SerializeField] private float m_ScopeLimit = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +61,75 @@ public class CameraController : MonoBehaviour
         // Find the average position of the targets
         FindAveragePosition();
 
+/* Removed scoping
+        // Only run if there's a limit
+        if(m_ScopeLimit != 0)
+        {
+            // If there are any targets scoping ahead, assign the desired position to the mouse cursor
+            if(Input.GetAxisRaw("Fire1") < 0 || Input.GetAxisRaw("Fire2") < 0 || Input.GetAxisRaw("Fire2XBOX") < 0)
+            {
+                // Mouse position
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                // Impose limits on how far the player can scope
+                if(Mathf.Abs(Mathf.Abs(mousePos.x) - Mathf.Abs(m_DesiredPosition.x)) > Mathf.Abs(m_ScopeLimit)
+                    || Mathf.Abs(mousePos.x) > Mathf.Abs(m_ScopeLimit))
+                {
+                    if((mousePos.x > 0 && m_DesiredPosition.x > 0 && mousePos.x > m_DesiredPosition.x)
+                        || (mousePos.x > 0 && m_DesiredPosition.x < 0)
+                        || (mousePos.x < 0 && m_DesiredPosition.x < 0 && mousePos.x > m_DesiredPosition.x))
+                    {
+                        mousePos.x = m_ScopeLimit;
+                    }
+                    else if((mousePos.x < 0 && m_DesiredPosition.x < 0 && mousePos.x < m_DesiredPosition.x)
+                        || (mousePos.x < 0 && m_DesiredPosition.x > 0)
+                        || (mousePos.x > 0 && m_DesiredPosition.x > 0 && mousePos.x < m_DesiredPosition.x))
+                    {
+                        mousePos.x = -m_ScopeLimit;
+                    }
+                }
+                else if(mousePos.x > m_DesiredPosition.x)
+                {
+                    mousePos.x = m_ScopeLimit;
+                }
+                else
+                {
+                    mousePos.x = -m_ScopeLimit;
+                }
+                
+                if(Mathf.Abs(Mathf.Abs(mousePos.y) - Mathf.Abs(m_DesiredPosition.y)) > Mathf.Abs(m_ScopeLimit)
+                    || Mathf.Abs(mousePos.y) > Mathf.Abs(m_ScopeLimit))
+                {
+                    if((mousePos.y > 0 && m_DesiredPosition.y > 0 && mousePos.y > m_DesiredPosition.y)
+                        || (mousePos.y > 0 && m_DesiredPosition.y < 0)
+                        || (mousePos.y < 0 && m_DesiredPosition.y < 0 && mousePos.y > m_DesiredPosition.y))
+                    {
+                        mousePos.y = m_ScopeLimit;
+                    }
+                    else if((mousePos.y < 0 && m_DesiredPosition.y < 0 && mousePos.y < m_DesiredPosition.y)
+                        || (mousePos.y < 0 && m_DesiredPosition.y > 0)
+                        || (mousePos.y > 0 && m_DesiredPosition.y > 0 && mousePos.y < m_DesiredPosition.y))
+                    {
+                        mousePos.y = -m_ScopeLimit;
+                    }
+                }
+                else if(mousePos.y > m_DesiredPosition.y)
+                {
+                    mousePos.y = m_ScopeLimit;
+                }
+                else
+                {
+                    mousePos.y = -m_ScopeLimit;
+                }
+
+                // Assign the limited position
+                m_DesiredPosition += new Vector3(mousePos.x, mousePos.y, 0);
+            }
+        }
+*/
+
         // Smoothly transition to that position
-        transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
+        m_Camera.transform.position = Vector3.SmoothDamp(m_Camera.transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
     }
 
     private void FindAveragePosition()
@@ -84,8 +153,8 @@ public class CameraController : MonoBehaviour
         if(numTargets > 0)
             averagePos /= numTargets;
         
-        // Keep the same y value
-        averagePos.y = transform.position.y;
+        // Keep the same z value
+        averagePos.z = m_Camera.transform.position.z;
 
         // The desired position is the average position
         m_DesiredPosition = averagePos;
@@ -101,7 +170,7 @@ public class CameraController : MonoBehaviour
     private float FindRequiredSize()
     {
         // Find the position the camera rig is moving towards in its local space
-        Vector3 desiredLocalPos = transform.InverseTransformPoint(m_DesiredPosition);
+        Vector3 desiredLocalPos = m_Camera.transform.InverseTransformPoint(m_DesiredPosition);
 
         // Start the camera's size calculation at zero
         float size = 0f;
@@ -114,7 +183,7 @@ public class CameraController : MonoBehaviour
                 continue;
             
             // Otherwise, find the position of the target in the camera's local space
-            Vector3 targetLocalPos = transform.InverseTransformPoint(m_Targets[i].position);
+            Vector3 targetLocalPos = m_Camera.transform.InverseTransformPoint(m_Targets[i].position);
 
             // Find the position of the target from the desired position of the camera's local space
             Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
@@ -122,11 +191,11 @@ public class CameraController : MonoBehaviour
             // Choose the largest out of the current size and the distance of the player "up" or "down" from the camera
             size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
 
-            // Choose the largest out of the current size and the calculated size based on the tank being to the left or right of the camera
+            // Choose the largest out of the current size and the calculated size based on the player being to the left or right of the camera
             size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.x) / m_Camera.aspect);
         }
 
-        // Add the edge buffer to the sizez
+        // Add the edge buffer to the size
         size += m_ScreenEdgeBuffer;
 
         // Make sure the camera's size isn't below the minimum
@@ -141,7 +210,7 @@ public class CameraController : MonoBehaviour
         FindAveragePosition();
 
         // Set the camera's position to the desired position without damping
-        transform.position = m_DesiredPosition;
+        m_Camera.transform.position = m_DesiredPosition;
         
         // Find and set the required size of the camera
         m_Camera.orthographicSize = FindRequiredSize();
