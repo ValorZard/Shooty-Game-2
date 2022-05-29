@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7862340206460021747}
   - component: {fileID: 9113178878652589582}
+  - component: {fileID: 5420232316683240374}
   - component: {fileID: 7333493829963883664}
   - component: {fileID: 5384261201802525702}
   - component: {fileID: 1519747144253299005}
@@ -85,6 +86,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &5420232316683240374
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123349141334079015}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.40655148, y: 0.49998325}
+      - {x: -0.39581144, y: 0.49847332}
+      - {x: -0.22707954, y: -0.005208701}
+      - {x: -0.4122018, y: -0.5003389}
+      - {x: 0.4003708, y: -0.50211346}
+      - {x: 0.20341745, y: 0.0018899292}
 --- !u!70 &7333493829963883664
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -98,9 +130,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004658617, y: 0.025407862}
-  m_Size: {x: 1.0254083, y: 2.0459583}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 0.95}
+  m_Direction: 0
 --- !u!114 &5384261201802525702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +148,7 @@ MonoBehaviour:
   m_Damage: 25
   m_Friend: Enemy
   m_Enemy: Player
-  timeLeftActive: 1.5
+  timeLeftActive: 1
   timeLeftDestroy: 0.5
 --- !u!95 &1519747144253299005
 Animator:

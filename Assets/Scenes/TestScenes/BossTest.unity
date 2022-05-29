@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &420635353
 Camera:
   m_ObjectHideFlags: 0
@@ -1327,6 +1327,10 @@ PrefabInstance:
     - target: {fileID: 4143670548082968005, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: camSize
       value: 13.54752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143670548082968005, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4297513695574354758, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_RootOrder
@@ -3431,6 +3435,10 @@ PrefabInstance:
     - target: {fileID: 5149555204585315422, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_Tiles.Array.data[129].second.m_TileObjectToInstantiateIndex
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591650882401220522, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663275058968434867, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_Size.x
@@ -13516,7 +13524,12 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8970493961425015134, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7591650882401220522, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
 --- !u!1001 &1942369684
 PrefabInstance:
@@ -13528,6 +13541,10 @@ PrefabInstance:
     - target: {fileID: 4694634509238232977, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
       propertyPath: m_Name
       value: CameraRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694634509238232978, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
+      propertyPath: m_MinSize
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4694634509238232979, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
       propertyPath: m_RootOrder
@@ -13575,7 +13592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4694634509776309555, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cc606a3d75624b9d3121114b69fef, type: 3}
@@ -13592,7 +13609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 612648093587126051, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 612648093587126051, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_TagString
@@ -14049,6 +14066,10 @@ PrefabInstance:
     - target: {fileID: 4143670548082968005, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: camSize
       value: 4.459643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4143670548082968005, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4297513695574354758, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_RootOrder
@@ -14865,6 +14886,10 @@ PrefabInstance:
     - target: {fileID: 6448901852703003913, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_LocalPosition.y
       value: -32.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591650882401220522, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663275058968434867, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
       propertyPath: m_Size.x
@@ -16078,7 +16103,12 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[69].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8970493961425015134, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7591650882401220522, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db83afd3ee4743a4e8c7637a1d381782, type: 3}
 --- !u!1001 &7081858747459500570
 PrefabInstance:

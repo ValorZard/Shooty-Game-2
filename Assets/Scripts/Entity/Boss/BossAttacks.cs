@@ -1,7 +1,8 @@
 /*
     Programmers: Derek Chan, Manhattan Calabro
         Derek: Base code
-        Manhattan: Refactoured for better encapsulation
+        Manhattan: Refactoured for better encapsulation,
+                   fixed beam rotation
 */
 using System.Collections;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ public class BossAttacks : MonoBehaviour
         if(s == "Beam")
         {
             // Shoots a beam aimed at the closest player
-            GameObject attack = Instantiate(beam, this.transform.position, lookAt2D(closestPlayer));
+            GameObject attack = Instantiate(beam, this.transform.position, lookAt2D(closestPlayer) * Quaternion.Euler(0, 0, 90));
             Invoke("delay", attack.GetComponent<BossStandardAttack>().GetTotalTime() + m_RestTime);
         }
         if(s == "AOE")
