@@ -43,39 +43,31 @@ public class BossAI : MonoBehaviour
         {
             // ... choose a random attack
             float rng = Random.Range(0.0f, 1.0f);
-            /*
             if(rng < 0.2f)
             {
                 isAttacking = true;
                 attacks.execute("Adds", closestPlayer, fartherPlayer);
             }
-            */
-            /*else*/ if(rng < 0.4f)
+            if(rng < 0.4f)
             {
                 isAttacking = true;
                 attacks.execute("Beam", closestPlayer, fartherPlayer);
             }
-            /*
             else if(rng < 0.6f)
             {
                 isAttacking = true;
                 attacks.execute("AOE", closestPlayer, fartherPlayer);
             }
-            */
-            /*
             else if(rng < 0.8f)
             {
                 isAttacking = true;
                 attacks.execute("Moving", closestPlayer, fartherPlayer);
             }
-            */
-            /*
             else
             {
                 isAttacking = true;
                 attacks.execute("Melee", closestPlayer, fartherPlayer);
             }
-            */
         }
     }
 
