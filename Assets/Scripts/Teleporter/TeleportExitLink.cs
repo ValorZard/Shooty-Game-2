@@ -33,6 +33,17 @@ public class TeleportExitLink : TeleportBase
         StartAble();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        // The number of players left
+        int num = FindObjectOfType<FindEntities>().GetPlayersManualRefresh().Count;
+
+        // If there is only one player left, become ready
+        if(num == 1)
+            m_Ready = true;
+    }
+
     protected override void MoveEnabled(Collider2D other)
     {
         // Grab the player's teleport animation script
