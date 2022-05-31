@@ -20,6 +20,8 @@ public class BossSpawner : MonoBehaviour
         [SerializeField] private GameObject m_BossTracker;
         // Reference to the players
         private FindEntities m_Players;
+        // The scene to load once the boss dies
+        [SerializeField] private string m_Scene = "WinScene";
 
     void Start()
     {
@@ -43,6 +45,9 @@ public class BossSpawner : MonoBehaviour
 
             // Assign the boss to the boss tracker to track
             tracker.GetComponent<BossTracker>().SetBoss(spawned);
+
+            // Change the scene
+            tracker.GetComponent<BossTracker>().SetScene(m_Scene);
 
             // Destroy the spawner; it's no longer needed
             Destroy(this.gameObject);

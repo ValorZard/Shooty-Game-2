@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 public class BossTracker : MonoBehaviour
 {
     // Private variables
+        // The scene to load once the boss dies
+        [SerializeField] private string m_Scene = "WinScene";
         // Reference to the boss
         private GameObject m_Boss;
 
@@ -19,8 +21,9 @@ public class BossTracker : MonoBehaviour
         // If the boss is dead...
         if(!m_Boss.activeSelf)
             // ... the player has won; move to the win screen
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene(m_Scene);
     }
 
     public void SetBoss(GameObject obj) { m_Boss = obj; }
+    public void SetScene(string str) { m_Scene = str; }
 }
