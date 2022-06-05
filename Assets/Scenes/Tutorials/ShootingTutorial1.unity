@@ -4197,6 +4197,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: I want you both to kill all the enemies.
       objectReference: {fileID: 0}
+    - target: {fileID: 8902383140072830947, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
+      propertyPath: m_text
+      value: I want you both to kill all the enemies.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
 --- !u!224 &1549404812 stripped

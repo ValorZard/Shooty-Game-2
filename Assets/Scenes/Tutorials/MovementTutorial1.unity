@@ -3538,6 +3538,12 @@ PrefabInstance:
         Dr. Raimetzi. I shall now put you two through a series of tests to deem if
         your worthy. Go through the white teleporter to get started.
       objectReference: {fileID: 0}
+    - target: {fileID: 8902383140072830947, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
+      propertyPath: m_text
+      value: Hello, you are my newest test subjects. I am the prestemmed professor
+        Dr. Raimetzi. I shall now put you two through a series of tests to deem if
+        your worthy. Go through the white teleporter to get started.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
 --- !u!224 &1432292974 stripped
