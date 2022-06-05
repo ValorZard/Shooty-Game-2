@@ -4195,7 +4195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3616496811851617822, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
       propertyPath: m_Text
-      value: I want you to kill all the enemies.
+      value: I want you both to kill all the enemies.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}

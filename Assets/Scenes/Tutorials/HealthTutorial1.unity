@@ -2410,7 +2410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Teleporter: {fileID: 1828385173}
   m_Text: {fileID: 1027368369}
-  m_String: It seems like you sustained some damage. Take that health pack.
+  m_String: It seems like you two sustained some damage. Take those health packs.
 --- !u!1001 &848104921
 PrefabInstance:
   m_ObjectHideFlags: 0

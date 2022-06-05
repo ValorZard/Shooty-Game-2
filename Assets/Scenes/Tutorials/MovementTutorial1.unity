@@ -2696,7 +2696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Teleporter: {fileID: 1828385173}
   m_Text: {fileID: 1027368369}
-  m_String: Ah! I see you figured out how to use the teleporter!
+  m_String: Excellent! Now, both of you, head through the blue teleporters to go
+    to the next test. We're not moving on unless you both stand on them.
 --- !u!1 &789346462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3530,6 +3531,12 @@ PrefabInstance:
     - target: {fileID: 3616496810027548237, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616496811851617822, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
+      propertyPath: m_Text
+      value: Hello, you are my newest test subjects. I am the prestemmed professor
+        Dr. Raimetzi. I shall now put you two through a series of tests to deem if
+        your worthy. Go through the white teleporter to get started.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}

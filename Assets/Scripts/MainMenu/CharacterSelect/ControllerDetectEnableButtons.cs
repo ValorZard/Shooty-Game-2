@@ -38,16 +38,20 @@ public class ControllerDetectEnableButtons : ControllerDetect
         {
             // ... enable the second button
             m_Buttons[1].gameObject.SetActive(true);
+            m_Buttons[1].interactable = true;
             // Disable the first button
             m_Buttons[0].gameObject.SetActive(false);
+            m_Buttons[0].interactable = false;
         }
         // Otherwise, a controller is NOT detected...
         else
         {
             // ... enable the first button
             m_Buttons[0].gameObject.SetActive(true);
+            m_Buttons[0].interactable = true;
             // Disable the second button
             m_Buttons[1].gameObject.SetActive(false);
+            m_Buttons[1].interactable = false;
         }
     }
 }

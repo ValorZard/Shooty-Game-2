@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+    As of writing this, this script is no longer used.
+*/
+
 public class StartWhenConfirmScript : MonoBehaviour
 {
     // Private variables
@@ -28,6 +32,7 @@ public class StartWhenConfirmScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         // If all players have confirmed their choices...
         if(AreAllDisabled())
         {
@@ -37,6 +42,7 @@ public class StartWhenConfirmScript : MonoBehaviour
         // Otherwise, disable it
         else
             m_Button.interactable = false;
+        */
     }
 
     // Checks the scripts to see if ALL are disabled

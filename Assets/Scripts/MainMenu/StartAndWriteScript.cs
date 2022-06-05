@@ -32,4 +32,6 @@ public class StartAndWriteScript : StartScript
         // Move to the next scene
         StartGame();
     }
+
+    public string GetText() { return m_Text; }
 }

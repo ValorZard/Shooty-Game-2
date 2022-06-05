@@ -6,6 +6,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    As of writing this, this script is no longer used.
+*/
+
 public class CharacterConfirmation : MonoBehaviour
 {
     // Private variables

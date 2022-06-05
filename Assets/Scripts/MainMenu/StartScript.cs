@@ -18,4 +18,7 @@ public class StartScript : MonoBehaviour
     {
         SceneManager.LoadScene(m_LevelName);
     }
+
+    public string GetLevelName() { return m_LevelName; }
+    public void SetLevelName(string str) { m_LevelName = str; }
 }
