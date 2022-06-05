@@ -39,7 +39,10 @@ public class DamageBase : MonoBehaviour
         }
     }
 
+    public float GetDamage() { return m_Damage; }
     public void SetDamage(float num) { m_Damage = num; }
+    public string GetFriend() { return m_Friend; }
     public void SetFriend(string str) { m_Friend = str; }
+    public string GetEnemy() { return m_Enemy; }
     public void SetEnemy(string str) { m_Enemy = str; }
 }

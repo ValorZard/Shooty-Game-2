@@ -18,12 +18,17 @@ public class PauseMenu : MonoBehaviour
     // Private variables
         // The list of objects to affect
         private List<GameObject> m_Objects;
+        // Reference to the child bullet tracker
+        private BulletTracker m_BulletTracker;
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the lists
         m_Objects = new List<GameObject>();
+
+        // Grab the child bullet tracker
+        m_BulletTracker = GetComponentInChildren<BulletTracker>();
     }
 
     // Update is called once per frame
@@ -32,9 +37,10 @@ public class PauseMenu : MonoBehaviour
         // Only run if the pause button is pressed
         if(Input.GetButtonDown("Pause1"))
         {
-            // Enable/disable the pause menu's children
+            // Enable/disable the pause menu's children (except the bullet tracker)
             for(int z = 0; z < transform.childCount; z++)
-                transform.GetChild(z).gameObject.SetActive(!transform.GetChild(z).gameObject.activeSelf);
+                if(transform.GetChild(z).GetComponent<BulletTracker>() == null)
+                    transform.GetChild(z).gameObject.SetActive(!transform.GetChild(z).gameObject.activeSelf);
 
             // If the list is empty, pause the game
             if(m_Objects.Count == 0)
@@ -49,13 +55,16 @@ public class PauseMenu : MonoBehaviour
     // Disables the objects in the list
     private void Pause()
     {
+        // Pause the tracker
+        m_BulletTracker.SetIsPaused(true);
+
         // Go through all objects within the scene
         foreach(GameObject obj in FindObjectsOfType<GameObject>())
         {
-            // If the object passes the ignore conditions
+            // If the object passes the ignore conditions...
             if(IgnoreConditions(obj))
             {
-                // ... add the object to the list
+                // ... add it to the list
                 m_Objects.Add(obj);
 
                 // Disable the given object
@@ -71,6 +80,9 @@ public class PauseMenu : MonoBehaviour
     // Enables the objects in the list and clears the list
     private void Play()
     {
+        // Play the tracker
+        m_BulletTracker.SetIsPaused(false);
+
         // Enable all the objects within the list
         foreach(GameObject obj in m_Objects)
             // Only run if the object still exists
