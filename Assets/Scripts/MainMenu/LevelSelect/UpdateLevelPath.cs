@@ -21,6 +21,8 @@ public class UpdateLevelPath : MonoBehaviour
     // Private variables
         // The preview image to update
         [SerializeField] private Image m_PreviewImage;
+        // The new image
+        [SerializeField] private Sprite m_Sprite;
         // The description to update
         [SerializeField] private TextMeshProUGUI m_DescriptionObject;
         // The new description
@@ -37,16 +39,11 @@ public class UpdateLevelPath : MonoBehaviour
         m_StartScript = GetComponent<StartScript>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Updates everything when called
     public void UpdateSelection()
     {
         // Update the preview image
+        m_PreviewImage.sprite = m_Sprite;
 
         // Update the description
         m_DescriptionObject.text = m_DescriptionMessage;

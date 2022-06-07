@@ -18,6 +18,8 @@ public class UIPowerupIcon : MonoBehaviour
         private GameObject m_Icon;
         // The background child
         private GameObject m_Background;
+        // The cooldown child
+        private GameObject m_Cooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,9 @@ public class UIPowerupIcon : MonoBehaviour
         // Grab the background child
         m_Background = gameObject.transform.Find("PowerupBarBackground").gameObject;
 
+        // Grab the cooldown child
+        m_Cooldown = gameObject.transform.Find("PowerupBarCooldown").gameObject;
+
         // Make sure the powerup UI is off at the beginning of the game
         m_CurrentTime = 0f;
     }
@@ -37,6 +42,7 @@ public class UIPowerupIcon : MonoBehaviour
     {
         m_Icon.SetActive(true);
         m_Background.SetActive(true);
+        m_Cooldown.SetActive(true);
     }
 
     // Deactivates the powerup UI
@@ -44,38 +50,32 @@ public class UIPowerupIcon : MonoBehaviour
     {
         m_Icon.SetActive(false);
         m_Background.SetActive(false);
+        m_Cooldown.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // If the current time is greater than or equal to the max time...
+        // If the current time is greater than or equal to the max time, disable the UI object
         if(m_CurrentTime >= m_MaxTime)
-        {
-            // ... disable the UI object
             Deactivate();
-        }
         
-        // Otherwise, change the alpha depending on the ratio of the current and max time
+        // Otherwise, change the cooldown's scale depending on the ratio of the current and max time
         else
         {
             // Make sure the object is visible
             Activate();
 
             // The ratio of the current and max time
-            float ratio = (m_MaxTime - m_CurrentTime) / m_MaxTime;
+            float ratio = m_CurrentTime / m_MaxTime;
 
-            // Grab the icon image
-            Image iconImage = m_Icon.GetComponent<Image>();
+            // Grab the cooldown image
+            Image cooldownImage = m_Cooldown.GetComponent<Image>();
 
-            // Grab the background image
-            Image backgroundImage = m_Background.GetComponent<Image>();
-
-            // Change the alpha of the icon image
-            iconImage.color = new Color(iconImage.color.r, iconImage.color.g, iconImage.color.b, ratio);
-
-            // Change the alpha of the background image
-            backgroundImage.color = new Color(backgroundImage.color.r, backgroundImage.color.g, backgroundImage.color.b, ratio);
+            // Change the scale of the cooldown image
+            cooldownImage.rectTransform.localScale = new Vector3(cooldownImage.rectTransform.localScale.x,
+                                                                 ratio,
+                                                                 cooldownImage.rectTransform.localScale.z);
         }
     }
 

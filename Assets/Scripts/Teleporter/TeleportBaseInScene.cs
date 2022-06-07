@@ -12,18 +12,6 @@ abstract public class TeleportBaseInScene : TeleportBase
         // Prefab of the player teleportation particles
         [SerializeField] protected GameObject m_Particles;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     protected override void MoveEnabled(Collider2D other)
     {
         // Grab the player's teleport animation script

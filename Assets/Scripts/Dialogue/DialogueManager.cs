@@ -79,6 +79,11 @@ public class DialogueManager : DialogueReader
             }
 
         DisplayMessage();
+
+        // If the left mouse button was clicked OR the spacebar was pressed, display the next message
+        if(Input.GetMouseButtonDown(0)
+            || Input.GetKeyDown("space"))
+            NextMessage();
     }
 
     private void DisplayMessage()

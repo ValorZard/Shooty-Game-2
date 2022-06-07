@@ -157,11 +157,11 @@ RectTransform:
   m_Children:
   - {fileID: 1914600579}
   m_Father: {fileID: 450739180}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -120}
+  m_AnchoredPosition: {x: 0, y: -160}
   m_SizeDelta: {x: 0, y: 35}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &11195982
@@ -283,7 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 21300000, guid: f365d7038ab357743a1d1bebef097c20, type: 3}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: This tutorial covers the different types of enemies you will
     encounter.
@@ -689,6 +690,7 @@ RectTransform:
   - {fileID: 396015945}
   - {fileID: 1711411356}
   - {fileID: 362577987}
+  - {fileID: 349514609}
   m_Father: {fileID: 2030607111}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -830,6 +832,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287611544}
+  m_CullTransparentMesh: 1
+--- !u!1 &349514608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349514609}
+  - component: {fileID: 349514611}
+  - component: {fileID: 349514610}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &349514609
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349514608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 245959664}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -5, y: 160}
+  m_SizeDelta: {x: 490, y: 175}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &349514610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349514608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &349514611
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349514608}
   m_CullTransparentMesh: 1
 --- !u!1 &362577986
 GameObject:
@@ -1048,8 +1125,8 @@ RectTransform:
   - {fileID: 1186164802}
   - {fileID: 1837757649}
   - {fileID: 1712654894}
-  - {fileID: 11195981}
   - {fileID: 1922816565}
+  - {fileID: 11195981}
   m_Father: {fileID: 1194605941}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1112,7 +1189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 0}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: The third level.
   m_StartButton: {fileID: 511707086}
@@ -2093,7 +2171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 0}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: The second level.
   m_StartButton: {fileID: 511707086}
@@ -2412,7 +2491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 21300000, guid: fba0141af0eacc849af33f0b72cb05da, type: 3}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: This tutorial covers movement and teleporters.
   m_StartButton: {fileID: 511707086}
@@ -2505,7 +2585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 0}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: The first level.
   m_StartButton: {fileID: 511707086}
@@ -3506,7 +3587,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 21300000, guid: f2bf34f8c062a244bbe7e1c26a25c97a, type: 3}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: This tutorial covers the loss of health and how to regain
     it.
@@ -3952,7 +4034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 21300000, guid: 84e8382159ed2114092acd0b5011f131, type: 3}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: This tutorial covers shooting, range, and ammo.
   m_StartButton: {fileID: 511707086}
@@ -4124,11 +4207,11 @@ RectTransform:
   m_Children:
   - {fileID: 1714292313}
   m_Father: {fileID: 450739180}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -160}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 0, y: 35}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1922816566
@@ -4250,7 +4333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f45df6986a2e246b239fa9ecfec6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PreviewImage: {fileID: 0}
+  m_PreviewImage: {fileID: 349514610}
+  m_Sprite: {fileID: 21300000, guid: ac24a303acd256840aa1e3b23a5bdc3e, type: 3}
   m_DescriptionObject: {fileID: 287611546}
   m_DescriptionMessage: This tutorial covers the different types of powerups you
     will encounter.

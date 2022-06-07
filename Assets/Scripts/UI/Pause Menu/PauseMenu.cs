@@ -104,11 +104,13 @@ public class PauseMenu : MonoBehaviour
         // ... AND if the object isn't the camera rig...
         // ... AND if the object isn't the event system...
         // ... AND if the object isn't the pause menu nor its child...
+        // ... AND if the object isn't the music...
         // ... return true
         return obj.activeInHierarchy
             && obj.GetComponent<Camera>() == null
             && obj.GetComponent<CameraController>() == null
             && obj.GetComponent<EventSystem>() == null
-            && !obj.transform.IsChildOf(this.transform);
+            && !obj.transform.IsChildOf(this.transform)
+            && obj.GetComponent<AudioSource>() == null;
     }
 }

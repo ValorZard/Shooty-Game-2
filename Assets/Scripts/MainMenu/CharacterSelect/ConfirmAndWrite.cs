@@ -7,9 +7,11 @@ using System.IO;
 
 public class ConfirmAndWrite : MonoBehaviour
 {
-    // Private variables
+    // Protected variables
         // The file path
-        private string m_Path = "Assets/Resources/PlayerType.txt";
+        protected string m_Path = "Assets/Resources/PlayerType.txt";
+
+    // Private variables
         // The start script
         private StartAndWriteScript m_Script;
 

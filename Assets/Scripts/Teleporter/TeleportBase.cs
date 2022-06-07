@@ -51,6 +51,15 @@ abstract public class TeleportBase : MonoBehaviour
             // Otherwise, the teleporter isn't active
             else
             {
+                // If the enter animation isn't complete...
+                if(!anim.GetEnterFinished())
+                {
+                    // ... stop the teleportation
+                    move.enabled = true;
+                    anim.ResetAnimation();
+                    Disable();
+                }
+
                 ExitComplete(other);
             }
         }

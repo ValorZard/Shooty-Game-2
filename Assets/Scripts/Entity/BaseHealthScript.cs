@@ -19,6 +19,10 @@ public class BaseHealthScript : MonoBehaviour
         private bool m_IsDamaged;
         // The original colour of the character
         private Color m_Color;
+        // How long the character has been damaged for
+        private float m_CurrentTime = -1;
+        // How long the character should be damaged for
+        private float m_MaxTime = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -79,10 +83,17 @@ public class BaseHealthScript : MonoBehaviour
         {
             m_Renderer.color = Color.red;
             m_IsDamaged = false;
+            m_CurrentTime = 0;
         }
+        // Otherwise, if the current time hasn't surpassed the max time, increment the time
+        else if(m_CurrentTime != -1 && m_CurrentTime < m_MaxTime)
+            m_CurrentTime += Time.deltaTime;
         // Otherwise, return the colour to normal
         else
+        {
             m_Renderer.color = m_Color;
+            m_CurrentTime = -1;
+        }
     }
 
     public float GetStartingHealth() { return m_StartingHealth; }

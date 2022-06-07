@@ -15,13 +15,15 @@ using System.IO;
 
 public class LevelLock : MonoBehaviour
 {
+    // Protected variables
+        // The file path
+        protected string m_Path = "Assets/Resources/LevelsUnlocked.txt";
+
     // Private variables
         // Reference to the start script
         private StartScript m_StartScript;
         // Reference to the button
         private Button m_Button;
-        // The file path
-        private string m_Path = "Assets/Resources/LevelsUnlocked.txt";
 
     // Start is called before the first frame update
     void Start()

@@ -61,6 +61,17 @@ public class TeleportAnimation : MonoBehaviour
                                          Mathf.Max(m_Renderer.color.a - Time.deltaTime * m_Speed, 0));
     }
 
+    public void ResetAnimation()
+    {
+        // Immediately returns to transparent
+        m_Renderer.color = new Color(m_Renderer.color.r,
+                                     m_Renderer.color.g,
+                                     m_Renderer.color.b,
+                                     0);
+        SetEnter(false);
+        SetExit(false);
+    }
+
     public bool GetEnter() { return m_Enter; }
     public bool GetExit() { return m_Exit; }
     public void SetEnter(bool b) { m_Enter = b; }
