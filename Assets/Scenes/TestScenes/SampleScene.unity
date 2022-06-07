@@ -951,7 +951,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Powerup_Damage
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 783359171946062826, guid: db3b063f669849b459c17ae0ceb36f69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db3b063f669849b459c17ae0ceb36f69, type: 3}
 --- !u!4 &783359173082559612 stripped
 Transform:
@@ -1128,6 +1129,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1059851054}
     m_Modifications:
+    - target: {fileID: 1756152455336464058, guid: 621e65afbab2e854ab8e12708ff166f7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756152455336464058, guid: 621e65afbab2e854ab8e12708ff166f7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 5189927846455083583, guid: 621e65afbab2e854ab8e12708ff166f7, type: 3}
       propertyPath: m_Name
       value: Powerup_Speed

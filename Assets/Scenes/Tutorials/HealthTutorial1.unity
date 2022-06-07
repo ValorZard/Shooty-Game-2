@@ -3030,7 +3030,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3487571679064724921, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_LevelName
-      value: DialogSample
+      value: LevelSelectScene
       objectReference: {fileID: 0}
     - target: {fileID: 6742563216296412533, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_Active
@@ -4056,7 +4056,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3487571679064724921, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_LevelName
-      value: DialogSample
+      value: LevelSelectScene
       objectReference: {fileID: 0}
     - target: {fileID: 6742563216296412533, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_Active

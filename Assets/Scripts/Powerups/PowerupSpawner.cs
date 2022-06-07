@@ -10,9 +10,9 @@ public class PowerupSpawner : MonoBehaviour
         // Prefab of the powerup to spawn
         [SerializeField] private GameObject m_Powerup;
 
-    public void SpawnPowerup()
+    public GameObject SpawnPowerup()
     {
         // Spawn the powerup
-        Instantiate(m_Powerup, transform.position, transform.rotation);
+        return Instantiate(m_Powerup, transform.position, transform.rotation);
     }
 }

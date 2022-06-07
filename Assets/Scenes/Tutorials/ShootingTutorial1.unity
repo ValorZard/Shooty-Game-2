@@ -1545,7 +1545,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3487571679064724921, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_LevelName
-      value: HealthTutorial1
+      value: LevelSelectScene
       objectReference: {fileID: 0}
     - target: {fileID: 6831628663040075528, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_Name
@@ -4208,17 +4208,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3616496810027548237, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
   m_PrefabInstance: {fileID: 1549404811}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1549404813 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3616496811851617822, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
-  m_PrefabInstance: {fileID: 1549404811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1566323422
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,7 +4442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Teleporter: {fileID: 476155923}
-  m_Text: {fileID: 1549404813}
+  m_Text: {fileID: 0}
   m_String: Good job!
 --- !u!1 &1729681065
 GameObject:
@@ -9592,7 +9581,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3487571679064724921, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_LevelName
-      value: HealthTutorial1
+      value: LevelSelectScene
       objectReference: {fileID: 0}
     - target: {fileID: 6831628663040075528, guid: 00c76b4d97a431a4da527981f950ab0a, type: 3}
       propertyPath: m_Name

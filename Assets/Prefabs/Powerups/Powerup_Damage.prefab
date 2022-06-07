@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 783359171946062831}
   - component: {fileID: 783359171946062824}
   - component: {fileID: 783359171946062825}
-  - component: {fileID: 783359171946062826}
+  - component: {fileID: 1069209402988068198}
   - component: {fileID: 783359171946062827}
   m_Layer: 0
   m_Name: Powerup_Damage
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 783359171946062836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8272ea7c59da847458432e7c88bf7766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6e03355ba78c5344a7f91c30174ab73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,8 +106,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &783359171946062826
-PolygonCollider2D:
+--- !u!61 &1069209402988068198
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,57 +123,15 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.19999999, y: -0.099999994}
-      - {x: -0.26, y: -0.13}
-      - {x: -0.26, y: -0.25}
-      - {x: -0.19999999, y: -0.29999998}
-      - {x: -0.099999994, y: -0.29999998}
-      - {x: -0.06, y: -0.24}
-      - {x: -0.06, y: -0.13}
-      - {x: -0.089999996, y: -0.099999994}
-    - - {x: -0.04, y: 0.14}
-      - {x: -0.099999994, y: 0.14}
-      - {x: -0.11, y: 0.12}
-      - {x: -0.11, y: 0}
-      - {x: 0.07, y: -0.17}
-      - {x: 0.25, y: -0.26999998}
-      - {x: 0.26999998, y: -0.26999998}
-      - {x: 0.29999998, y: -0.24}
-      - {x: 0.29999998, y: -0.19999999}
-    - - {x: -0.17, y: 0.02}
-      - {x: -0.19, y: -0.06}
-      - {x: -0.19, y: -0.089999996}
-      - {x: -0.17, y: -0.099999994}
-      - {x: -0.12, y: -0.11}
-      - {x: -0.089999996, y: -0.099999994}
-      - {x: -0.08, y: -0.01}
-      - {x: -0.12, y: 0.06}
-      - {x: -0.14, y: 0.06}
-    - - {x: 0.04, y: 0.21}
-      - {x: -0.049999997, y: 0.17}
-      - {x: -0.049999997, y: 0.12}
-      - {x: 0, y: 0.089999996}
-      - {x: 0.049999997, y: 0.089999996}
-      - {x: 0.11, y: 0.13}
-      - {x: 0.11, y: 0.16}
-      - {x: 0.089999996, y: 0.21}
-    - - {x: 0.14999999, y: 0.29999998}
-      - {x: 0.099999994, y: 0.22999999}
-      - {x: 0.099999994, y: 0.17999999}
-      - {x: 0.11, y: 0.14999999}
-      - {x: 0.17, y: 0.099999994}
-      - {x: 0.24, y: 0.099999994}
-      - {x: 0.29999998, y: 0.14999999}
-      - {x: 0.29999998, y: 0.28}
-      - {x: 0.24, y: 0.29999998}
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!114 &783359171946062827
 MonoBehaviour:
   m_ObjectHideFlags: 0

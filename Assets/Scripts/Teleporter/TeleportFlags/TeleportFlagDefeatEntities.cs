@@ -38,12 +38,16 @@ public class TeleportFlagDefeatEntities : TeleportFlagBase
     // Activate the teleporter
     protected override void FlagActivation()
     {
-        m_Teleporter.GetComponent<TeleportBase>().Enable();
+        // Only run if the teleporter exists
+        if(m_Teleporter != null)
+            m_Teleporter.GetComponent<TeleportBase>().Enable();
     }
 
     // Alternately, disable the teleporter
     protected override void FlagAlternate()
     {
-        m_Teleporter.GetComponent<TeleportBase>().Disable();
+        // Only run if the teleporter exists
+        if(m_Teleporter != null)
+            m_Teleporter.GetComponent<TeleportBase>().Disable();
     }
 }
