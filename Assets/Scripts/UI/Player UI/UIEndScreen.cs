@@ -39,9 +39,8 @@ public class UIEndScreen : MonoBehaviour
         if(objects.Count != 0)
             // Go through the list
             for(int i = 0; i < objects.Count; i++)
-                // If the object is active...
+                // If the object is active, all objects are not inactive
                 if(objects[i].activeSelf)
-                    // ... all objects are not inactive
                     return false;
         
         // Otherwise, all objects are inactive
@@ -51,13 +50,13 @@ public class UIEndScreen : MonoBehaviour
     // Activates the screen
     private void ShowScreen(string str)
     {
-        // Go through all the children of this object
+        // Enable all the children of this object
         for(int i = 0; i < transform.childCount; i++)
-            // Enable the child
             transform.GetChild(i).gameObject.SetActive(true);
 
-        // Change the text
-        GetComponentInChildren<TextMeshProUGUI>().text = str;
+        // Only change the text if a string was given
+        if(str != "")
+            GetComponentInChildren<TextMeshProUGUI>().text = str;
     }
 
     public bool GetActive() { return transform.GetChild(0).gameObject.activeSelf; }

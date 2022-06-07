@@ -40,6 +40,7 @@ public class CreditRandomizer : MonoBehaviour
         m_Credits.Add("Srayan Jana");
         m_Credits.Add("Derek Chan");
         m_Credits.Add("Sarah Harkins");
+        m_Credits.Add("Esmeralda Juarez");
     }
 
     // Randomizes the list order

@@ -1765,7 +1765,6 @@ GameObject:
   - component: {fileID: 229962506}
   - component: {fileID: 229962505}
   - component: {fileID: 229962504}
-  - component: {fileID: 229962503}
   m_Layer: 5
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -1773,18 +1772,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &229962503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229962502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e08432e095375c4094dd83bfb6f1743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &229962504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,7 +2682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Teleporter: {fileID: 1828385173}
-  m_Text: {fileID: 1027368369}
+  m_Text: {fileID: 0}
   m_String: Excellent! Now, both of you, head through the blue teleporters to go
     to the next test. We're not moving on unless you both stand on them.
 --- !u!1 &789346462
@@ -3289,17 +3276,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992888172}
   m_CullTransparentMesh: 1
---- !u!114 &1027368369 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3616496811851617822, guid: fd35ab8a79ab9a144be57870e02ddfb3, type: 3}
-  m_PrefabInstance: {fileID: 1432292973}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1271761702
 GameObject:
   m_ObjectHideFlags: 0

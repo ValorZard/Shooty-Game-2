@@ -12,18 +12,6 @@ public class StartAndWriteScript : StartScript
         [SerializeField] private string m_Text;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // Create the directories if they don't exist
-        if(!Directory.Exists("Assets"))
-            Directory.CreateDirectory("Assets");
-        if(!Directory.Exists("Assets/Resources"))
-            Directory.CreateDirectory("Assets/Resources");
-        if(!Directory.Exists("Assets/Dialogue"))
-            Directory.CreateDirectory("Assets/Dialogue");
-    }
-
-    // Start is called before the first frame update
     public void StartAndWrite()
     {
         // Write the text

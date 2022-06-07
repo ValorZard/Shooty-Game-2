@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class StartScript : MonoBehaviour
 {
@@ -16,7 +17,23 @@ public class StartScript : MonoBehaviour
     // Moves to the game scene
     public void StartGame()
     {
-        SceneManager.LoadScene(m_LevelName);
+        // Only run if the level name exists
+        if(m_LevelName != "")
+            SceneManager.LoadScene(m_LevelName);
+    }
+
+    // Moves to the game scene using the player number
+    public void StartWithNumber()
+    {
+        // Only run if the level name exists
+        if(m_LevelName != "")
+            SceneManager.LoadScene(m_LevelName + File.ReadAllText(m_Path));
+    }
+
+    // Reloads the current scene
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public string GetLevelName() { return m_LevelName; }

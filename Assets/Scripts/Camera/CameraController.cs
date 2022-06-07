@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
         // The position the camera is moving towards
         private Vector3 m_DesiredPosition;
         // Limit to how far away the player can scope
-        [SerializeField] private float m_ScopeLimit = 5;
+        //[SerializeField] private float m_ScopeLimit = 5;
 
     // Start is called before the first frame update
     void Start()
