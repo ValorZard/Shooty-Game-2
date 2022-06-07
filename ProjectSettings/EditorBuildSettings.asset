@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorials/HealthTutorial1.unity
     guid: 65f4c687a1363ac4d96915e8f5819171
   - enabled: 1
+    path: Assets/Scenes/Tutorials/PowerupTutorial.unity
+    guid: 212fd77c06f15be4fbc1f8fcf0251810
+  - enabled: 1
     path: Assets/Scenes/Tutorials/EnemyTutorial.unity
     guid: 40d0af757a5cfe54191456384715438b
   - enabled: 1
