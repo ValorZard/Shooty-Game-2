@@ -59,7 +59,7 @@ public class ConfirmAndWrite : MonoBehaviour
         File.WriteAllText(m_Path, text);
 
         // Move to the next scene
-        m_Script.SetLevelName(m_Script.GetLevelName() + m_Script.GetText());
+        //m_Script.SetLevelName(m_Script.GetLevelName() + m_Script.GetText());
         m_Script.StartAndWrite();
     }
 

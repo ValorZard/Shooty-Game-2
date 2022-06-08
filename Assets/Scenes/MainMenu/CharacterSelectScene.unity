@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea79d10ac91fc01448e319a717280f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelName: MovementTutorial
+  m_LevelName: LevelSelectScene
   m_Text: 
 --- !u!114 &88357193
 MonoBehaviour:
@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea79d10ac91fc01448e319a717280f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LevelName: MovementTutorial
+  m_LevelName: LevelSelectScene
   m_Text: 1
 --- !u!114 &932595652
 MonoBehaviour:
