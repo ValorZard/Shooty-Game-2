@@ -44,13 +44,15 @@ public class BossAttacks : MonoBehaviour
             GameObject attack = Instantiate(melee, this.transform.position, this.transform.rotation);
             Invoke("delay", attack.GetComponent<BossStandardAttack>().GetTotalTime() + m_RestTime);
         }
-        if(s == "Beam")
+
+        else if(s == "Beam")
         {
             // Shoots a beam aimed at the closest player
             GameObject attack = Instantiate(beam, this.transform.position, lookAt2D(closestPlayer) * Quaternion.Euler(0, 0, 90));
             Invoke("delay", attack.GetComponent<BossStandardAttack>().GetTotalTime() + m_RestTime);
         }
-        if(s == "AOE")
+
+        else if(s == "AOE")
         {
             // Spawns on AOE attack on each player
             if(fartherPlayer == closestPlayer)
@@ -66,13 +68,16 @@ public class BossAttacks : MonoBehaviour
                 Invoke("delay", attack2.GetComponent<BossStandardAttack>().GetTotalTime() + m_RestTime);
             }
         }
-        if(s == "Moving")
+
+/*
+        else if(s == "Moving")
         {
             // Shoot a moving attack at the farthest player
             Instantiate(moving, this.transform.position, lookAt2D(fartherPlayer));
             Invoke("delay", m_RestTime*2);
         }
-        if(s == "Adds")
+
+        else if(s == "Adds")
         {
             // Spawns a gorup of enemies
             foreach (GameObject spawner in addSpawners)
@@ -81,6 +86,7 @@ public class BossAttacks : MonoBehaviour
                 Invoke("delay", m_RestTime*4);
             }
         }
+*/
     }
 
     private void delay()

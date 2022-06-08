@@ -48,8 +48,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorials/PowerupTutorial.unity
     guid: 212fd77c06f15be4fbc1f8fcf0251810
   - enabled: 1
+    path: Assets/Scenes/Tutorials/PowerupTutorial1.unity
+    guid: ff55904e6fa5e6847922fa203b898b9d
+  - enabled: 1
     path: Assets/Scenes/Tutorials/EnemyTutorial.unity
     guid: 40d0af757a5cfe54191456384715438b
+  - enabled: 1
+    path: Assets/Scenes/Tutorials/EnemyTutorial1.unity
+    guid: 919310d5bb228e341b3b3180a246e70b
   - enabled: 1
     path: Assets/Scenes/DialogSample.unity
     guid: 93922c48d63e11b4b97f6f9fe1f4d408
@@ -65,6 +71,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelTwo1.unity
     guid: 7add2a81184be96449969e4bb818a6b1
+  - enabled: 1
+    path: Assets/Scenes/LevelThree.unity
+    guid: 0357b7bc2c9802d468e7158506f077cc
   - enabled: 1
     path: Assets/Scenes/MainMenu/WinScene.unity
     guid: 303dd2c68a0f8e746a12b758d63d0cb6

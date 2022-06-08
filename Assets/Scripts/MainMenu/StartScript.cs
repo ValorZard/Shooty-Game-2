@@ -26,7 +26,9 @@ public class StartScript : MonoBehaviour
     public void StartWithNumber()
     {
         // Only run if the level name exists
-        if(m_LevelName != "")
+        if(m_LevelName == "DialogSample")
+            SceneManager.LoadScene(m_LevelName);
+        else if(m_LevelName != "")
             SceneManager.LoadScene(m_LevelName + File.ReadAllText(m_Path));
     }
 
