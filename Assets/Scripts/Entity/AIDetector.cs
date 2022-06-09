@@ -16,6 +16,8 @@ abstract public class AIDetector : MonoBehaviour
         protected AIController m_Movement;
         // Reference to the shoot script
         protected BaseShooting m_Shooting;
+        // Is there an enemy inside the detector?
+        protected bool m_EnemyInVicinity = false;
 
     protected void OnTriggerStay2D(Collider2D other)
     {
@@ -23,10 +25,9 @@ abstract public class AIDetector : MonoBehaviour
         if(other.CompareTag(m_Shooting.GetEnemy()))
         {
             // ... target it
-            m_Movement.SetDetection(true);
+            ReassignTarget(other);
 
-            // Set new target
-            m_Movement.target = other.transform;
+            m_EnemyInVicinity = true;
         }
     }
 
@@ -40,7 +41,22 @@ abstract public class AIDetector : MonoBehaviour
 
             // Reset target
             ResetTarget();
+
+            m_EnemyInVicinity = false;
         }
+    }
+
+    // Reassign the target
+    public void ReassignTarget(Collider2D other)
+    {
+        m_Movement.SetDetection(true);
+        m_Movement.target = other.transform;
+    }
+
+    public void ReassignTarget(Transform trans)
+    {
+        m_Movement.SetDetection(true);
+        m_Movement.target = trans;
     }
 
     abstract protected void ResetTarget();

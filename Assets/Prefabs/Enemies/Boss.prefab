@@ -424,11 +424,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7081858746153916156}
   - component: {fileID: 7081858746153916159}
-  - component: {fileID: 7081858746153916157}
+  - component: {fileID: 2330299043525096785}
+  - component: {fileID: -7911812461896735685}
   - component: {fileID: 7081858746153916146}
   - component: {fileID: 7081858746153916147}
   - component: {fileID: 7081858746153916144}
-  - component: {fileID: -7911812461896735685}
   - component: {fileID: 5983523736960827631}
   m_Layer: 0
   m_Name: Boss
@@ -506,8 +506,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7081858746153916157
-CircleCollider2D:
+--- !u!60 &2330299043525096785
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -520,8 +520,51 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5, y: -0.109375}
+      - {x: 0.5, y: 0.3125}
+      - {x: 0.359375, y: 0.390625}
+      - {x: -0.359375, y: 0.390625}
+      - {x: -0.5, y: 0.328125}
+      - {x: -0.5, y: -0.109375}
+      - {x: -0.296875, y: -0.125}
+      - {x: -0.34375, y: -0.46875}
+      - {x: -0.234375, y: -0.5}
+      - {x: 0.25, y: -0.5}
+      - {x: 0.359375, y: -0.46875}
+      - {x: 0.21875, y: -0.21875}
+      - {x: 0.328125, y: -0.078125}
+--- !u!50 &-7911812461896735685
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081858746153916158}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000000
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &7081858746153916146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,27 +609,6 @@ MonoBehaviour:
   moving: {fileID: 6437181181794640463, guid: e64ef71d04e4fa74690b1519fd2c5a72, type: 3}
   enemy: {fileID: 7862470643439594355, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
   m_RestTime: 1
---- !u!50 &-7911812461896735685
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081858746153916158}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1000000
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &5983523736960827631
 MonoBehaviour:
   m_ObjectHideFlags: 0

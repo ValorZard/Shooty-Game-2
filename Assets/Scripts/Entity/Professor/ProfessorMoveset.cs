@@ -7,6 +7,7 @@
     List of attacks:
      * Throws a barrel at the nearest player
      * Spawns 2 basic enemies
+     * Spawns 2 beams, which despawn automatically after firing
 */
 
 using System.Collections;
@@ -32,6 +33,8 @@ public class ProfessorMoveset : MonoBehaviour
         private ProfessorAttackThrowBarrel m_ThrowBarrel;
         // Reference to the enemy-spawning script
         private ProfessorAttackSpawnEnemies m_SpawnEnemies;
+        // Reference to the beam-spawning script
+        private ProfessorAttackSpawnBeams m_SpawnBeams;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class ProfessorMoveset : MonoBehaviour
         // Grab the attack scripts
         m_ThrowBarrel = GetComponent<ProfessorAttackThrowBarrel>();
         m_SpawnEnemies = GetComponent<ProfessorAttackSpawnEnemies>();
+        m_SpawnBeams = GetComponent<ProfessorAttackSpawnBeams>();
     }
 
     // Update is called once per frame
@@ -54,19 +58,25 @@ public class ProfessorMoveset : MonoBehaviour
         if(!m_IsAttacking)
         {
             // ... choose a random attack
-            int rng = Random.Range(0, 2);
+            int rng = Random.Range(0, 5);
             m_IsAttacking = true;
             if(rng == 0)
+            {
+                m_SpawnEnemies.SpawnEnemies();
+                m_TimeLeftActive = m_SpawnEnemies.GetTimeLeftActive();
+                m_TimeBeforeDestroy = m_SpawnEnemies.GetTimeBeforeDestroy();
+            }
+            else if(rng == 1 || rng == 2)
             {
                 m_ThrowBarrel.ThrowBarrel(m_Closer);
                 m_TimeLeftActive = m_ThrowBarrel.GetTimeLeftActive();
                 m_TimeBeforeDestroy = m_ThrowBarrel.GetTimeBeforeDestroy();
             }
-            else if(rng == 1)
+            else if(rng == 3 || rng == 4)
             {
-                m_SpawnEnemies.SpawnEnemies();
-                m_TimeLeftActive = m_SpawnEnemies.GetTimeLeftActive();
-                m_TimeBeforeDestroy = m_SpawnEnemies.GetTimeBeforeDestroy();
+                m_SpawnBeams.SpawnBeams(m_Closer);
+                m_TimeLeftActive = m_SpawnBeams.GetTimeLeftActive();
+                m_TimeBeforeDestroy = m_SpawnBeams.GetTimeBeforeDestroy();
             }
         }
 

@@ -113,6 +113,9 @@ public class PlayerShooting : MonoBehaviour
 
         // Set the bullet's velocity (note: don't use Time.deltaTime; seems to break speed consistency between bullets)
         bulletInstance.velocity = velocity.normalized * m_Speed;
+
+        // Set the instantiator
+        bulletScript.SetInstantiator(transform);
     }
 
     // Calculates the velocity between the cursor and the player

@@ -29,5 +29,8 @@ public class ProfessorAttackThrowBarrel : ProfessorAttackBase
         float horizontal = player.transform.position.x - transform.position.x;
         float vertical = player.transform.position.y - transform.position.y;
         barrel.velocity = new Vector2(horizontal, vertical).normalized * 20;
+
+        // Destroy the barrel after some time
+        Destroy(barrel.gameObject, m_TimeBeforeDestroy);
     }
 }

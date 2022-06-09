@@ -59,9 +59,8 @@ public class BaseHealthScript : MonoBehaviour
         // If the current health is at zero...
         if(m_CurrentHealth == 0f)
         {
-            // If the character has a powerup spawner...
+            // If the character has a powerup spawner, spawn the powerup
             if(GetComponent<PowerupSpawner>() != null)
-                // ... spawn the powerup
                 GetComponent<PowerupSpawner>().SpawnPowerup();
 
             // ... disable the character

@@ -486,6 +486,8 @@ GameObject:
   - component: {fileID: 2760605122430482240}
   - component: {fileID: 1561907090821746051}
   - component: {fileID: 7780156533241632757}
+  - component: {fileID: 6711360037593327983}
+  - component: {fileID: 2886789836847300339}
   m_Layer: 0
   m_Name: Behaviour
   m_TagString: Untagged
@@ -532,7 +534,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Barrel: {fileID: 5577878042666975223, guid: c62337d129f3525459c943b661102c3f, type: 3}
-  m_TimeBeforeDestroy: 2
+--- !u!114 &6711360037593327983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402977934987153592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e872141cd62124c419ddba1f13855248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnemyPrefab: {fileID: 7862470643439594355, guid: 28575cd462ee6ea4a8e50209c26b98db, type: 3}
+  m_SpawnPoints: []
+--- !u!114 &2886789836847300339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402977934987153592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86029442ca0e85a43a44aace4eeee6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BeamPrefab: {fileID: 9123349141334079015, guid: e1f5ccd3eed002a49bdc00147f59cd9d, type: 3}
+  m_SpawnPoints: []
 --- !u!1 &7259112752055145677
 GameObject:
   m_ObjectHideFlags: 0
