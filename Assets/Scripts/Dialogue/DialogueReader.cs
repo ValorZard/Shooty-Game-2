@@ -64,4 +64,27 @@ public class DialogueReader : MonoBehaviour
         else
             return null;
     }
+
+    protected DialogueClass GenerateDialogueFromLine(string str = "")
+    {
+        // If the string isn't empty...
+        if(str != "")
+        {
+            // Grab the character number
+            string sub = str.Substring(0, str.IndexOf(' '));
+            str = str.Substring(str.IndexOf(' ') + 1);
+            int charNum = (int)(char.GetNumericValue(sub[0]));
+
+            // Grab the emotion number
+            sub = str.Substring(0, str.IndexOf(' '));
+            str = str.Substring(str.IndexOf(' ') + 1);
+            int emote = (int)(char.GetNumericValue(sub[0]));
+
+            // Return the dialogue
+            return new DialogueClass(charNum, emote, str);
+        }
+        // Otherwise, return null
+        else
+            return null;
+    }
 }

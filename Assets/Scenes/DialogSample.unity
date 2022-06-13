@@ -175,6 +175,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_File: {fileID: 4900000, guid: 0e0e125031cb6234184765731df4707f, type: 3}
   m_Black: {fileID: 1913438453}
+  m_Messages:
+  - 0 0 Look, I know we don't really have the best relationship
+  - 1 0 You think??
+  - 0 0 Yeah, yeah I know, but... I think together we can break out of here.
+  - 1 0 ... You sure?
+  - 0 0 We won't know until we try.
 --- !u!1 &211601661
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,8 @@ public class DialogueManager : DialogueReader
         private List<DialogueClass> m_Dialogue;
         // Black screen
         [SerializeField] private GameObject m_Black;
+        // The text script (not code) to use
+        [SerializeField] private string[] m_Messages;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +59,7 @@ public class DialogueManager : DialogueReader
         // Starts at the first letter
         m_TextIndex = 0;
 
+        /*
         // Open the file
         m_Reader = new StreamReader("Assets/Dialogue/" + m_File.name + ".txt");
 
@@ -65,6 +68,12 @@ public class DialogueManager : DialogueReader
         //while(!m_Reader.EndOfStream())
         while(!m_Reader.EndOfStream)
             m_Dialogue.Add(GenerateDialogueFromLine());
+        */
+
+        // Get the dialogue from what was given
+        m_Dialogue = new List<DialogueClass>();
+        foreach(string str in m_Messages)
+            m_Dialogue.Add(GenerateDialogueFromLine(str));
     }
 
     // Update is called once per frame
