@@ -24,5 +24,9 @@ public class CreateFolders : MonoBehaviour
             Directory.CreateDirectory("Assets/Resources");
         if(!Directory.Exists("Assets/Dialogue"))
             Directory.CreateDirectory("Assets/Dialogue");
+        
+        // Create the files if they don't exist
+        if(!File.Exists("Assets/Resources/LevelsUnlocked.txt"))
+            File.Create("Assets/Resources/LevelsUnlocked.txt");
     }
 }
