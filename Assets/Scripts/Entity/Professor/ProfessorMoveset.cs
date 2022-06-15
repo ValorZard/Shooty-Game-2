@@ -8,6 +8,7 @@
      * Throws a barrel at the nearest player
      * Spawns 2 basic enemies
      * Spawns 2 beams, which despawn automatically after firing
+     * Spawns 1 brute enemy
 */
 
 using System.Collections;
@@ -35,6 +36,10 @@ public class ProfessorMoveset : MonoBehaviour
         private ProfessorAttackSpawnEnemies m_SpawnEnemies;
         // Reference to the beam-spawning script
         private ProfessorAttackSpawnBeams m_SpawnBeams;
+        // Reference to the brute-spawning script
+        private ProfessorAttackSpawnBrutes m_SpawnBrutes;
+        // Reference to the explosive-spawning script
+        private ProfessorAttackSpawnExplosives m_SpawnExplosives;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +51,8 @@ public class ProfessorMoveset : MonoBehaviour
         m_ThrowBarrel = GetComponent<ProfessorAttackThrowBarrel>();
         m_SpawnEnemies = GetComponent<ProfessorAttackSpawnEnemies>();
         m_SpawnBeams = GetComponent<ProfessorAttackSpawnBeams>();
+        m_SpawnBrutes = GetComponent<ProfessorAttackSpawnBrutes>();
+        m_SpawnExplosives = GetComponent<ProfessorAttackSpawnExplosives>();
     }
 
     // Update is called once per frame
@@ -58,11 +65,11 @@ public class ProfessorMoveset : MonoBehaviour
         if(!m_IsAttacking)
         {
             // ... choose a random attack
-            int rng = Random.Range(0, 5);
+            int rng = Random.Range(0, 7);
             m_IsAttacking = true;
             if(rng == 0)
             {
-                m_SpawnEnemies.SpawnEnemies();
+                m_SpawnEnemies.Spawn();
                 m_TimeLeftActive = m_SpawnEnemies.GetTimeLeftActive();
                 m_TimeBeforeDestroy = m_SpawnEnemies.GetTimeBeforeDestroy();
             }
@@ -74,9 +81,21 @@ public class ProfessorMoveset : MonoBehaviour
             }
             else if(rng == 3 || rng == 4)
             {
-                m_SpawnBeams.SpawnBeams(m_Closer);
+                m_SpawnBeams.Spawn(m_Closer);
                 m_TimeLeftActive = m_SpawnBeams.GetTimeLeftActive();
                 m_TimeBeforeDestroy = m_SpawnBeams.GetTimeBeforeDestroy();
+            }
+            else if(rng == 5)
+            {
+                m_SpawnBrutes.Spawn();
+                m_TimeLeftActive = m_SpawnBrutes.GetTimeLeftActive();
+                m_TimeBeforeDestroy = m_SpawnBrutes.GetTimeBeforeDestroy();
+            }
+            else if(rng == 6)
+            {
+                m_SpawnExplosives.Spawn();
+                m_TimeLeftActive = m_SpawnExplosives.GetTimeLeftActive();
+                m_TimeBeforeDestroy = m_SpawnExplosives.GetTimeBeforeDestroy();
             }
         }
 

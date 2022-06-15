@@ -30,10 +30,12 @@ public class PlayerShooting : MonoBehaviour
         // The input axis that is used for shooting bullets
         [HideInInspector] public string m_FireButton;
         // The current delay between shooting bullets
-        [HideInInspector] public float m_CurrentDelay;
+        /*[HideInInspector]*/ public float m_CurrentDelay;
 
         // Reference to the player's ammo script
         private AmmoManager m_AmmoManager;
+        // Reference to the player's multishot script
+        private PlayerShootingMulti m_Multishot;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,9 @@ public class PlayerShooting : MonoBehaviour
 
         // Grab the ammo manager
         m_AmmoManager = GetComponent<AmmoManager>();
+
+        // Grab the multishot script
+        m_Multishot = GetComponent<PlayerShootingMulti>();
     }
 
     // Update is called once per frame
@@ -54,8 +59,10 @@ public class PlayerShooting : MonoBehaviour
         // If the player can shoot...
         if(CheckShootStatus())
         {
-            // ... shoot the bullet
-            Fire();
+            // Only shoot if the multishot script isn't active
+            if(!m_Multishot.enabled)
+                // ... shoot the bullet
+                Fire();
             
 
             // Delay the next shot
@@ -80,6 +87,12 @@ public class PlayerShooting : MonoBehaviour
         AssignBullet(CalculateVelocity());
 
         // Removes one from the ammo count
+        DecrementAmmo();
+    }
+
+    // Removes one from the ammo count
+    public void DecrementAmmo()
+    {
         m_AmmoManager.DecrementAmmo();
     }
 
@@ -165,13 +178,29 @@ public class PlayerShooting : MonoBehaviour
     public bool CheckShootStatus()
     {
         // Can only shoot if the shooting button is held down...
-        return Input.GetAxisRaw(m_FireButton) > 0 //Input.GetButton(m_FireButton)
-            // ... if the current delay is zero...
-            && m_CurrentDelay == 0f
-            // ... and if the player has ammo
+        // ... AND if the player has ammo...
+        // ... AND if the shooting velocity isn't zero
+        return CheckShootStatusIgnoreDelay()
+            // ... AND if the current delay is zero
+            && m_CurrentDelay == 0f;
+    }
+
+    // Checks if the player can shoot (ignores current delay)
+    public bool CheckShootStatusIgnoreDelay()
+    {
+        // Can only shoot if the shooting button is held down...
+        return CheckShootStatusInput()
+            // ... AND if the player has ammo...
             && m_AmmoManager.GetCurrentAmmo() != 0
-            // ... and the shooting velocity isn't zero
+            // ... AND if the shooting velocity isn't zero
             && CalculateVelocity() != Vector2.zero;
+    }
+
+    // Checks if the input is read
+    public bool CheckShootStatusInput()
+    {
+        // Can only shoot if the shooting button is held down
+        return Input.GetAxisRaw(m_FireButton) > 0;
     }
 
     public float GetDamage() { return m_Damage; }

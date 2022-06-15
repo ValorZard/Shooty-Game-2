@@ -25,7 +25,8 @@ public class LevelUnlockCollide : LevelLock
     void Start()
     {
         // Grab the level name
-        m_LevelName = SceneManager.GetActiveScene().name;
+        //m_LevelName = SceneManager.GetActiveScene().name;
+        m_LevelName = GetComponent<StartScript>().GetLevelName();
 
         // Remove the number if it's there
         if(m_LevelName.Contains("1"))
